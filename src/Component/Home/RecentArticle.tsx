@@ -6,17 +6,23 @@ import Link from 'next/link';
 import { useGetAllArticlesQuery } from '@/redux/features/others/otherApi';
 import LoadingSpinner from '../Loading';
 
-const RecentArticle = () => {
+const RecentArticle = ({ cmsData }: { cmsData?: any }) => {
   const { data: articles, isLoading } = useGetAllArticlesQuery(undefined);
 
   if (isLoading) return <LoadingSpinner />;
+
+  if (cmsData?.isVisible === false) return null;
+
+  const titleParts = (cmsData?.title || "Recent Article").split(" ");
+  const firstWord = titleParts[0];
+  const restOfTitle = titleParts.slice(1).join(" ");
 
   return (
     <div className={`container mx-auto ${styles.fontInter}`}>
       <div className="flex justify-between items-center my-12 px-3">
         <div>
           <h1 className={`sm:text-4xl text-xl  ${styles.fontDmSans}`}>
-            <span className="bg-[#1D69E1] text-white px-3">Recent</span> Article
+            <span className="bg-[#1D69E1] text-white px-3">{firstWord}</span> {restOfTitle}
           </h1>
         </div>
         <div>

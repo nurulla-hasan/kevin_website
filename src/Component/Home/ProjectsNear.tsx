@@ -9,16 +9,16 @@ import { Pagination } from 'antd';
 
 
 
-const ProjectsNear = ({debouncedSearchTerm,filter}) => {
+const ProjectsNear = ({ debouncedSearchTerm, filter, cmsData }: { debouncedSearchTerm: string; filter: string; cmsData?: any }) => {
   const [page, setPage] = useState(1);
   const { data: services } = useGetAllServicesQuery({
     page,
-    search:debouncedSearchTerm,
-    categoryName:filter
+    search: debouncedSearchTerm,
+    categoryName: filter
   });
 
   const meta = services?.data?.meta
-const limit = meta?.limit;
+  const limit = meta?.limit;
   const totalItems = meta?.total;
 
   // Calculate current items to show based on page and limit
@@ -29,10 +29,12 @@ const limit = meta?.limit;
     setPage(page);
   };
 
+  if (cmsData?.isVisible === false) return null;
+
   return (
     <div className={`container mx-auto ${styles.fontDmSans}`}>
       <h1 className={`text-4xl font-bold mb-5  ${styles.fontDmSans}`}>
-        Project Near You
+        {cmsData?.title || "Project Near You"}
       </h1>
         <div className="px-3 mb-3">
       {currentItems && currentItems.length > 0 ? (

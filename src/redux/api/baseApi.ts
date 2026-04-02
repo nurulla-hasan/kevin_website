@@ -27,7 +27,8 @@ export const baseApi = createApi({
     'messages',
     'notifications',
     'notificationsCount',
-    'document'
+    'document',
+    'home'
   ],
   endpoints: () => ({}),
 });

@@ -26,7 +26,7 @@ export default function Navbar() {
   const [socket, setSocket] = useState<Socket | null>(null);
   const user = useAppSelector(selectCurrentUser);
   const { data: specUser } = useGetSpecefiqUserQuery(user?.user?.userId);
-  console.log("spec user from navbar--->",specUser);
+  // console.log("spec user from navbar--->",specUser);
   const { data: unSeenNotificationCount } = useGetUnseenNotificationCountQuery(
     user?.user?.userId
   );

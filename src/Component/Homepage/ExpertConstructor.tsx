@@ -6,14 +6,14 @@ import { useState } from 'react';
 import { useGetAllUserQuery } from '@/redux/features/user/userApi';
 import { Pagination } from 'antd';
 
-const ExpertConstructor = ({ debouncedSearchTerm ,filter}) => {
+const ExpertConstructor = ({ debouncedSearchTerm, filter, cmsData }: { debouncedSearchTerm: string; filter: string; cmsData?: any }) => {
   const [page, setPage] = useState(1);
   const role = "contractor";
   const { data: contractors } = useGetAllUserQuery({
     page,
     role,
     search: debouncedSearchTerm,
-    categotyName:filter
+    categotyName: filter
   });
   // console.log("all contractors >>>>>>>>>>>>>>",contractors);
   const meta = contractors?.data?.meta;
@@ -28,11 +28,14 @@ const ExpertConstructor = ({ debouncedSearchTerm ,filter}) => {
   const onPageChange = (page: number) => {
     setPage(page);
   };
+
+  if (cmsData?.isVisible === false) return null;
+
   return (
     <div>
       <div className={`container mx-auto ${styles.fontDmSans}`}>
         <h1 className={`text-4xl font-bold  my-10   ${styles.fontDmSans}`}>
-          Expert Contractor
+          {cmsData?.title || "Expert Contractor"}
         </h1>
 
         <div className="px-3 mb-3">

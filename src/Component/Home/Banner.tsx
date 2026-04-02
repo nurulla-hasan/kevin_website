@@ -6,10 +6,21 @@ import banerImg from '@/assests/bannerImg.jpg';
 import styles from '@/app/styles.module.css';
 import Service from './Service';
 
-export default function Banner({setSearch,setFilter}:{setSearch:any, setFilter: any; }) {
-    const handleSearchChange=(e)=>{
-    setSearch(e.target.value)
-  }
+export default function Banner({
+  setSearch,
+  setFilter,
+  cmsData,
+}: {
+  setSearch: any;
+  setFilter: any;
+  cmsData?: any;
+}) {
+  const handleSearchChange = (e) => {
+    setSearch(e.target.value);
+  };
+
+  if (cmsData?.isVisible === false) return null;
+
   return (
     <>
       <div className={`relative w-full mb-8  ${styles.fontDmSans}`}>
@@ -17,7 +28,7 @@ export default function Banner({setSearch,setFilter}:{setSearch:any, setFilter: 
           {/* Background Image */}
           <div className="absolute inset-0">
             <Image
-              src={banerImg}
+              src={cmsData?.image || banerImg}
               alt="Professional contractor"
               fill
               className="object-cover"
@@ -31,36 +42,42 @@ export default function Banner({setSearch,setFilter}:{setSearch:any, setFilter: 
               {/* Heading with icon */}
               <div className="flex items-center justify-center gap-3 mb-6">
                 <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white">
-                  Connect With
+                  {cmsData?.title || "Connect With"}
                 </h1>
               </div>
-              <div className="flex items-center justify-center gap-3 mb-8">
-                <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#ABE7B4]">
-                  Trusted Contractors
-                </h2>
+              {!cmsData?.title && (
+                <div className="flex items-center justify-center gap-3 mb-8">
+                  <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#ABE7B4]">
+                    Trusted Contractors
+                  </h2>
 
-                <Image
-                  src={hamer}
-                  alt="Professional contractor"
-                  width={100}
-                  height={100}
-                  className="sm:w-20 sm:h-20"
-                />
-              </div>
+                  <Image
+                    src={hamer}
+                    alt="Professional contractor"
+                    width={100}
+                    height={100}
+                    className="sm:w-20 sm:h-20"
+                  />
+                </div>
+              )}
 
               {/* Description */}
               <p className="text-white/90 text-lg md:text-xl max-w-4xl mx-auto mb-12 leading-relaxed">
-                YourTradeSource connects homeowners with trusted, verified
-                contractors for home improvement, remodeling, and repairs. Find
-                the{' '}
-                <span className="text-[#ABE7B4] font-semibold">
-                  perfect professional
-                </span>{' '}
-                for your project and bring your{' '}
-                <span className="text-[#ABE7B4] font-semibold">
-                  vision to life
-                </span>
-                .
+                {cmsData?.content || (
+                  <>
+                    YourTradeSource connects homeowners with trusted, verified
+                    contractors for home improvement, remodeling, and repairs.
+                    Find the{" "}
+                    <span className="text-[#ABE7B4] font-semibold">
+                      perfect professional
+                    </span>{" "}
+                    for your project and bring your{" "}
+                    <span className="text-[#ABE7B4] font-semibold">
+                      vision to life
+                    </span>
+                    .
+                  </>
+                )}
               </p>
 
               {/* Search Bar */}
