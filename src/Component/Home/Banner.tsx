@@ -19,6 +19,8 @@ export default function Banner({
     setSearch(e.target.value);
   };
 
+  console.log(cmsData)
+
   if (cmsData?.isVisible === false) return null;
 
   return (

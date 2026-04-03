@@ -23,12 +23,14 @@ const LandingPage = () => {
       clearTimeout(timeoutId);
     };
   }, [search]);
+
+  console.log("landingCms---------------------->", landingCms)
   return (
     <div>
       <Banner
         setSearch={setSearch}
         setFilter={setFilter}
-        cmsData={landingCms?.welcomeBanner}
+        cmsData={landingCms?.banner}
       />
       <ProjectsNear
         debouncedSearchTerm={debouncedSearchTerm}
