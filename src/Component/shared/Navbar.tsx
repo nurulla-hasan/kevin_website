@@ -19,8 +19,10 @@ import { protectedRoutes } from '@/constants';
 import { useGetUnseenNotificationCountQuery } from '@/redux/features/others/otherApi';
 import { Socket } from 'socket.io-client';
 import { getSocket } from '@/lib/socket';
+import { useGetGlobalDataQuery } from '@/redux/features/cms/globalApi';
 
 export default function Navbar() {
+  const { data: globalData } = useGetGlobalDataQuery(undefined);
   const [isOpen, setIsOpen] = useState(false);
   const [notificationCount, setNotificationCount] = useState(0);
   const [socket, setSocket] = useState<Socket | null>(null);
@@ -35,15 +37,30 @@ export default function Navbar() {
   const role = specUser?.data?.role;
   const homeLink = user?.user?.userId ? '/homepage' : '/';
 
+  const cmsNav = globalData?.data?.navigation || [];
+
   const navItems = [
-    { label: 'Home', href: homeLink },
-    { label: 'Interior', href: '/interior' },
-    { label: 'Exterior', href: '/exterior' },
-    { label: 'Lawn & Garden', href: '/lawn' },
-    { label: 'Specialized & Other Services', href: '/allServices' },
-    // { label: 'Specialized & Other Services', href: '/specialized' },
-    { label: 'Articles', href: '/article' },
-  ];
+    { originalLabel: 'Home', href: homeLink, cmsIndex: 0 },
+    { originalLabel: 'Interior', href: '/interior', cmsIndex: 1 },
+    { originalLabel: 'Exterior', href: '/exterior', cmsIndex: 2 },
+    { originalLabel: 'Lawn & Garden', href: '/lawn', cmsIndex: 3 },
+    { originalLabel: 'Specialized & Other Services', href: '/allServices', cmsIndex: 4 },
+    { originalLabel: 'Articles', href: '/article', cmsIndex: 5 },
+  ]
+    .map(item => {
+      const cmsItem = cmsNav[item.cmsIndex];
+      return {
+        label: cmsItem?.label || item.originalLabel,
+        href: item.href,
+        isVisible: cmsItem ? cmsItem.isVisible : true,
+      };
+    })
+    .filter(item => item.isVisible);
+
+  // Get $10 dynamic data
+  const get10Cms = cmsNav[6];
+  const get10Label = get10Cms?.label || 'Get $10';
+  const isGet10Visible = get10Cms ? get10Cms.isVisible : true;
 
   // const profileLink = role === 'contractor' ||'vipContractor' ? '/dashboard' : '/myProfile';
   const profileLink = (role === 'contractor' || role === 'vipContractor') ? '/dashboard' : '/myProfile';
@@ -116,7 +133,7 @@ export default function Navbar() {
       <div className="lg:mr-5 xl:mr-6 2xl:mr-44 mr-auto flex items-center ">
         <Link href={homeLink}>
           <Image
-            src={logo}
+            src={globalData?.data?.branding?.logo || logo}
             alt="Logo"
             width={200}
             height={100}
@@ -148,16 +165,18 @@ export default function Navbar() {
       <div className="hidden lg:flex lg:gap-3 items-center xl:space-x-2 2xl:space-x-6 ">
         {user ? (
           <>
-            <Link
-              href="/refer"
-              className={`font-medium hover:text-blue-600 ${
-                pathname === '/refer'
-                  ? 'text-blue-600 font-semibold'
-                  : 'text-gray-700'
-              }`}
-            >
-              Get $10
-            </Link>
+            {isGet10Visible && (
+              <Link
+                href="/refer"
+                className={`font-medium hover:text-blue-600 ${
+                  pathname === '/refer'
+                    ? 'text-blue-600 font-semibold'
+                    : 'text-gray-700'
+                }`}
+              >
+                {get10Label}
+              </Link>
+            )}
             <div className="border flex justify-evenly lg:gap-2 xl:gap-2 2xl:gap-3  items-center border-gray-300 rounded-md shadow-md lg:px-3 xl:px-8 py-2">
               <Link href="/inbox">
                 <div
@@ -276,17 +295,19 @@ export default function Navbar() {
           <li className="flex flex-col px-6 py-3 space-y-2">
             {user ? (
               <>
-                <Link
-                  href="/refer"
-                  className={`font-medium hover:text-blue-600 text-center py-2 rounded ${
-                    pathname === '/refer'
-                      ? 'text-blue-600 font-semibold'
-                      : 'text-gray-700'
-                  }`}
-                  onClick={() => setIsOpen(false)}
-                >
-                  Get $10
-                </Link>
+                {isGet10Visible && (
+                  <Link
+                    href="/refer"
+                    className={`font-medium hover:text-blue-600 text-center py-2 rounded ${
+                      pathname === '/refer'
+                        ? 'text-blue-600 font-semibold'
+                        : 'text-gray-700'
+                    }`}
+                    onClick={() => setIsOpen(false)}
+                  >
+                    {get10Label}
+                  </Link>
+                )}
                 <div className="flex justify-between items-center border border-gray-300 rounded-md shadow-md px-4 py-2 space-x-4">
                   <Link href="/inbox">
                     <div

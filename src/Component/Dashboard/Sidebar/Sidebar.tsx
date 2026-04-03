@@ -11,6 +11,7 @@ import { setCookie } from "nookies";
 import { message } from "antd";
 import { protectedRoutes } from "@/constants";
 import { FaLock } from "react-icons/fa"; // Lock Icon
+import { useGetGlobalDataQuery } from "@/redux/features/cms/globalApi";
 
 // Define user and contractor routes
 const userItems = [
@@ -37,6 +38,7 @@ const contractorItems = [
 ];
 
 const Sidebar = () => {
+  const { data: globalData } = useGetGlobalDataQuery(undefined);
   const pathname = usePathname();
   const user = useAppSelector(selectCurrentUser);
   const { data: specUser } = useGetSpecefiqUserQuery(user?.user?.userId);
@@ -45,8 +47,35 @@ const Sidebar = () => {
   const dispatch = useAppDispatch();
   const router = useRouter();
 
+  const cmsSidebar = globalData?.data?.sidebar || [];
+
+  const sidebarMapping = {
+    "Profile": 0,
+    "Password": 1,
+    "Referral": 2,
+    "Account Balance": 3,
+    "Ask a Pro": 4,
+    "VIP Member": 5,
+    "VIP Contractor": 5,
+    "Delete Account": 6,
+  };
+
+  const mapItem = (item) => {
+    const cmsIndex = sidebarMapping[item.label];
+    if (cmsIndex !== undefined) {
+      const cmsItem = cmsSidebar[cmsIndex];
+      return {
+        ...item,
+        label: cmsItem?.label || item.label,
+        isVisible: cmsItem ? cmsItem.isVisible : true,
+      };
+    }
+    return { ...item, isVisible: true };
+  };
+
   // Determine which items to show based on role
-  const items = (role === "contractor" || role === "vipContractor") ? contractorItems : userItems;
+  const rawItems = (role === "contractor" || role === "vipContractor") ? contractorItems : userItems;
+  const items = rawItems.map(mapItem).filter(i => i.isVisible);
 
   // Handle logout
   const handleLogout = () => {
