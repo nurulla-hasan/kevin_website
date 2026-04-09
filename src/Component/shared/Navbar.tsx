@@ -22,7 +22,9 @@ import { getSocket } from '@/lib/socket';
 import { useGetGlobalDataQuery } from '@/redux/features/cms/globalApi';
 
 export default function Navbar() {
-  const { data: globalData } = useGetGlobalDataQuery(undefined);
+  const { data: globalData } = useGetGlobalDataQuery(undefined, {
+    refetchOnMountOrArgChange: true,
+  });
   const [isOpen, setIsOpen] = useState(false);
   const [notificationCount, setNotificationCount] = useState(0);
   const [socket, setSocket] = useState<Socket | null>(null);

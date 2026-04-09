@@ -8,7 +8,9 @@ import { IoLogoYoutube } from 'react-icons/io';
 import { useGetGlobalDataQuery } from '@/redux/features/cms/globalApi';
 
 const Footer = () => {
-  const { data: globalData } = useGetGlobalDataQuery(undefined);
+  const { data: globalData } = useGetGlobalDataQuery(undefined, {
+    refetchOnMountOrArgChange: true,
+  });
   const footerData = globalData?.data?.footer;
   const branding = globalData?.data?.branding;
   const navigation = globalData?.data?.navigation || [];

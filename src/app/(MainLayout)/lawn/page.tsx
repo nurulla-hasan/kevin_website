@@ -1,9 +1,15 @@
 'use client'
-import InteriorBanner from '@/Component/Interior/IntBaner';
+import LawnBanner from '@/Component/Lawn/LawnBaner';
 import LawnNear from '@/Component/Lawn/LawnNear';
+import { useGetCmsLawnGardenDataQuery } from '@/redux/features/cms/lawnGardenApi';
 import { useEffect, useState } from 'react';
+
 const LawnAndGardenPage = () => {
-      const [search, setSearch] = useState("");
+    const { data: cmsData } = useGetCmsLawnGardenDataQuery(undefined, {
+      refetchOnMountOrArgChange: true,
+    });
+    const lawnCms = cmsData?.data?.sections;
+    const [search, setSearch] = useState("");
     const [debouncedSearchTerm, setDebouncedSearchTerm] = useState(search);
     // console.log("search---->",search);
     // Handle the debounce for search term input
@@ -21,10 +27,10 @@ const LawnAndGardenPage = () => {
     
     <div>
       <div className="p-4">
-        <InteriorBanner setSearch={setSearch}/>
+        <LawnBanner setSearch={setSearch} cmsData={lawnCms?.banner}/>
       </div>
 
-      <LawnNear debouncedSearchTerm={debouncedSearchTerm}/>
+      <LawnNear debouncedSearchTerm={debouncedSearchTerm} cmsData={lawnCms?.projects}/>
     </div>
   );
 };

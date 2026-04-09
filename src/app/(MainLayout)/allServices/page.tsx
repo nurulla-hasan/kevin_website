@@ -2,11 +2,15 @@
 import Service from '@/Component/Home/Service';
 import { useEffect, useState } from 'react';
 import { useGetAllServicesQuery } from '@/redux/features/contractor/contractorApi';
-import AllServicesBanner from '@/Component/AllServices/AllServicesBanner';
 import AllServices from '@/Component/AllServices/AllServices';
 import { Pagination } from 'antd';
+import { useGetCmsSpecializedDataQuery } from '@/redux/features/cms/specializedApi';
 
 const AllServicesPage = () => {
+  const { data: cmsData } = useGetCmsSpecializedDataQuery(undefined, {
+    refetchOnMountOrArgChange: true,
+  });
+  const specializedCms = cmsData?.data?.sections;
   const [search, setSearch] = useState("");
    const [filter, setFilter] = useState("");
   const [page, setPage] = useState(1);
@@ -46,7 +50,7 @@ const AllServicesPage = () => {
   return (
     <div>
       <div className="p-4">
-        <AllServicesBanner setSearch={setSearch} />
+        {/* <AllServicesBanner setSearch={setSearch} /> */}
       </div>
       <div className="container mx-auto">
         <Service setFilter={setFilter} />
@@ -54,7 +58,7 @@ const AllServicesPage = () => {
       {/* <IntNearServices />
       <ExtNearServices />
       <LawnGardenServices /> */}
-      <AllServices allServices={currentItems} page={page} setPage={setPage} />
+      <AllServices allServices={currentItems} page={page} setPage={setPage} cmsData={specializedCms?.projects} />
       <div className="mb-3">
         <Pagination
           current={page}

@@ -7,7 +7,9 @@ import { useGetCmsHomeDataQuery } from "@/redux/features/cms/homeApi";
 import { useEffect, useState } from "react";
 
 const LandingPage = () => {
-  const { data: cmsData } = useGetCmsHomeDataQuery(undefined);
+  const { data: cmsData } = useGetCmsHomeDataQuery(undefined, {
+    refetchOnMountOrArgChange: true,
+  });
   const landingCms = cmsData?.data?.landingPage;
 
   const [search, setSearch] = useState("");

@@ -5,7 +5,7 @@ const homeApi = baseApi.injectEndpoints({
         // get home data
         getCmsHomeData: builder.query({
             query: () => ({
-                url: "/cms/home",
+                url: `/cms/home?t=${new Date().getTime()}`,
                 method: "GET",
             }),
             providesTags: ["home"],
