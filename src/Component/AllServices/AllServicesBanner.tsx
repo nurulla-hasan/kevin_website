@@ -13,7 +13,7 @@ export default function AllServicesBanner({setSearch}) {
           Craftsmanship.
         </h1>
 
-        {/* Project Location Section */}
+        {/* Project Location Section */} 
         <div className="mt-12 sm:mt-16">
           <label className="block text-sm font-medium text-gray-700 mb-3">
             Project Location

@@ -7,8 +7,8 @@ import { useGetAllServicesQuery } from '@/redux/features/contractor/contractorAp
 import NoItems from '@/utils/NoItems';
 import { Pagination } from 'antd';
 
-const LawnNear = ({debouncedSearchTerm}) => {
-    const [page, setPage] = useState(1);
+const LawnNear = ({ debouncedSearchTerm, cmsData }) => {
+  const [page, setPage] = useState(1);
   const { data: allService } = useGetAllServicesQuery({
     page,
     search: debouncedSearchTerm,
@@ -26,13 +26,16 @@ const LawnNear = ({debouncedSearchTerm}) => {
   const onPageChange = (page: number) => {
     setPage(page);
   };
+
+  if (cmsData?.isVisible === false) return null;
+
   return (
     <div
       className={`container mx-auto bg-[#ffffff] my-8 p-4 pt-8 ${styles.fontDmSans}`}
     >
       <div>
         <h1 className={`text-4xl font-bold mb-5   ${styles.fontDmSans}`}>
-          Lawn & Garden Projects Near You
+          {cmsData?.title || "Lawn & Garden Projects Near You"}
         </h1>
       </div>
    <div className="px-3">

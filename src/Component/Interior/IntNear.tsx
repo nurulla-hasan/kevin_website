@@ -8,31 +8,34 @@ import { useState } from 'react';
 import { useGetAllServicesQuery } from '@/redux/features/contractor/contractorApi';
 
 
-const IntNear = ({debouncedSearchTerm}) => {
-    const [page, setPage] = useState(1);
-    const { data: allService } = useGetAllServicesQuery({
-      page,
-      search: debouncedSearchTerm,
-    });
-  
-    const meta = allService?.data?.meta;
-    // Use the 'limit' from meta for dynamic items per page
-    const limit = meta?.limit;
-    const totalItems = meta?.total;
-  
-    // Calculate current items to show based on page and limit
-  
-    const currentItems = allService?.data?.result;
-  
-    const onPageChange = (page: number) => {
-      setPage(page);
-    };
+const IntNear = ({ debouncedSearchTerm, cmsData }) => {
+  const [page, setPage] = useState(1);
+  const { data: allService } = useGetAllServicesQuery({
+    page,
+    search: debouncedSearchTerm,
+  });
+
+  const meta = allService?.data?.meta;
+  // Use the 'limit' from meta for dynamic items per page
+  const limit = meta?.limit;
+  const totalItems = meta?.total;
+
+  // Calculate current items to show based on page and limit
+
+  const currentItems = allService?.data?.result;
+
+  const onPageChange = (page: number) => {
+    setPage(page);
+  };
+
+  if (cmsData?.isVisible === false) return null;
+
   return (
     <div
       className={`container mx-auto bg-[#ffffff] my-8 p-4 pt-8 ${styles.fontDmSans}`}
     >
       <h1 className={`text-4xl font-bold mb-5   ${styles.fontDmSans}`}>
-        Interior Project Near You
+        {cmsData?.title || "Interior Project Near You"}
       </h1>
       <div className="px-3">
         {currentItems?.length > 0 ? (

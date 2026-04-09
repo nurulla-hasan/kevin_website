@@ -1,7 +1,7 @@
-"use client"
-import { HiOutlineLocationMarker } from 'react-icons/hi';
+"use client";
+import { HiOutlineLocationMarker } from "react-icons/hi";
 
-export default function InteriorBanner({ setSearch, cmsData }) {
+export default function ExteriorBanner({ setSearch, cmsData }) {
   const handleSearchChange = (e) => {
     setSearch(e.target.value);
   };
@@ -14,7 +14,7 @@ export default function InteriorBanner({ setSearch, cmsData }) {
         {/* Main Heading */}
         <h1 className="text-3xl font-bold leading-tight text-gray-900 sm:text-3xl lg:text-4xl xl:text-5xl">
           {cmsData?.title ||
-            "An Interior Isn't Just A Space; It's Where Comfort Meets Craftsmanship."}
+            "An Exterior Isn't Just A Space; It's Where Comfort Meets Craftsmanship."}
         </h1>
 
         {/* Project Location Section */}
@@ -23,13 +23,11 @@ export default function InteriorBanner({ setSearch, cmsData }) {
             Project Location
           </label>
 
-          {/* Location Input Field */} 
+          {/* Location Input Field */}
           <div className="relative">
             <input
               type="text"
-         
-              onChange={(e) =>handleSearchChange(e)}
-         
+              onChange={(e) => handleSearchChange(e)}
               className="w-full max-w-2xl rounded-lg border border-gray-300 bg-white px-4 py-3 pr-12 text-gray-900 focus:border-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400"
             />
             <div className="absolute inset-y-0 right-1 sm:right-4 md:right-[60px] lg:right-[300px] xl:right-[550px] 2xl:right-[800px] flex items-center pr-4">

@@ -4,7 +4,7 @@ const globalApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     getGlobalData: builder.query({
       query: () => ({
-        url: "/cms/global",
+        url: `/cms/global?t=${new Date().getTime()}`,
         method: "GET",
       }),
       providesTags: ["global"],

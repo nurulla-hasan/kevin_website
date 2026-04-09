@@ -38,7 +38,9 @@ const contractorItems = [
 ];
 
 const Sidebar = () => {
-  const { data: globalData } = useGetGlobalDataQuery(undefined);
+  const { data: globalData } = useGetGlobalDataQuery(undefined, {
+    refetchOnMountOrArgChange: true,
+  });
   const pathname = usePathname();
   const user = useAppSelector(selectCurrentUser);
   const { data: specUser } = useGetSpecefiqUserQuery(user?.user?.userId);

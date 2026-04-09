@@ -1,0 +1,27 @@
+{
+    "success": true,
+    "message": "articles data fetched successfully",
+    "statusCode": 200,
+    "data": {
+        "_id": "69cb4dd91501340780683bba",
+        "pageKey": "articles",
+        "createdAt": "2026-03-31T04:30:13.562Z",
+        "sections": {
+            "featured": {
+                "content": "This month",
+                "isVisible": true,
+                "title": "Featured"
+            },
+            "popular": {
+                "content": "This month",
+                "isVisible": true,
+                "title": "Popular"
+            },
+            "recently": {
+                "isVisible": true,
+                "title": "Recently Posted"
+            }
+        },
+        "updatedAt": "2026-03-31T04:30:13.562Z"
+    }
+}
