@@ -33,7 +33,8 @@ export const baseApi = createApi({
     "interior",
     "exterior",
     "lawn-garden",
-    "specialized"
+    "specialized",
+    "articles"
   ],
   endpoints: () => ({}),
 });

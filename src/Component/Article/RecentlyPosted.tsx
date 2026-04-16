@@ -1,7 +1,7 @@
 import ArticleCard from "../Card/ArticleCard";
 import { Pagination } from "antd";
 
-const RecentlyPosted = ({ allArticles, setPage, page }) => {
+const RecentlyPosted = ({ allArticles, setPage, page, cmsData }) => {
   const meta = allArticles?.data?.meta;
   console.log("all article---->", allArticles);
 
@@ -17,13 +17,23 @@ const RecentlyPosted = ({ allArticles, setPage, page }) => {
     setPage(page);
   };
 
+  if (cmsData?.isVisible === false) return null;
+
+  // Split title if it exists, otherwise use default
+  const title = cmsData?.title || "Recently Posted";
+  const titleWords = title.split(" ");
+  const firstWord = titleWords[0];
+  const restOfTitle = titleWords.slice(1).join(" ");
+
   return (
     <div className={`container my-10 mx-auto font-inter`}>
       <div className="my-6">
         <span className="inline-flex items-center rounded bg-blue-600 px-3 py-1 text-3xl font-medium text-white">
-          Recently
+          {firstWord}
         </span>
-        <span className="ml-2 text-3xl text-gray-600">Posted</span>
+        {restOfTitle && (
+          <span className="ml-2 text-3xl text-gray-600">{restOfTitle}</span>
+        )}
       </div>
 
       <div className="grid grid-cols-2 md:grid-cols-3 gap-3 px-3 mb-8">

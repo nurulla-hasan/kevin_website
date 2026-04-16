@@ -5,7 +5,7 @@ import Link from 'next/link'
 import dayjs from 'dayjs'
 import { useEffect, useRef, useState } from 'react'
 
-export default function BlogHero({ allArticles }) {
+export default function BlogHero({ allArticles, cmsData }) {
   // eslint-disable-next-line no-unused-vars
   const meta = allArticles?.data?.meta
 
@@ -47,7 +47,12 @@ export default function BlogHero({ allArticles }) {
     }
   }, [])
 
-  if (!featuredArticle) return null
+  if (!featuredArticle) {
+    return null
+  }
+
+  const featuredCms = cmsData?.featured
+  const popularCms = cmsData?.popular
 
   return (
     <div className="w-full bg-white px-4 py-8 sm:px-6 lg:px-8">
@@ -55,75 +60,82 @@ export default function BlogHero({ allArticles }) {
         {/* Grid layout corrected */}
         <div className="grid grid-cols-1 gap-10 lg:grid-cols-3">
           {/* --- FEATURED SECTION --- */}
-          <div className="lg:col-span-2">
-            <div className="mb-6 flex items-center">
-              <span className="inline-flex items-center rounded bg-blue-600 px-3 py-1 text-sm font-medium text-white">
-                Featured
-              </span>
-              <span className="ml-2 text-sm text-gray-600">This month</span>
-            </div>
-
-            <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-              {/* Text side */}
-              <div className="order-2 md:order-1">
-                <h1 className="mb-4 text-2xl font-bold leading-tight text-gray-900 sm:text-3xl lg:text-4xl">
-                  {featuredArticle?.title}
-                </h1>
-
-                <div className="mb-4 flex items-center space-x-3 text-sm text-gray-600">
-                  <Image
-                    src={featuredArticle?.user?.image}
-                    alt="Author"
-                    width={32}
-                    height={32}
-                    className="h-8 w-8 rounded-full"
-                  />
-                  <span>
-                    {featuredArticle?.user?.firstName}{' '}
-                    {featuredArticle?.user?.lastName}
-                  </span>
-                  <span>|</span>
-                  <span>
-                    {dayjs(featuredArticle?.updatedAt).format('DD MMMM YYYY')}
-                  </span>
-                </div>
-
-                <p className="text-gray-700 leading-relaxed">
-                  {featuredArticle?.content?.slice(0, 120)}{' '}
-                  <Link
-                    href={`/article/${featuredArticle?._id}`}
-                    className="text-blue-600 underline"
-                  >
-                    Read More...
-                  </Link>
-                </p>
+          {featuredCms?.isVisible !== false && (
+            <div className="lg:col-span-2">
+              <div className="mb-6 flex items-center">
+                <span className="inline-flex items-center rounded bg-blue-600 px-3 py-1 text-sm font-medium text-white">
+                  {featuredCms?.title || "Featured"}
+                </span>
+                <span className="ml-2 text-sm text-gray-600">
+                  {featuredCms?.content || "This month"}
+                </span>
               </div>
 
-              {/* Image side */}
-              <div className="order-1 md:order-2">
-                <div className="aspect-[4/3] w-full overflow-hidden rounded-lg">
-                  <Image
-                    src={featuredArticle?.image}
-                    alt="Featured article image"
-                    width={600}
-                    height={400}
-                    className="h-full w-full object-cover"
-                  />
+              <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+                {/* Text side */}
+                <div className="order-2 md:order-1">
+                  <h1 className="mb-4 text-2xl font-bold leading-tight text-gray-900 sm:text-3xl lg:text-4xl">
+                    {featuredArticle?.title}
+                  </h1>
+
+                  <div className="mb-4 flex items-center space-x-3 text-sm text-gray-600">
+                    <Image
+                      src={featuredArticle?.user?.image}
+                      alt="Author"
+                      width={32}
+                      height={32}
+                      className="h-8 w-8 rounded-full"
+                    />
+                    <span>
+                      {featuredArticle?.user?.firstName}{" "}
+                      {featuredArticle?.user?.lastName}
+                    </span>
+                    <span>|</span>
+                    <span>
+                      {dayjs(featuredArticle?.updatedAt).format("DD MMMM YYYY")}
+                    </span>
+                  </div>
+
+                  <p className="text-gray-700 leading-relaxed">
+                    {featuredArticle?.content?.slice(0, 120)}{" "}
+                    <Link
+                      href={`/article/${featuredArticle?._id}`}
+                      className="text-blue-600 underline"
+                    >
+                      Read More...
+                    </Link>
+                  </p>
+                </div>
+
+                {/* Image side */}
+                <div className="order-1 md:order-2">
+                  <div className="aspect-[4/3] w-full overflow-hidden rounded-lg">
+                    <Image
+                      src={featuredArticle?.image}
+                      alt="Featured article image"
+                      width={600}
+                      height={400}
+                      className="h-full w-full object-cover"
+                    />
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
+          )}
 
           {/* --- POPULAR SECTION --- */}
-          <div className="lg:col-span-1">
-            {popularArticles.length > 0 && (
-              <div>
-                <div className="mb-6 flex items-center">
-                  <span className="inline-flex items-center rounded bg-blue-600 px-3 py-1 text-sm font-medium text-white">
-                    Popular
-                  </span>
-                  <span className="ml-2 text-sm text-gray-600">This month</span>
-                </div>
+          {popularCms?.isVisible !== false && (
+            <div className="lg:col-span-1">
+              {popularArticles.length > 0 && (
+                <div>
+                  <div className="mb-6 flex items-center">
+                    <span className="inline-flex items-center rounded bg-blue-600 px-3 py-1 text-sm font-medium text-white">
+                      {popularCms?.title || "Popular"}
+                    </span>
+                    <span className="ml-2 text-sm text-gray-600">
+                      {popularCms?.content || "This month"}
+                    </span>
+                  </div>
 
                 <div className="relative">
                   <div
@@ -200,7 +212,7 @@ export default function BlogHero({ allArticles }) {
                           100
                         }px)`,
                       }}
-                    />
+                    ></div>
                   </div>
                 </div>
 
@@ -213,16 +225,17 @@ export default function BlogHero({ allArticles }) {
                       className={`h-2 w-2 rounded-full transition-colors duration-200 ${
                         scrollPosition >= position &&
                         scrollPosition < (index === 3 ? 100 : position + 25)
-                          ? 'bg-blue-600'
-                          : 'bg-gray-300 hover:bg-gray-400'
+                          ? "bg-blue-600"
+                          : "bg-gray-300 hover:bg-gray-400"
                       }`}
                       aria-label={`Scroll to section ${index + 1}`}
-                    />
+                    ></button>
                   ))}
                 </div>
               </div>
             )}
           </div>
+          )}
         </div>
       </div>
     </div>
