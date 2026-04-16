@@ -24,6 +24,7 @@ const ExpertConstructor = ({ debouncedSearchTerm, filter, cmsData }: { debounced
   // Calculate current items to show based on page and limit
 
   const currentItems = contractors?.data?.result;
+  // console.log(currentItems)
 
   const onPageChange = (page: number) => {
     setPage(page);
@@ -40,7 +41,7 @@ const ExpertConstructor = ({ debouncedSearchTerm, filter, cmsData }: { debounced
 
         <div className="px-3 mb-3">
           {currentItems && currentItems.length > 0 ? (
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-1">
+            <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6">
               {currentItems?.map((contractor, idx) => {
                 return <ConstractorCard key={idx} contractor={contractor} />;
               })}

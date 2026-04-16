@@ -1,6 +1,6 @@
-import Image from 'next/image';
+import ImageWithFallback, { PLACEHOLDERS } from '@/Component/shared/ImageWithFallback';
 
-export default function IntCard({ project }) {   
+export default function IntCard({ project }) {
   // console.log('Project prop:', project);
   const reviews = Array.isArray(project?.review) ? project.review : [];
 // console.log("reviews---->",reviews);
@@ -22,14 +22,13 @@ export default function IntCard({ project }) {
         ).toFixed(1)
       : 0;
   return (
-    <div className="max-w-xs bg-white rounded-lg text-black mb-12 shadow-md overflow-hidden cursor-pointer">
-      <div className="relative h-48 w-full rounded-t-lg overflow-hidden">
-        <Image
+    <div className="max-w-xs bg-white rounded-2xl text-black mb-12 shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden cursor-pointer group">
+      <div className="relative h-48 w-full rounded-t-2xl overflow-hidden">
+        <ImageWithFallback
           src={project?.image}
           alt={project?.title}
-          layout="fill"
-          objectFit="cover"
-          priority={true}
+          fallback={PLACEHOLDERS.PROJECT}
+          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
         />
       </div>
       <div className="p-4">
