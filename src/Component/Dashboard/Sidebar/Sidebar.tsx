@@ -66,9 +66,18 @@ const Sidebar = () => {
     const cmsIndex = sidebarMapping[item.label];
     if (cmsIndex !== undefined) {
       const cmsItem = cmsSidebar[cmsIndex];
+      // Determine VIP label based on role
+      let label = cmsItem?.label || item.label;
+      if ((item.label === "VIP Member" || item.label === "VIP Contractor") && 
+          (role === "contractor" || role === "vipContractor")) {
+        label = "VIP Contractor";
+      } else if ((item.label === "VIP Member" || item.label === "VIP Contractor") && 
+                 role !== "contractor" && role !== "vipContractor") {
+        label = "VIP Member";
+      }
       return {
         ...item,
-        label: cmsItem?.label || item.label,
+        label,
         isVisible: cmsItem ? cmsItem.isVisible : true,
       };
     }

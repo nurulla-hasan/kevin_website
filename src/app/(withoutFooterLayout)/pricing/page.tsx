@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useGetAllFeesQuery } from "@/redux/features/others/otherApi";
 export default function PricingSection() {
   const { data: allFees } = useGetAllFeesQuery(undefined);
-  console.log("all fees------->", allFees);
+  // console.log("all fees------->", allFees);
   const pricingTiers = [
     {
       id: "free",
@@ -66,7 +66,7 @@ export default function PricingSection() {
           className="mx-2 w-6 h-6 text-black"
           fill="none"
           stroke="currentColor"
-          strokeWidth={2}
+          strokeWidth={2} 
           strokeLinecap="round"
           strokeLinejoin="round"
           viewBox="0 0 24 24"
