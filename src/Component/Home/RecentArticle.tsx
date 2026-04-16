@@ -31,12 +31,12 @@ const RecentArticle = ({ cmsData }: { cmsData?: any }) => {
           </Link>
         </div>
       </div>
-      <div className="grid  grid-cols-2 md:grid-cols-3 gap-3 px-3 mb-8">
+      <div className="grid  grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-3 px-3 mb-8">
         {articles?.data?.result
           ?.map((cardData, idx) => {
             return <ArticleCard key={idx} cardData={cardData} />;
           })
-          .slice(0, 3)}
+          .slice(0, 4)}
       </div>
     </div>
   );

@@ -36,7 +36,7 @@ const RecentlyPosted = ({ allArticles, setPage, page, cmsData = undefined }) => 
         )}
       </div>
 
-      <div className="grid grid-cols-2 md:grid-cols-3 gap-3 px-3 mb-8">
+      <div className="grid grid-cols-2 md:grid-cols-3 gap-6 px-3 mb-8">
         {currentItems?.map((cardData, idx) => (
           <ArticleCard key={idx} cardData={cardData} />
         ))}

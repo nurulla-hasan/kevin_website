@@ -32,14 +32,14 @@ const IntNear = ({ debouncedSearchTerm, cmsData }) => {
 
   return (
     <div
-      className={`container mx-auto bg-[#ffffff] my-8 p-4 pt-8 ${styles.fontDmSans}`}
+      className={`container mx-auto bg-[#ffffff] my-8 p-6 pt-8 rounded-xl ${styles.fontDmSans}`}
     >
       <h1 className={`text-4xl font-bold mb-5   ${styles.fontDmSans}`}>
         {cmsData?.title || "Interior Project Near You"}
       </h1>
-      <div className="px-3">
+      <div className="px-6">
         {currentItems?.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {currentItems.map((project, idx) => (
               <Link key={idx} href="/location">
                 <IntCard project={project} />

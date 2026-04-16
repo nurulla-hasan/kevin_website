@@ -75,6 +75,12 @@ const nextConfig = {
         hostname: '5f05bcd58f5a.ngrok-free.app',
         pathname: '/**',
       },
+      // Placeholder image service
+      {
+        protocol: 'https',
+        hostname: 'placehold.co',
+        pathname: '/**',
+      },
     ],
   },
 };
