@@ -1,27 +1,24 @@
 {
     "success": true,
-    "message": "articles data fetched successfully",
+    "message": "referral data fetched successfully",
     "statusCode": 200,
     "data": {
-        "_id": "69cb4dd91501340780683bba",
-        "pageKey": "articles",
-        "createdAt": "2026-03-31T04:30:13.562Z",
+        "_id": "69cb4e551501340780683bbe",
+        "pageKey": "referral",
+        "createdAt": "2026-03-31T04:32:17.734Z",
         "sections": {
-            "featured": {
-                "content": "This month",
+            "hero": {
+                "content": "At YourTradeSource (YTS), we believe great work is worth sharing. Refer a friend, and you both earn rewards!",
                 "isVisible": true,
-                "title": "Featured"
+                "title": "Help Your Friends & Get $10",
+                "image": "https://res.cloudinary.com/da1uxchgo/image/upload/v1775729695/dental-desh/gso1op2wtm4an2ldf3ga.png"
             },
-            "popular": {
-                "content": "This month",
+            "howItWorks": {
+                "content": "Your friend gets $10 off their first completed service.\nYou get a $10 credit toward your next service once they complete their first task.\nSimply enter a referral code to claim your reward.",
                 "isVisible": true,
-                "title": "Popular"
-            },
-            "recently": {
-                "isVisible": true,
-                "title": "Recently Posted"
+                "title": "Here's how it works:"
             }
         },
-        "updatedAt": "2026-03-31T04:30:13.562Z"
+        "updatedAt": "2026-04-09T10:14:51.693Z"
     }
 }

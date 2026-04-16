@@ -6,10 +6,10 @@ import { useAppSelector } from "@/redux/hooks";
 import { selectCurrentUser } from "@/redux/features/auth/authSlice";
 import { useForm } from "react-hook-form";
 import { useGetRewardMutation} from "@/redux/features/refer/referApi";
+import { useGetCmsReferDataQuery } from "@/redux/features/cms/referApi";
 import { message } from "antd";
 
 export default function ReferPage() {
-
   const {
     register,
     handleSubmit,
@@ -17,13 +17,17 @@ export default function ReferPage() {
   } = useForm();
   const [getReward] = useGetRewardMutation();
   const user = useAppSelector(selectCurrentUser);
+  
+  // Fetch CMS data
+  const { data: cmsData } = useGetCmsReferDataQuery(undefined);
+  const heroSection = cmsData?.data?.sections?.hero;
+  const howItWorksSection = cmsData?.data?.sections?.howItWorks;
 
   const onSubmit = async (data) => {
     console.log("email-->", user?.email);
     console.log("data-->", data);
     const userInfo = { email: user?.email };
     const code = data?.code;
-    // console.log(userInfo);
     try {
       const res = await getReward({ userInfo, code }).unwrap();
       console.log("response--->", res);
@@ -35,49 +39,63 @@ export default function ReferPage() {
     }
   };
 
+  // Use CMS image or fallback to local image
+  const heroImage = heroSection?.image || refer;
+
   return (
     <div>
-      {/* Main Heading */}
-      <h1 className="text-3xl sm:text-4xl lg:text-5xl container mx-auto my-12 font-bold text-gray-900 mb-6 leading-tight">
-        Help Your Friends & Get $10
-      </h1>
-      <div className="w-full container mx-auto mb-8 bg-[#ffffff] rounded-xl  py-12 px-4 sm:py-16 sm:px-6 lg:py-20 lg:px-8">
-        <div className="max-w-7xl ">
+      {/* Main Heading - from CMS */}
+      {heroSection?.isVisible !== false && (
+        <h1 className="text-3xl sm:text-4xl lg:text-5xl container mx-auto my-12 font-bold text-gray-900 mb-6 leading-tight">
+          {heroSection?.title || "Help Your Friends & Get $10"}
+        </h1>
+      )}
+      <div className="w-full container mx-auto mb-8 bg-[#ffffff] rounded-xl py-12 px-4 sm:py-16 sm:px-6 lg:py-20 lg:px-8">
+        <div className="max-w-7xl">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
             {/* Left Content */}
             <div className="order-2 lg:order-1">
-              {/* Description */}
+              {/* Description - from CMS */}
               <div className="mb-8">
-                <p className="text-gray-700 text-lg mb-4 leading-relaxed">
-                  At YourTradeSource (YTS), we believe great work is worth
-                  sharing. Refer a friend, and you both earn rewards!
-                </p>
+                {heroSection?.isVisible !== false && heroSection?.content && (
+                  <p className="text-gray-700 text-lg mb-4 leading-relaxed">
+                    {heroSection.content}
+                  </p>
+                )}
 
-                <p className="text-gray-700 text-lg mb-4 font-medium">
-                  Here&apos;s how it works:
-                </p>
+                {howItWorksSection?.isVisible !== false && (
+                  <>
+                    <p className="text-gray-700 text-lg mb-4 font-medium">
+                      {howItWorksSection?.title || "Here's how it works:"}
+                    </p>
 
-                <ul className="space-y-3 text-gray-700">
-                  <li className="flex items-start">
-                    <span className="inline-block w-2 h-2 bg-gray-400 rounded-full mt-2 mr-3 flex-shrink-0"></span>
-                    <span>
-                      Your friend gets $10 off their first completed service.
-                    </span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="inline-block w-2 h-2 bg-gray-400 rounded-full mt-2 mr-3 flex-shrink-0"></span>
-                    <span>
-                      You get a $10 credit toward your next service once they
-                      complete their first task.
-                    </span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="inline-block w-2 h-2 bg-gray-400 rounded-full mt-2 mr-3 flex-shrink-0"></span>
-                    <span>
-                      Simply enter a referral code to claim your reward.
-                    </span>
-                  </li>
-                </ul>
+                    <ul className="space-y-3 text-gray-700">
+                      {howItWorksSection?.content?.split('\n').map((line: string, index: number) => (
+                        line.trim() && (
+                          <li key={index} className="flex items-start">
+                            <span className="inline-block w-2 h-2 bg-gray-400 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                            <span>{line.trim()}</span>
+                          </li>
+                        )
+                      )) || (
+                        <>
+                          <li className="flex items-start">
+                            <span className="inline-block w-2 h-2 bg-gray-400 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                            <span>Your friend gets $10 off their first completed service.</span>
+                          </li>
+                          <li className="flex items-start">
+                            <span className="inline-block w-2 h-2 bg-gray-400 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                            <span>You get a $10 credit toward your next service once they complete their first task.</span>
+                          </li>
+                          <li className="flex items-start">
+                            <span className="inline-block w-2 h-2 bg-gray-400 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                            <span>Simply enter a referral code to claim your reward.</span>
+                          </li>
+                        </>
+                      )}
+                    </ul>
+                  </>
+                )}
               </div>
 
               {/* Referral Code Input Section */}
@@ -112,16 +130,18 @@ export default function ReferPage() {
               </form>
             </div>
 
-            {/* Right Illustration */}
-            <div className="order-1 lg:order-2 flex justify-center lg:justify-end">
-              <Image
-                src={refer}
-                alt="Referral Image"
-                width={500}
-                height={500}
-                className="w-96"
-              />
-            </div>
+            {/* Right Illustration - from CMS */}
+            {heroSection?.isVisible !== false && (
+              <div className="order-1 lg:order-2 flex justify-center lg:justify-end">
+                <Image
+                  src={heroImage}
+                  alt="Referral Image"
+                  width={500}
+                  height={500}
+                  className="w-96"
+                />
+              </div>
+            )}
           </div>
         </div>
       </div>

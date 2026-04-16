@@ -6,7 +6,7 @@ const baseQuery = fetchBaseQuery({
   prepareHeaders: (headers, { getState }) => {
     headers.set("Accept", "application/json");
 
-    // ✅ Get token from Redux store
+    // Get token from Redux store
     const token = (getState() as RootState).auth.token;
 
     if (token) {
@@ -35,6 +35,7 @@ export const baseApi = createApi({
     "lawn-garden",
     "specialized",
     "articles",
+    "referral",
   ],
   endpoints: () => ({}),
 });
