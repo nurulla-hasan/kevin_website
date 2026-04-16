@@ -1,7 +1,7 @@
 import ArticleCard from "../Card/ArticleCard";
 import { Pagination } from "antd";
 
-const RecentlyPosted = ({ allArticles, setPage, page, cmsData }) => {
+const RecentlyPosted = ({ allArticles, setPage, page, cmsData = undefined }) => {
   const meta = allArticles?.data?.meta;
   console.log("all article---->", allArticles);
 

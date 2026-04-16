@@ -1,7 +1,7 @@
 "use client"
 import { HiOutlineLocationMarker } from 'react-icons/hi';
 
-export default function InteriorBanner({ setSearch, cmsData }) {
+export default function InteriorBanner({ setSearch, cmsData = undefined }) {
   const handleSearchChange = (e) => {
     setSearch(e.target.value);
   };

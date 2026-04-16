@@ -5,7 +5,7 @@ import Link from 'next/link'
 import dayjs from 'dayjs'
 import { useEffect, useRef, useState } from 'react'
 
-export default function BlogHero({ allArticles, cmsData }) {
+export default function BlogHero({ allArticles, cmsData = undefined }) {
   // eslint-disable-next-line no-unused-vars
   const meta = allArticles?.data?.meta
 
