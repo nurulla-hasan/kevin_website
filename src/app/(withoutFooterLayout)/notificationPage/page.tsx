@@ -49,7 +49,6 @@ const NotificationPage = () => {
     setSocket(socket);
 
     const handleConnect = () => {
-      console.log('Connected to socket:', socket.id);
     };
 
     socket.on('connect', handleConnect);

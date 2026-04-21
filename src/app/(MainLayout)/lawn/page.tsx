@@ -11,7 +11,6 @@ const LawnAndGardenPage = () => {
     const lawnCms = cmsData?.data?.sections;
     const [search, setSearch] = useState("");
     const [debouncedSearchTerm, setDebouncedSearchTerm] = useState(search);
-    // console.log("search---->",search);
     // Handle the debounce for search term input
     useEffect(() => {
       const timeoutId = setTimeout(() => {

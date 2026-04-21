@@ -9,7 +9,6 @@ import { cookies } from "next/headers";
 //     if (!userCookie) return null;
   
 //     const userInfo = JSON.parse(userCookie);
-//     // console.log(userInfo);                 
              
   
 //     return userInfo;

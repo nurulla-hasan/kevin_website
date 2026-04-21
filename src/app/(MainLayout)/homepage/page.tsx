@@ -14,7 +14,6 @@ const HomePage = () => {
   const [search, setSearch] = useState("");
   const [filter, setFilter] = useState("");
   const [debouncedSearchTerm, setDebouncedSearchTerm] = useState(search);
-  // console.log("search---->",search);
   // Handle the debounce for search term input
   useEffect(() => {
     const timeoutId = setTimeout(() => {

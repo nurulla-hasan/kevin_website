@@ -24,13 +24,10 @@ export default function ReferPage() {
   const howItWorksSection = cmsData?.data?.sections?.howItWorks;
 
   const onSubmit = async (data) => {
-    console.log("email-->", user?.email);
-    console.log("data-->", data);
     const userInfo = { email: user?.email };
     const code = data?.code;
     try {
       const res = await getReward({ userInfo, code }).unwrap();
-      console.log("response--->", res);
       if (res?.success) {
         message.success(res?.message);
       }

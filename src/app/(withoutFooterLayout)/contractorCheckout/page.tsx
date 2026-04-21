@@ -24,18 +24,14 @@ const router=useRouter()
 
   const handlePurchase = async () => {
 //     const price = selectedPlan === "monthly" ? monthlyValue : yearlyValue;
-//     console.log("price--->",price);
 //      // apply credits before purchase
 //   if (totalCredits > 0) {
 //     const appliedCredit = Math.min(price,totalCredits);
 //     // subscription fee theke subtract
 //     const finalPrice = price-appliedCredit;
-// console.log("applied credit------>",appliedCredit);
-// console.log("applied credit------>",appliedCredit);
 //     // redux theke credit redeem kore felbo
 //     dispatch(redeemCredit(appliedCredit));
 
-//     console.log(`Applied credit: $${appliedCredit}, Final price: $${finalPrice}`);
     
    
 //     const payload = {

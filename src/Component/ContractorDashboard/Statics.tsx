@@ -1,7 +1,6 @@
 // import Link from "next/link";
 
 // const Statics = ({ dashboardStats }) => {
-//   console.log("dashboard stats-------->", dashboardStats);
 
 
 //   return (
@@ -102,7 +101,6 @@ import Link from "next/link";
 import { Briefcase, FileText, Star, BookOpen, User } from "lucide-react";
 
 const Statics = ({ dashboardStats }) => {
-  console.log("dashboard stats-------->", dashboardStats);
 
   const stats = [
     {

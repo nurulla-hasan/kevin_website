@@ -37,9 +37,6 @@ export default function BookingConfirmation() {
   // Chat permission logic:
   const isChatRestricted = loginUserRole === 'user' && contractorRole === 'vipContractor';
 
-  console.log("🟢 LOGGED-IN USER ROLE (Done Page):", loginUserRole);
-  console.log("👷 CONTRACTOR ROLE (Done Page):", contractorRole);
-  console.log("🚫 CHAT RESTRICTED:", isChatRestricted);
   const handleCancleBooking = async (id: string) => {
     try {
       const res = await cancelBooking(id).unwrap();

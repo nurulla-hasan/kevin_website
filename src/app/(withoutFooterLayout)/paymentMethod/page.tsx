@@ -16,7 +16,6 @@ const PaymentMethodPage = () => {
   const dispatch = useAppDispatch();
   //  dispatch(addCredit(amount));
 
-  console.log("Updated Credit: ", creditfromrdux);
 
   const [subPurchase] = useSubPurchaseMutation();
   const searchParams = useSearchParams();
@@ -32,23 +31,18 @@ const PaymentMethodPage = () => {
       price: selectedPlan === "monthly" ? monthlyValue : yearlyValue,
     };
     const price = itemPrice?.price;
-    console.log("credit for redux---->", creditfromrdux);
-    console.log("pricing------>>>>>", price);
 
     const remainingCredit = creditfromrdux - price;
 
-    console.log("remains price------>>>>>", remainingCredit);
 
     let remainingPrice = 0;
 
     if (remainingCredit >= 0) {
       //remaining credit positive hole
 
-      console.log("Remaining credit is positive, setting price to 0");
       remainingPrice = 0;
       dispatch(reduceAndUpdateCredit(price));
     } else {
-      console.log(
         "Remaining credit is negative, user needs to pay the absolute value of:",
         Math.abs(remainingCredit)
       );
@@ -77,7 +71,6 @@ const PaymentMethodPage = () => {
         plan: selectedPlan,
       },
     };
-    console.log("Updated payload: ", payload);
 
     try {
       const res = await subPurchase(payload).unwrap();

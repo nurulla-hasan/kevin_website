@@ -15,7 +15,6 @@ const AllServicesPage = () => {
    const [filter, setFilter] = useState("");
   const [page, setPage] = useState(1);
   const [debouncedSearchTerm, setDebouncedSearchTerm] = useState(search);
-  // console.log("search---->",search);
   // Handle the debounce for search term input
   useEffect(() => {
     const timeoutId = setTimeout(() => {
@@ -46,7 +45,6 @@ const AllServicesPage = () => {
     setPage(page);
   };
 
-  // console.log("get-all-service----->", allService);
   return (
     <div>
       <div className="p-4">

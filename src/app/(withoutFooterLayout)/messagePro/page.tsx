@@ -92,12 +92,10 @@ const MessageProPage = () => {
 
   const handleSendMessage = () => {
     if (message.trim()) {
-      console.log('Message sent:', message);
       setMessage('');
     }
     if (files.length) {
       files.forEach(file => {
-        console.log('File uploaded:', file.name, file.size, file.type);
       });
       setFiles([]);
     }

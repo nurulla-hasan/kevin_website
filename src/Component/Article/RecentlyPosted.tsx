@@ -3,7 +3,6 @@ import { Pagination } from "antd";
 
 const RecentlyPosted = ({ allArticles, setPage, page, cmsData = undefined }) => {
   const meta = allArticles?.data?.meta;
-  console.log("all article---->", allArticles);
 
   // Ensure meta and limit are defined
   const limit = meta?.limit || 10;
@@ -12,7 +11,6 @@ const RecentlyPosted = ({ allArticles, setPage, page, cmsData = undefined }) => 
   // Check if there are enough items to slice
   const currentItems = allArticles?.data?.result;
 
-  console.log("items-------->", currentItems);
   const onPageChange = (page: number) => {
     setPage(page);
   };

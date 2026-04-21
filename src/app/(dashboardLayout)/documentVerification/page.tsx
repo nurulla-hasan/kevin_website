@@ -46,14 +46,11 @@ return
       formData.append("backLicense", backLicense);
     }
   // Log the FormData contents
-    // console.log('Form Data Contents:');
     // formData.forEach((value, key) => {
-    //   console.log(`${key}:`, value);
     // });
     try {
       // Send the FormData to the backend API using the mutation
       const res = await verifyDoc(formData).unwrap();
-    // console.log('response------->:',res);
 
       if (res.success) {
         message.success(res?.message);
@@ -79,7 +76,6 @@ return
     const file = e.target.files[0];
     if (file) {
       setFrontLicense(file);
-      console.log("Front license uploaded:", file.name);
     }
   };
 
@@ -87,7 +83,6 @@ return
     const file = e.target.files[0];
     if (file) {
       setBackLicense(file);
-      console.log("Back license uploaded:", file.name);
     }
   };
 

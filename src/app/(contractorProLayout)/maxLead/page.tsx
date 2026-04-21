@@ -17,7 +17,6 @@ export default function MaxLead() {
   const [selectedCategories, setSelectedCategories] = useState([]); // Store selected categories
   const [selectedSubcategories, setSelectedSubcategories] = useState({}); // Store subcategories per category
   const contractorData = useAppSelector(selectCurrentContractor);
-  console.log('contractor data--->', contractorData);
   const router = useRouter();
   const [createContractor] = useCreateContractorMutation();
   const { data: allCategory } = useGetAllCategoryQuery(undefined);
@@ -108,11 +107,9 @@ export default function MaxLead() {
       zip: contractorData?.zip,
       companyName: contractorData?.companyName,
     };
-    // console.log("Data to send to DB:", modifiedData);
 
     try {
       const response = await createContractor(modifiedData);
-      // console.log("result create contractor--->",response);
       if (response.data) {
         message.success(response?.data?.message);
         router.push('/dashboard');

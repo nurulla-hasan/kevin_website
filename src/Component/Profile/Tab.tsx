@@ -79,8 +79,6 @@ export default function Tabs() {
 
   const { data: myServices } = useGetSingleUserServiceQuery(undefined);
   const { data: myLicense } = useGetLicenseQuery(undefined);
-  console.log("my services --------->", myServices?.data);
-  console.log("my License --------->", myLicense?.data);
   const contractorProfileData = myServices?.data[0]?.contractorId
   const [activeTab, setActiveTab] = useState("Projects");
 

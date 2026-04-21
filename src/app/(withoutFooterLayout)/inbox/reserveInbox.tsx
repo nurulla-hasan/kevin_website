@@ -56,10 +56,8 @@ export default function MessagingApp() {
   const { data: OldMessages } = useGetMessagesQuery(selectedUserId, {
     skip: !selectedUserId,
   });
-  console.log("sidebar all user----------->", allUsers);
   const myUserId = user?.userId;
   const { data: specUser } = useGetSpecefiqUserQuery(myUserId);
-  console.log("spec user from navbar--->", specUser);
   const role = specUser?.data?.role;
   // Load previous messages
   useEffect(() => {
@@ -167,7 +165,6 @@ export default function MessagingApp() {
     () => allUsers?.data?.map((u: any) => u) || [],
     [allUsers]
   );
-  console.log("all users------>", allUser);
   const experts = useMemo(
     () =>
       allUsers?.data?.filter(

@@ -15,7 +15,6 @@ const ExpertConstructor = ({ debouncedSearchTerm, filter, cmsData }: { debounced
     search: debouncedSearchTerm,
     categotyName: filter
   });
-  // console.log("all contractors >>>>>>>>>>>>>>",contractors);
   const meta = contractors?.data?.meta;
   // Use the 'limit' from meta for dynamic items per page
   const limit = meta?.limit;
@@ -24,7 +23,6 @@ const ExpertConstructor = ({ debouncedSearchTerm, filter, cmsData }: { debounced
   // Calculate current items to show based on page and limit
 
   const currentItems = contractors?.data?.result;
-  // console.log(currentItems)
 
   const onPageChange = (page: number) => {
     setPage(page);

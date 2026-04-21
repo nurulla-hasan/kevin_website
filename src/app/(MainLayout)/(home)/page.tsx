@@ -26,7 +26,6 @@ const LandingPage = () => {
     };
   }, [search]);
 
-  console.log("landingCms---------------------->", landingCms);
   return (
     <div>
       <Banner

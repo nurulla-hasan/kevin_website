@@ -48,7 +48,6 @@ const Sidebar = () => {
   const { data: specUser } = useGetSpecefiqUserQuery(user?.user?.userId);
   const role = specUser?.data?.role;
   const isPremiumUser = specUser?.data?.subscription?.status ==='active';  
-  console.log("pre user------->",isPremiumUser);
   const dispatch = useAppDispatch();
   const router = useRouter();
   // const items = role === "contractor" ? contractorItems : userItems;

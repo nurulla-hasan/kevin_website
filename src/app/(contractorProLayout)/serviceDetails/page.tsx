@@ -18,7 +18,6 @@ const ServiceDetailsPage = () => {
 
   // Handle form submission and log the data
   const onSubmit = data => {
-    console.log(data);
     dispatch(updateContractorData(data));
     router.push('/yourDetails');
   };

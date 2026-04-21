@@ -16,7 +16,6 @@ const [deleteProfile]=useDeletProfileMutation()
   const handleConfirmDelete = async(userId) => {
   try {
       const res = await deleteProfile(userId).unwrap();
-      console.log('res===>>>>', { res });
       if (res.data) {
         message.success(res?.data?.message);
          setIsModalOpen(false);

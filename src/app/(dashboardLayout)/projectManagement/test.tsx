@@ -72,24 +72,19 @@ export default function ProjectManagement() {
 
   const { data: myQuotes, refetch } = useMyQuotesQuery(undefined);
   const { data: myOrder, refetch:refetchMyOrder } = useBookedOrderforContractorQuery(undefined);
-  console.log("myQuotes----->", myQuotes);
-  console.log("myOrder----->", myOrder);
   
   const [activeTab, setActiveTab] = useState("Project Requests");
   const tabs = ["Project Requests", "Quote Management"];
   const router = useRouter();
   const handleViewDetails = (id) => {
-    console.log("View details", id);
     router.push(`/projectManagement/${id}`);
   };
   const handleReject = async (id) => {
-    console.log("Reject", id);
     const data = {
       status: "rejected",
     };
     try {
       const res = await updateQuoteStatus({ id, data }).unwrap();
-      console.log("res===>>>>", { res });
       if (res.success) {
         message.success(res?.message);
         refetch();
@@ -101,13 +96,11 @@ export default function ProjectManagement() {
     }
   };
   const handleAccept = async (id) => {
-    console.log("Accept", id);
     const data = {
       status: "accepted",
     };
     try {
       const res = await updateQuoteStatus({ id, data }).unwrap();
-      console.log("res===>>>>", { res });
       if (res.success) {
         message.success(res?.message);
         refetch();
@@ -119,13 +112,11 @@ export default function ProjectManagement() {
     }
   };
   const handleProjectAccept = async (id) => {
-    console.log("Accept", id);
 
      const status= "accepted"
 
     try {
       const res = await updateAcceptOrReject({ id, status }).unwrap();
-      console.log("res===>>>>", { res });
       if (res.success) {
         message.success(res?.message);
         refetchMyOrder();
@@ -137,13 +128,11 @@ export default function ProjectManagement() {
     }
   };
   const handleProjectReject = async (id) => {
-    console.log("Accept", id);
 
      const status= "rejected"
 
     try {
       const res = await updateAcceptOrReject({ id, status }).unwrap();
-      console.log("res===>>>>", { res });
       if (res.success) {
         message.success(res?.message);
         refetchMyOrder();
@@ -155,7 +144,6 @@ export default function ProjectManagement() {
     }
   };
 
-  const handleMessageClient = (id) => console.log("Message client", id);
 
   return (
     <div className="max-w-7xl mx-auto p-4 bg-white min-h-screen">

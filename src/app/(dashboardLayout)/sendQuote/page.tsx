@@ -33,11 +33,9 @@ export default function SendQuote() {
 
   const handleDrop = e => {
     e.preventDefault();
-    console.log('Files dropped');
   };
 
   const handleFileUpload = () => {
-    console.log('Upload clicked');
   };
 
   const handleDateChange = date => {

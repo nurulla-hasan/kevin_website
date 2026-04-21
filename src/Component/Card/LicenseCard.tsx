@@ -1,7 +1,6 @@
 import { MdPrivacyTip } from 'react-icons/md';
 
 export default function LicenseCard({ license }) {
-  console.log("my License --------->", license);
 
   const isVerified = license?.licenseStatus === "approved";
 

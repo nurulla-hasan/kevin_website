@@ -60,7 +60,6 @@ const SigninPage = () => {
       message.success(res.message);
 
       if (redirect) {
-        console.log("inside if block login page");
         router.push(redirect);
       } else {
         router.push("/homepage");

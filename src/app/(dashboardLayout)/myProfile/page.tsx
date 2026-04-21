@@ -28,7 +28,6 @@ export default function ProfilePage() {
   };
   const user = useAppSelector(selectCurrentUser);
   const { data: specUser,refetch } = useGetSpecefiqUserQuery(user?.user?.userId);
-  // console.log("spec user-->",specUser);
   // const router = useRouter();
   // const pathname = usePathname();
 
@@ -94,7 +93,6 @@ export default function ProfilePage() {
         // console.error("Failed to update user:", res.error);
         message.error("Failed to update user");
       } else {
-        // console.log("User updated successfully:", res.data);
         message.success(res?.data?.message);
         refetch()
         setIsModalOpen(false)

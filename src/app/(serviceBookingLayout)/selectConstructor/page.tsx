@@ -29,9 +29,6 @@ export default function ContractorSearch() {
   const storedLocation = useAppSelector(selectLocation);
   const storedService = useAppSelector(selectService);
   const storedTime = useAppSelector(selectTime);
-  console.log("stored service--->",storedService);
-  console.log("stored location--->",storedLocation);
-  console.log("stored time--->",storedTime);
   // const [priceRange, setPriceRange] = useState(150);
   const [sortBy, setSortBy] = useState('Recommended');
   const [showSortDropdown, setShowSortDropdown] = useState(false);
@@ -70,7 +67,6 @@ const firstWord = categoryName.split(' ')[0];
       return message.warning('Please input an address');
     if (!storedLocation.apt)
       return message.warning('Please input an apartment');
-  console.log("debug",storedService);
     // if (!storedService.serviceId)
     //   return message.warning('Please select a service');
     if (!storedService.serviceType)
@@ -108,7 +104,6 @@ const firstWord = categoryName.split(' ')[0];
           storedTime.projectDescription,
         ],
       };
-console.log("data---------->",data);
       const res = await bookService(data).unwrap();
 
       if (res.success) {

@@ -41,7 +41,6 @@ export default function ContractorProfile() {
       return;
     }
     data.phoneNumber = phone;
-    console.log('Form Data:', data);
   };
 
   return (

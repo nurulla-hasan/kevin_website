@@ -218,9 +218,7 @@ export default function ProjectManagement() {
   // ===== All Review modal state =====
   const [isAllReviewOpen, setIsAllReviewOpen] = useState(false);
   const [userId, setUserId] = useState("");
-console.log(userId);
 const {data:allReview}=useAllReviewQuery(userId)
- console.log("allReview data----->",allReview?.data?.reviews);
 const selectedReviews=allReview?.data?.reviews
 // const {data:allReview}=useAllReviewQuery()
   const openAllReviewModal = (data) => {
@@ -498,7 +496,6 @@ const StarRating = ({ value = 0 }: { value?: number }) => {
 
                     {project?.status === "accepted" && (
                       <button
-                        onClick={() => console.log("Message client", project?._id)}
                         className="w-full bg-blue-600 text-white px-4 py-2 rounded-md text-sm"
                       >
                         Message Client
@@ -605,7 +602,6 @@ const StarRating = ({ value = 0 }: { value?: number }) => {
     <div className="max-h-[70vh] overflow-y-auto space-y-4">
       {selectedReviews.map((item: any, i: number) => {
         const name = item?.reviewBy?.firstName || "Anonymous";
-        console.log("item------->",item?.reviewBy?.image);
   
 
         return (

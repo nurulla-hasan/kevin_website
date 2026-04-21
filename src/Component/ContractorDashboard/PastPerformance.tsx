@@ -5,7 +5,6 @@ import { RadialBarChart, RadialBar, PolarAngleAxis } from 'recharts';
 
 
 export default function PastPerformance({dashboardStats}) {
-  console.log("dashboard stats-------->",dashboardStats);
   const data = [
   {
     name: 'Provided Services',

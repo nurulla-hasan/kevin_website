@@ -22,12 +22,10 @@ export default function ProjectDetails() {
   const {id}=useParams()
   // const {data:singleQuote}=useSingleQuoteQuery(id)
   const {data:singleOrder,refetch}=useSingleOrderQuery(id)
-console.log("project manange dynamic page single quote--->",singleOrder);
 const [updateProjectStatus]=useUpdateProjectStatusMutation()
 const [giveReview] = useGiveReviewMutation()
   const user = singleOrder?.data?.user
   const project = singleOrder?.data
-  console.log("project ordered-------------->",project);
   const [isReviewOpen, setIsReviewOpen] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [form] = Form.useForm();
@@ -143,7 +141,6 @@ const handleDownloadQuote = () => {
 
     try {
       const values = await form.validateFields(); // { rating, comment }
-            console.log("values---->",values);
       setSubmitting(true);
 
    
@@ -171,11 +168,9 @@ if(res?.success){
     }
   };
   const handleStatusChange = async (status) => {
-    console.log("status--->",status);
 
     try {
      const res = await updateProjectStatus({ id, status }).unwrap(); // Assuming API is set up for status update
-  console.log("res===>>>>", { res });
       if (res.success) {
         message.success(res?.message);
         refetch();

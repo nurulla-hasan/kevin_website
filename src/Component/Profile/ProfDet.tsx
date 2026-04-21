@@ -41,7 +41,6 @@ const ProfDet = ({ contractorId, profileData }) => {
   // Handle second modal submit
   const handleContinueSecondModal = async () => {
     // Logging the data before submission
-    console.log("Form Data:", {
       reason: selectedReason,
       feedback,
       image,
@@ -58,20 +57,15 @@ const ProfDet = ({ contractorId, profileData }) => {
 
     formData.append("image", image);
 
-    // console.log("formData--------->",formData);
-    //    console.log('Form Data--->>>>>>>>>>>:', formData);
 
     // Log the FormData contents
-    // console.log('Form Data Contents:');
     // formData.forEach((value, key) => {
-    //   console.log(`${key}:`, value);
     // });
     try {
       const res = await postReport({
         info: formData,
         id: contractorId,
       }).unwrap();
-      // console.log("response--------->",res);
 
       if (res.success) {
         message.success(res?.message);

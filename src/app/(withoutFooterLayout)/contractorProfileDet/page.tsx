@@ -17,7 +17,6 @@ const ContractorProfilePage = () => {
   const tabs = ['Projects', 'Services', 'Licenses & Insurance'];
   const [activeTab, setActiveTab] = useState('Projects');
     const { data: myServices } = useGetSingleUserServiceQuery(undefined);
-  // console.log("my services --------->", myServices?.data);;
   const project = myServices?.data
   const contractorProfileData = myServices?.data[0]?.contractorId
 const Projects=[]

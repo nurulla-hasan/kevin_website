@@ -15,7 +15,6 @@ const ArticlePage = () => {
   const [page, setPage] = useState(1);
   const { data: allArticles, isLoading } = useGetAllArticlesQuery(page);
 
-  console.log("page--------->", page);
 
   if (isLoading) return <LoadingSpinner />;
 

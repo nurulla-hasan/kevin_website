@@ -10,7 +10,6 @@ import { useParams } from "next/navigation";
 
 export default function RequestQuoteForm() {
     const {id} = useParams()
-    console.log("c id---->",id);
   const { data: allCategory } = useGetAllCategoryQuery(undefined);
   // Define the type for category options
   type CategoryOption = {
@@ -47,14 +46,12 @@ export default function RequestQuoteForm() {
   });
 
   const onSubmit = async (data) => {
-    console.log(data);
     const modifiedData={
         ...data,
         contractorId:id
     }
     try {
       const res = await sendQuote(modifiedData).unwrap();
-      console.log("response--->", res);
       if (res?.success) {
         message.success(res?.message);
       }

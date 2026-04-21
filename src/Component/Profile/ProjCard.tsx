@@ -1,7 +1,6 @@
 import Image from 'next/image';
 
 const ProjCard = ({ cardData }) => {
-  console.log(cardData);
   return (
     <div className="w-full rounded-lg overflow-hidden shadow-lg bg-white">
       <div className="relative">

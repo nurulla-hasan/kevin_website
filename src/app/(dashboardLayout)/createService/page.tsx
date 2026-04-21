@@ -39,11 +39,9 @@ export default function CreateServiceForm() {
   });
   const { data: allCategory } = useGetAllCategoryQuery(undefined);
 
-  console.log({ allCategory });
 
   const user = useAppSelector(selectCurrentUser);
   const { data: specUser } = useGetSpecefiqUserQuery(user?.user?.userId);
-  // console.log("user--->",specUser?.data);
   const removeService = category => {
     setSelectedCategories(
       selectedCategories.filter(cat => cat.value !== category.value)
@@ -93,7 +91,6 @@ export default function CreateServiceForm() {
   const onSubmit = async data => {
     const categoryName = selectedCategories.map(category => category.value);
     // const subServices = Object.values(selectedSubcategories).flat().map((sub) => sub.value);
-    console.log('Data--->>>>>>>>>>>:', data);
     // Creating a new FormData object to handle the form submission
     const formData = new FormData();
 
@@ -115,16 +112,12 @@ export default function CreateServiceForm() {
     if (data?.image) {
       formData.append('image', data.image); // assuming 'data.image' is the file object
     }
-    console.log('Form Data--->>>>>>>>>>>:', formData);
     // Log the FormData contents
-    console.log('Form Data Contents:');
     formData.forEach((value, key) => {
-      console.log(`${key}:`, value);
     });
 
     try {
       const res = await createServices(formData);
-      console.log('res===>>>>', { res });
       if (res.data) {
         message.success(res?.data?.message);
         reset()

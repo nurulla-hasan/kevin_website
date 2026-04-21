@@ -9,7 +9,6 @@ import { selectCurrentUser } from '@/redux/features/auth/authSlice';
 
 const DashboardPage = () => {
   const user = useAppSelector(selectCurrentUser)
-  console.log("user------->",user?.user?.role);
   const role = user?.user?.role
   const {data:dashboardStats}=useGetDashboardStatsQuery(undefined)
 

@@ -4,18 +4,15 @@ import { useState } from 'react';
 import Image from 'next/image';
 
 export default function VideoSlider({profileData}) {
-  // console.log("profile data-------->",profileData);
  const [activeIndex, setActiveIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
   const slides = profileData?.profileVedio|| []
   
-  // console.log("siled------->",slides);
 
  
 
   const currentSlide = slides[activeIndex];
 
-  // console.log("currentSlide------->",currentSlide);
 
   const handleDotClick = index => {
     setActiveIndex(index);

@@ -25,7 +25,6 @@ export default function PaymentBookingInterface() {
   const storedTime = useAppSelector(selectTime);
   const storedLocation = useAppSelector(selectLocation);
   const { data: service } = useGetSingleServiceQuery(storedService?.serviceId);
-  console.log("service data------->",service);
   const user = useAppSelector(selectCurrentUser);
 
   const [makePayment] = useMakePaymentMutation();

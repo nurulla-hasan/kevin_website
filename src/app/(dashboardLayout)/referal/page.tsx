@@ -41,14 +41,10 @@ const totalCredits = totalClaimedCredit / 100;
 
 const creditfromrdux=useAppSelector(selectTotalCredit)
 
-  console.log("credit from rdux---->", creditfromrdux)
-  console.log("refer credits---->", totalCredits);
-  // console.log("refer claimed in dollar---->", totalCreditsInDollars);
   const refferedBy = referHistory?.data?.referredItem;
 
   const refferals = referHistory?.data?.referrerItems;
 
-  // console.log("referal------->",refferals);
 
   const {
     register,
@@ -58,20 +54,17 @@ const creditfromrdux=useAppSelector(selectTotalCredit)
   const [sendMail] = useSendReferalMutation();
   const user = useAppSelector(selectCurrentUser);
   const { data: specUser } = useGetSpecefiqUserQuery(user?.user?.userId);
-  // console.log("single user--->", specUser?.data);
 
   // const [copied, setCopied] = useState(false);
   // const referralLink = "Md Rayhan Shorker";
 
   const onSubmit = async (data) => {
-    // console.log("data-->", data);
     const modifyData = {
       email: data?.email,
       code: specUser?.data?.refercode,
     };
     try {
       const res = await sendMail(modifyData).unwrap();
-      console.log("response--->", res);
       if (res?.success) {
         message.success(res?.message);
       } else {
@@ -83,14 +76,12 @@ const creditfromrdux=useAppSelector(selectTotalCredit)
   };
 
   const handleClaimRefer = async (data) => {
-    // console.log("data--------->",data);
     const modifiedData = {
       relatedUserId: data?.relatedUser,
       type: data?.type,
     };
     try {
       const res = await claim(modifiedData).unwrap();
-      // console.log("response--->", res);
 
       if (res?.success) {
         message.success(res?.message);
@@ -98,9 +89,7 @@ const creditfromrdux=useAppSelector(selectTotalCredit)
         allClaimedRefetch();
            if (data?.amount) {
   
-             console.log("amount data----->",data?.amount);
            const amount = parseFloat(data?.amount?.replace(/[^0-9.-]+/g,""));
-              console.log("replace dollar sign----->",amount);
       dispatch(addCredit(amount));
       }
       } else {

@@ -102,9 +102,6 @@ const AddProject = () => {
   };
 
   const onSubmit = data => {
-    console.log('Form Data:', data);
-    console.log('Service Types:', serviceTypes);
-    console.log('Uploaded Photos:', uploadedPhotos);
     // Handle form submission
   };
   return (

@@ -16,7 +16,6 @@ const referSlice = createSlice({
   initialState,
   reducers: {
      addCredit: (state, action: PayloadAction<number>) => {
-      console.log("action payload from redux--------->", action, state);
       state.totalCredits += action.payload;
     },
 
@@ -36,7 +35,6 @@ reduceAndUpdateCredit: (state, action: PayloadAction<number>) => {
   // Ensure totalCredits doesn't go below zero
   if (state.totalCredits < 0) state.totalCredits = 0;
 
-  console.log("Updated totalCredits after reduce and update:", state.totalCredits);
 },
 
   },

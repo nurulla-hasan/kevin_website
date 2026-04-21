@@ -5,9 +5,7 @@ import { useMyDocQuery } from '@/redux/features/contractor/contractorApi';
 
 const DoneVerification = () => {
   const {data:mydoc}=useMyDocQuery(undefined)
-  console.log("my doc ----->",mydoc);
   const status = mydoc?.data?.[0]?.licenseStatus
-  console.log("status-->",status);
   // status can be ------->approved,pending,rejected
   let statusMessage = '';
   let statusDescription = '';

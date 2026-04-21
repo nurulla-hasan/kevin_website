@@ -8,7 +8,6 @@ import { useGetSpecefiqUserQuery } from '@/redux/features/user/userApi';
 const ProfilePage = ({ params }: { params: { id: string } }) => {
   const contractorId = params.id;
 const {data:singleProfile}=useGetSpecefiqUserQuery(contractorId)
-console.log("singleProfile----->",singleProfile);
 const profileData = singleProfile?.data
   return (
     <div className="">

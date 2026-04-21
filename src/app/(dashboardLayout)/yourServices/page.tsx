@@ -9,7 +9,6 @@ import { selectCurrentUser } from "@/redux/features/auth/authSlice";
 
 const YourServicePage = () => {
   const { data: myServices } = useGetSingleUserServiceQuery(undefined);
-  console.log("my services----->", myServices);
   const services = myServices?.data;
 const user = useAppSelector(selectCurrentUser)
 

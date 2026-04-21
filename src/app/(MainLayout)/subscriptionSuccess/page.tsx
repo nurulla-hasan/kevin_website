@@ -19,7 +19,6 @@ const router = useRouter()
     updateSubStatus({status})
       .unwrap()
       .then((response) => {
-        console.log("order res", response);
         message.success(response?.message);
         
         router.push("/");

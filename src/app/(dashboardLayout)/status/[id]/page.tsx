@@ -309,7 +309,6 @@ export default function ProjectDetails() {
             <button
               disabled={!selectedReason}
               onClick={() => {
-                console.log('Canceled due to:', selectedReason);
                 setCancelModalVisible(false);
               }}
               className="flex-1 bg-[#F44848] text-white py-2 rounded hover:bg-red-600 disabled:opacity-50"

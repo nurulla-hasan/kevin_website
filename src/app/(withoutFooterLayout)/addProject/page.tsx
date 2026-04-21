@@ -77,8 +77,6 @@ const AddProject = () => {
       location: data.projectLocation,  // Location (static or dynamic)
     };
 
-    console.log('Formatted Form Data:', formattedData);
-    console.log('Uploaded Photo:', uploadedPhoto);
 
     // Handle form submission, e.g., sending data to an API
   };

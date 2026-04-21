@@ -50,7 +50,6 @@ const SignUpPage = () => {
       return;
     }
     data.phone = phone;
-    console.log('Form Data:', data);
     // Your sign-up logic here
 
     try {

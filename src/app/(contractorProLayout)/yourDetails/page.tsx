@@ -14,10 +14,8 @@ import { useRouter } from 'next/navigation';
 
 const YourDetailsPage = () => {
   const  user  = useAppSelector(selectCurrentUser);
-  console.log('user-->', user);
 
   const contractorData = useAppSelector(selectCurrentContractor);
-  console.log('contractor data---->', contractorData);
   const dispatch = useAppDispatch();
   const router = useRouter();
 
@@ -34,7 +32,6 @@ const YourDetailsPage = () => {
   // Handle form submission
   const onSubmit = data => {
     data.email = user?.email;
-    console.log('Form Data:->', data);
     dispatch(updateContractorData(data));
 
     router.push('/maxLead');

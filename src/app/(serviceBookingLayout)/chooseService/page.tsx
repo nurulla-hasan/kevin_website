@@ -22,7 +22,6 @@ const ChooseServicePage = () => {
   const storedService = useAppSelector(selectService);
 
   const { data: allCategory } = useGetAllCategoryQuery(undefined);
-console.log("all category--------->",allCategory);
   const categoryOptions = allCategory?.data?.result?.map(service => ({
     label: service?.category,
     value: service?.category,
@@ -50,7 +49,6 @@ console.log("all category--------->",allCategory);
   }, [storedService, setValue]);
 
   const onSubmit = async (data: FormValues) => {
-    console.log("data----->",data);
     setIsSubmitting(true);
 
     // Save to Redux

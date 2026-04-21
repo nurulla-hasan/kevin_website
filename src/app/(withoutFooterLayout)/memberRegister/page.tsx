@@ -37,7 +37,6 @@ const VipMemberRegister = () => {
       return;
     }
     data.phoneNumber = phone;
-    console.log('Form Data:', data);
     // Your sign-up logic here
   };
   return (

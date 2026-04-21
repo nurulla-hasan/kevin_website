@@ -1,9 +1,7 @@
 import ImageWithFallback, { PLACEHOLDERS } from '@/Component/shared/ImageWithFallback';
 
 export default function IntCard({ project }) {
-  // console.log('Project prop:', project);
   const reviews = Array.isArray(project?.review) ? project.review : [];
-// console.log("reviews---->",reviews);
   // helper to render the star icon
   const StarIcon = () => (
     <svg

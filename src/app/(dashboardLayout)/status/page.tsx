@@ -56,7 +56,6 @@ export default function ProjectStatus() {
       {bookings[activeTab]?.length > 0 ? (
         bookings[activeTab]?.map(
           booking => (
-            console.log(booking),
             (
               <div
                 key={booking.id}

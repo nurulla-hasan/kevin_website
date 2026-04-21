@@ -35,7 +35,6 @@ const StarRating = ({ rating }) => {
 const ServiceDetails = ({contractorProfileData}) => {
   const [page,setPage]=useState(1)
   const {data:allReviews}=useGetAllReferQuery(undefined)
-  // console.log("contractorProfileData--------->",contractorProfileData);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
 
@@ -59,7 +58,6 @@ const ServiceDetails = ({contractorProfileData}) => {
 
 
 
-console.log("curent items----->",currentItems);
 
 
 

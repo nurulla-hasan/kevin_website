@@ -89,7 +89,6 @@ export default function FeaturedMedia() {
 
  try {
   const res= await updateContractor({id:userId,data:formData}).unwrap()
-  console.log("resposne------>",res);
   if(res.success){
     message.success(res?.message)
   }
