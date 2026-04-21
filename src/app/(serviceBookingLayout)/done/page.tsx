@@ -6,49 +6,87 @@ import Image from 'next/image';
 import {
   FaCalendarAlt,
   FaMapMarkerAlt,
-
-  FaCheck,
 } from 'react-icons/fa';
 
 import { useAppSelector } from '@/redux/hooks';
 import { selectLocation, selectService, selectTime } from '@/redux/features/project/projectSlice';
+import { useSendMessageMutation, useCancelServiceMutation } from '@/redux/features/others/otherApi';
+import { useRouter } from 'next/navigation';
+import { useUpdateProjectStatusMutation, useGetSingleServiceQuery } from '@/redux/features/contractor/contractorApi';
+import { selectCurrentUser } from '@/redux/features/auth/authSlice';
+import { message as antdMessage } from 'antd';
 import Link from 'next/link';
-import { useCancelServiceMutation } from '@/redux/features/others/otherApi';
-import { message } from 'antd';
-import { useUpdateProjectStatusMutation } from '@/redux/features/contractor/contractorApi';
 
 export default function BookingConfirmation() {
-  const [cancelBooking]=useCancelServiceMutation()
-  const [donebooking]=useUpdateProjectStatusMutation()
+  const router = useRouter();
+  const [cancelBooking] = useCancelServiceMutation();
+  const [sendMessage, { isLoading: isSending }] = useSendMessageMutation();
+  const [donebooking] = useUpdateProjectStatusMutation();
     const storedService = useAppSelector(selectService);
       const storedLocation = useAppSelector(selectLocation);
-      const storedTime = useAppSelector(selectTime);
-  console.log("stored service----->",storedService);
-  console.log("stored location--->",storedLocation);
-  console.log("stored time--->",storedTime);
-  const handleCancleBooking=async(id)=>{
-try {
-  const res = await cancelBooking(id).unwrap()
-  console.log("response------------->",res);
-  if(res?.success){
-    message.success(res?.message)
-  }
-} catch (error) {
-  message.error(error.message)
-}
-  }
-  const handleDoneBooking=async(id)=>{
-    const status = "booked"
-try {
-  const res = await donebooking({id,status}).unwrap()
-  console.log("response------------->",res);
-  if(res?.success){
-    message.success(res?.message)
-  }
-} catch (error) {
-  message.error(error.message)
-}
-  }
+  const storedTime = useAppSelector(selectTime);
+  const user = useAppSelector(selectCurrentUser);
+
+  const { data: serviceData } = useGetSingleServiceQuery(storedService?.serviceId, {
+    skip: !storedService?.serviceId,
+  });
+
+  const loginUserRole = (user as any)?.user?.role;
+  const contractorRole = serviceData?.data?.contractorId?.role;
+
+  // Chat permission logic:
+  const isChatRestricted = loginUserRole === 'user' && contractorRole === 'vipContractor';
+
+  console.log("🟢 LOGGED-IN USER ROLE (Done Page):", loginUserRole);
+  console.log("👷 CONTRACTOR ROLE (Done Page):", contractorRole);
+  console.log("🚫 CHAT RESTRICTED:", isChatRestricted);
+  const handleCancleBooking = async (id: string) => {
+    try {
+      const res = await cancelBooking(id).unwrap();
+      if (res?.success) {
+        antdMessage.success(res?.message);
+      }
+    } catch (error: any) {
+      antdMessage.error(error.message);
+    }
+  };
+
+  const handleChatWithContractor = async () => {
+    const contractorId = storedService?.contractorId;
+    if (!contractorId) {
+      antdMessage.warning('Contractor information missing');
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append(
+      'data',
+      JSON.stringify({ text: `Hello, I just booked your service: ${storedService?.serviceType}!` })
+    );
+
+    try {
+      await sendMessage({
+        receiverId: contractorId,
+        data: formData,
+      }).unwrap();
+      router.push('/inbox');
+    } catch (error: any) {
+      console.error('Failed to send initial message:', error);
+      // Still navigate to inbox even if auto-message fails
+      router.push('/inbox');
+    }
+  };
+  const handleDoneBooking = async (id: string) => {
+    const status = "booked";
+    try {
+      const res = await donebooking({ id, status }).unwrap();
+      if (res?.success) {
+        antdMessage.success(res?.message);
+      }
+    } catch (error: any) {
+      antdMessage.error(error.message);
+    }
+  };
   return (
     <div className="max-w-7xl mx-auto bg-gray-50 p-6 rounded-lg my-5 ">
       {/* Header Section */}
@@ -83,14 +121,29 @@ try {
           </div>
 
           {/* Chat Button */}
-          <Link href={'/inbox'}>
-          
           <div className="w-full md:w-auto">
-            <button className="w-full md:w-auto px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition text-sm">
-              Chat Contractor
-            </button>
+            {isChatRestricted ? (
+              <div className="flex flex-col items-end">
+                <button
+                  disabled
+                  className="w-full md:w-auto px-4 py-2 bg-gray-400 text-white rounded cursor-not-allowed text-sm"
+                >
+                  Chat Contractor
+                </button>
+                <p className="text-[10px] text-red-500 mt-1 text-right">
+                  Only VIP Members can chat with Expert Pros
+                </p>
+              </div>
+            ) : (
+              <button
+                onClick={handleChatWithContractor}
+                disabled={isSending}
+                className="w-full md:w-auto px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition text-sm disabled:opacity-50"
+              >
+                {isSending ? 'Connecting...' : 'Chat Contractor'}
+              </button>
+            )}
           </div>
-          </Link>
         </div>
       </div>
 

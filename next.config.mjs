@@ -23,7 +23,12 @@ const nextConfig = {
       {
         protocol: 'http',
         hostname: 'backend.yourtradesource.com',
-        pathname: '/uploads/**',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'backend.yourtradesource.com',
+        pathname: '/**',
       },
       // Local dev fallbacks
       {
@@ -68,6 +73,11 @@ const nextConfig = {
       {
         protocol: 'http',
         hostname: '10.10.20.13',
+        pathname: '/**',
+      },
+      {
+        protocol: 'http',
+        hostname: '10.10.20.34',
         pathname: '/**',
       },
       {

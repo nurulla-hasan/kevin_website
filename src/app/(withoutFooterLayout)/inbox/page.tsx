@@ -15,22 +15,23 @@ import { Socket } from "socket.io-client";
 import { message as antdMessage } from "antd";
 import dayjs from "dayjs";
 import { useRouter } from "next/navigation";
-import { selectCurrentUser } from "@/redux/features/auth/authSlice";
+import { selectCurrentUser, selectCurrentToken } from "@/redux/features/auth/authSlice";
 import {
   useGetMessagesQuery,
   useGetUsersForSidebarQuery,
   useSendMessageMutation,
 } from "@/redux/features/others/otherApi";
 import { useAppSelector } from "@/redux/hooks";
-import { getSocket } from "@/lib/socket";
+import { getSocket, disconnectSocket } from "@/lib/socket";
 import { useGetSpecefiqUserQuery } from "@/redux/features/user/userApi";
 
 interface Message {
   _id: string;
   senderId: string;
+  receiverId: string;
   createdAt: string;
   text: string;
-  image: string;
+  image: string | null;
 }
 
 export default function MessagingApp() {
@@ -41,7 +42,7 @@ export default function MessagingApp() {
   const [onlineUsers, setOnlineUsers] = useState<string[]>([]);
   const [textMessage, setTextMessage] = useState("");
   const [selectedUserId, setSelectedUserId] = useState("");
-  const [activeTab, setActiveTab] = useState<"messages" | "askAPro">("askAPro");
+  const [activeTab, setActiveTab] = useState<"messages" | "askAPro">("messages");
   const [searchTerm, setSearchTerm] = useState("");
 
   const messageEndRef = useRef<HTMLDivElement>(null);
@@ -49,19 +50,33 @@ export default function MessagingApp() {
   const socketRef = useRef<Socket | null>(null);
 
   const [sendMessage] = useSendMessageMutation();
-  const { user } = useAppSelector(selectCurrentUser);
+  const currentUser = useAppSelector(selectCurrentUser);
+  const token = useAppSelector(selectCurrentToken);
+
+  const myUserId = (currentUser as any)?.user?.userId;
+  // Role is nested inside user object in JWT payload
+  const myRole = (currentUser as any)?.user?.role;
+
 
   const { data: allUsers, isLoading: usersLoading } =
     useGetUsersForSidebarQuery(undefined);
-    console.log("all user----->",allUsers);
+
   const { data: OldMessages } = useGetMessagesQuery(selectedUserId, {
     skip: !selectedUserId,
   });
-  const myUserId = user?.userId;
-  const { data: specUser } = useGetSpecefiqUserQuery(myUserId);
-  const role = specUser?.data?.role;
 
-  // Load previous messages
+  const { data: specUser } = useGetSpecefiqUserQuery(myUserId);
+
+  // Set default tab based on role (runs once when myRole is available from JWT)
+  useEffect(() => {
+    if (myRole === "vipContractor" || myRole === "vipMember") {
+      setActiveTab("askAPro");
+    } else if (myRole === "user") {
+      setActiveTab("messages");
+    }
+  }, [myRole]);
+
+  // Load previous messages when user is selected
   useEffect(() => {
     if (OldMessages?.data) setMessages(OldMessages.data);
   }, [OldMessages]);
@@ -71,10 +86,11 @@ export default function MessagingApp() {
     messageEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
 
-  // --- SOCKET SETUP ---
+  // --- SOCKET SETUP (token-based connection) ---
   useEffect(() => {
-    if (!myUserId) return;
-    const socket = getSocket(myUserId);
+    if (!token) return;
+
+    const socket = getSocket(token);
     socketRef.current = socket;
 
     const handleOnlineUsers = (userIds: string[]) => {
@@ -85,9 +101,9 @@ export default function MessagingApp() {
 
     return () => {
       socket.off("getOnlineUsers", handleOnlineUsers);
-      socket.disconnect();
+      disconnectSocket();
     };
-  }, [myUserId]);
+  }, [token]);
 
   // --- HANDLE NEW MESSAGES ---
   useEffect(() => {
@@ -95,11 +111,18 @@ export default function MessagingApp() {
     if (!socket) return;
 
     const handleNewMessage = (newMessage: Message) => {
+      // Show message if it's part of the current conversation
       if (
         newMessage.senderId === selectedUserId ||
-        newMessage.senderId === myUserId
+        newMessage.receiverId === selectedUserId ||
+        newMessage.senderId === myUserId ||
+        newMessage.receiverId === myUserId
       ) {
-        setMessages((prev) => [...prev, newMessage]);
+        setMessages((prev) => {
+          // Prevent duplicate messages
+          if (prev.find((m) => m._id === newMessage._id)) return prev;
+          return [...prev, newMessage];
+        });
       }
     };
 
@@ -144,14 +167,6 @@ export default function MessagingApp() {
       }).unwrap();
 
       if (res.success) {
-        const newMsg: Message = {
-          _id: res.data._id,
-          senderId: myUserId,
-          createdAt: res.data.createdAt,
-          text: res.data.text,
-          image: res.data.image,
-        };
-        setMessages((prev) => [...prev, newMsg]);
         setTextMessage("");
         setFiles([]);
         setPreviews([]);
@@ -162,35 +177,36 @@ export default function MessagingApp() {
     }
   };
 
-  // --- FILTER USERS ---
+  // --- TAB ACCESS CONTROL ---
+  // Messages tab: role === "user"
+  // Ask a Pro tab: role === "vipMember" or "vipContractor"
+  const canAccessAskAPro =
+    myRole === "vipMember" || myRole === "vipContractor";
 
-const experts = useMemo(
-  () =>
-    allUsers?.data?.filter((u: any) => {
-      console.log("User being checked:", u); // Log each user to the console
-      return u.role === "vipContractor"; // Filter condition
-    }) || [],
-  [allUsers]
-);
-
+  // --- FILTER USERS BY TAB ---
+  // Messages tab shows users with role "user"
+  // Ask a Pro tab shows users with role "vipContractor"
   const regularUsers = useMemo(
     () =>
-      allUsers?.data?.filter(
-        (u: any) =>
-          !(u.role === "vipContractor")
-      ) || [],
+      allUsers?.data?.filter((u: any) => u.role === "user") || [],
+    [allUsers]
+  );
+
+  const experts = useMemo(
+    () =>
+      allUsers?.data?.filter((u: any) => u.role === "vipContractor") || [],
     [allUsers]
   );
 
   const filteredUsers = useMemo(() => {
     const list = activeTab === "askAPro" ? experts : regularUsers;
-    return list.filter((user: any) =>
-      `${user.firstName} ${user.lastName}`
+    return list.filter((u: any) =>
+      `${u.firstName} ${u.lastName}`
         .toLowerCase()
         .includes(searchTerm.toLowerCase())
     );
   }, [activeTab, experts, regularUsers, searchTerm]);
-console.log("experts------->",experts);
+
   const selectedContactData = allUsers?.data?.find(
     (c: any) => c._id === selectedUserId
   );
@@ -203,7 +219,10 @@ console.log("experts------->",experts);
         {/* Tabs */}
         <div className="border-b flex justify-around items-center py-3 text-sm font-medium">
           <button
-            onClick={() => setActiveTab("messages")}
+            onClick={() => {
+              setActiveTab("messages");
+              setSelectedUserId("");
+            }}
             className={`px-3 py-1 rounded-md ${
               activeTab === "messages" ? "bg-blue-100 text-blue-700" : ""
             }`}
@@ -213,20 +232,18 @@ console.log("experts------->",experts);
 
           <button
             onClick={() => {
-              if (specUser?.data?.subscription?.status !== "active") {
-                if (role === "contractor" || role === "vipContractor") {
-                  router.push("/vipContractor");
-                } else {
-                  router.push("/pricing");
-                }
+              if (!canAccessAskAPro) {
+                // Regular users get redirected to pricing
+                router.push("/pricing");
                 return;
               }
               setActiveTab("askAPro");
+              setSelectedUserId("");
             }}
             className={`px-3 py-1 rounded-md flex items-center gap-1 relative transition-colors ${
               activeTab === "askAPro"
                 ? "bg-blue-100 text-blue-700"
-                : specUser?.data?.subscription?.status !== "active"
+                : !canAccessAskAPro
                 ? "opacity-60 cursor-pointer"
                 : "hover:bg-gray-100"
             }`}
@@ -237,8 +254,8 @@ console.log("experts------->",experts);
                 {experts.length}
               </span>
             )}
-            {specUser?.data?.subscription?.status !== "active" && (
-              <span className="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-400">
+            {!canAccessAskAPro && (
+              <span className="absolute -right-1 -top-1 text-gray-400 text-xs">
                 🔒
               </span>
             )}
@@ -266,12 +283,13 @@ console.log("experts------->",experts);
           ) : (
             filteredUsers.map((contact: any) => {
               const isOnline = onlineUsers.includes(contact._id);
+              const hasUnread = contact.lastMessage && !contact.lastMessage.isRead;
               return (
                 <div
                   key={contact._id}
                   onClick={() => setSelectedUserId(contact._id)}
                   className={`flex items-center p-4 cursor-pointer hover:bg-gray-100 ${
-                    selectedUserId === contact._id ? "bg-blue-100" : ""
+                    selectedUserId === contact._id ? "bg-blue-50" : ""
                   }`}
                 >
                   <div className="relative">
@@ -280,22 +298,35 @@ console.log("experts------->",experts);
                       alt="avatar"
                       width={48}
                       height={48}
-                      className="rounded-full object-cover"
+                      className="rounded-full object-cover w-12 h-12"
                     />
                     {isOnline && (
-                      <span className="absolute -top-1 -right-1 w-3.5 h-3.5 bg-green-500 border-2 border-white rounded-full" />
+                      <span className="absolute -top-0.5 -right-0.5 w-3 h-3 bg-green-500 border-2 border-white rounded-full" />
                     )}
                   </div>
-                  <div className="ml-3 flex flex-col">
-                    <span className="font-medium text-gray-900 text-sm">
-                      {contact.firstName} {contact.lastName}
-                    </span>
-                    {contact?.subscription?.status === "active" &&
-                      contact.role === "vipContractor" && (
+                  <div className="ml-3 flex flex-col flex-1 min-w-0">
+                    <div className="flex items-center justify-between">
+                      <span className={`font-medium text-sm truncate ${hasUnread ? "text-gray-900 font-semibold" : "text-gray-700"}`}>
+                        {contact.firstName} {contact.lastName}
+                      </span>
+                      {contact.lastMessage?.createdAt && (
+                        <span className="text-xs text-gray-400 ml-1 shrink-0">
+                          {dayjs(contact.lastMessage.createdAt).format("h:mm A")}
+                        </span>
+                      )}
+                    </div>
+                    <div className="flex items-center justify-between mt-0.5">
+                      {contact.role === "vipContractor" && (
                         <span className="text-xs text-blue-600 font-semibold bg-blue-50 px-2 py-0.5 rounded-md w-fit">
                           Expert
                         </span>
                       )}
+                      {contact.lastMessage?.text && (
+                        <span className="text-xs text-gray-400 truncate max-w-[120px]">
+                          {contact.lastMessage.text}
+                        </span>
+                      )}
+                    </div>
                   </div>
                 </div>
               );
@@ -306,49 +337,85 @@ console.log("experts------->",experts);
 
       {/* Chat Section */}
       <div className="flex-1 flex flex-col h-[80vh]">
+        {/* Chat Header */}
+        {selectedUserId && selectedContactData && (
+          <div className="bg-white border-b border-gray-200 px-4 py-3 flex items-center gap-3">
+            <div className="relative">
+              <Image
+                src={selectedContactData.image || avatar}
+                alt="user"
+                width={40}
+                height={40}
+                className="rounded-full object-cover w-10 h-10"
+              />
+              {onlineUsers.includes(selectedContactData._id) && (
+                <span className="absolute -top-0.5 -right-0.5 w-3 h-3 bg-green-500 border-2 border-white rounded-full" />
+              )}
+            </div>
+            <div>
+              <p className="font-semibold text-sm text-gray-900">
+                {selectedContactData.firstName} {selectedContactData.lastName}
+              </p>
+              <p className="text-xs text-gray-500">
+                {onlineUsers.includes(selectedContactData._id)
+                  ? "Online"
+                  : "Offline"}
+              </p>
+            </div>
+          </div>
+        )}
+
+        {/* Messages Area */}
         <div className="flex-1 overflow-y-auto p-4 space-y-4">
-          {messages.map((msg) => {
-            const isMe = msg.senderId === myUserId;
-            return (
-              <div
-                key={msg._id}
-                className={`flex items-start ${isMe ? "justify-end" : ""}`}
-              >
-                {!isMe && (
-                  <Image
-                    src={selectedContactData?.image || avatar}
-                    alt="user"
-                    width={32}
-                    height={32}
-                    className="rounded-full mr-2"
-                  />
-                )}
+          {!selectedUserId ? (
+            <div className="flex flex-col items-center justify-center h-full text-gray-400">
+              <div className="text-5xl mb-3">💬</div>
+              <p className="text-sm">Select a conversation to start messaging</p>
+            </div>
+          ) : (
+            messages.map((msg) => {
+              const isMe = msg.senderId === myUserId;
+              return (
                 <div
-                  className={`max-w-xs px-4 py-2 rounded-2xl text-sm ${
-                    isMe
-                      ? "bg-blue-500 text-white text-right"
-                      : "bg-gray-100 text-gray-800"
-                  }`}
+                  key={msg._id}
+                  className={`flex items-end gap-2 ${isMe ? "justify-end" : ""}`}
                 >
-                  {msg.text}
-                  {msg.image && (
-                    <div className="mt-2">
-                      <Image
-                        src={msg.image}
-                        alt="attachment"
-                        width={200}
-                        height={200}
-                        className="rounded-md"
-                      />
-                    </div>
+                  {!isMe && (
+                    <Image
+                      src={selectedContactData?.image || avatar}
+                      alt="user"
+                      width={28}
+                      height={28}
+                      className="rounded-full object-cover w-7 h-7 mb-1 shrink-0"
+                    />
                   )}
-                  <div className="text-xs text-gray-500 mt-1">
-                    {dayjs(msg.createdAt).format("h:mm A")}
+                  <div
+                    className={`max-w-xs lg:max-w-md px-4 py-2 rounded-2xl text-sm ${
+                      isMe
+                        ? "bg-blue-500 text-white rounded-br-sm"
+                        : "bg-gray-100 text-gray-800 rounded-bl-sm"
+                    }`}
+                  >
+                    {msg.text && <p>{msg.text}</p>}
+                    {msg.image && (
+                      <div className="mt-2">
+                        <Image
+                          src={msg.image}
+                          alt="attachment"
+                          width={200}
+                          height={200}
+                          className="rounded-md max-w-full"
+                        />
+                      </div>
+                    )}
+                    <div className={`text-xs mt-1 ${isMe ? "text-blue-100" : "text-gray-400"}`}>
+                      {dayjs(msg.createdAt).format("h:mm A")}
+                    </div>
                   </div>
                 </div>
-              </div>
-            );
-          })}
+              );
+            })
+          )}
           <div ref={messageEndRef} />
         </div>
 
@@ -358,13 +425,13 @@ console.log("experts------->",experts);
             {previews.length > 0 && (
               <div className="flex gap-2 overflow-x-auto pb-2">
                 {previews.map((src, idx) => (
-                  <div key={idx} className="relative">
+                  <div key={idx} className="relative shrink-0">
                     <Image
                       src={src}
                       alt="preview"
                       width={80}
                       height={80}
-                      className="rounded-md object-cover"
+                      className="rounded-md object-cover w-20 h-20"
                     />
                     <button
                       onClick={() => handleImageCancel(idx)}
@@ -384,6 +451,7 @@ console.log("experts------->",experts);
                   ref={fileInputRef}
                   className="hidden"
                   onChange={handleFileUpload}
+                  accept="image/*"
                 />
               </label>
               <input
@@ -397,7 +465,7 @@ console.log("experts------->",experts);
               <button
                 disabled={!textMessage && files.length === 0}
                 onClick={handleSendMessage}
-                className="p-2 bg-blue-500 text-white rounded-full hover:bg-blue-600 disabled:opacity-50"
+                className="p-2 bg-blue-500 text-white rounded-full hover:bg-blue-600 disabled:opacity-50 transition-colors"
               >
                 <FiSend className="w-4 h-4" />
               </button>
