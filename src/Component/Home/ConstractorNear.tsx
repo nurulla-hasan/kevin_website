@@ -36,7 +36,7 @@ const ConstractorNear = ({ cmsData }: { cmsData?: any }) => {
         >
           {cmsData?.title || "Contractor Near You"}
         </h1>
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-3 mb-3 px-3">
+        <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6 mb-6 px-3">
           {currentItems?.map((contractor, idx) => {
             return <ConstractorCard key={idx} contractor={contractor} />;
           })}

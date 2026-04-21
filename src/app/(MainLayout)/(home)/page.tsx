@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import Banner from "@/Component/Home/Banner";
 import ConstractorNear from "@/Component/Home/ConstractorNear";
 import ProjectsNear from "@/Component/Home/ProjectsNear";
@@ -26,7 +26,7 @@ const LandingPage = () => {
     };
   }, [search]);
 
-  console.log("landingCms---------------------->", landingCms)
+  console.log("landingCms---------------------->", landingCms);
   return (
     <div>
       <Banner
@@ -41,8 +41,10 @@ const LandingPage = () => {
       />
 
       {/* <HomeProject /> */}
-      <ConstractorNear cmsData={landingCms?.contractorNear} />
-      <RecentArticle cmsData={landingCms?.recentArticle} />
+      <div className="mt-12">
+        <ConstractorNear cmsData={landingCms?.contractorNear} />
+        <RecentArticle cmsData={landingCms?.recentArticle} />
+      </div>
     </div>
   );
 };
