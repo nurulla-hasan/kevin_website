@@ -91,6 +91,17 @@ const nextConfig = {
         hostname: 'placehold.co',
         pathname: '/**',
       },
+      // Vercel backend
+      {
+        protocol: 'https',
+        hostname: 'kevin-backend-tau.vercel.app',
+        pathname: '/**',
+      },
+      {
+        protocol: 'http',
+        hostname: 'kevin-backend-tau.vercel.app',
+        pathname: '/**',
+      },
     ],
   },
 };

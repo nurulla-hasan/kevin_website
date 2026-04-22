@@ -40,12 +40,6 @@ const ProfDet = ({ contractorId, profileData }) => {
 
   // Handle second modal submit
   const handleContinueSecondModal = async () => {
-    // Logging the data before submission
-      reason: selectedReason,
-      feedback,
-      image,
-    });
-
     const formData = new FormData();
     const modifiedData = {
       report: {
@@ -103,7 +97,11 @@ const ProfDet = ({ contractorId, profileData }) => {
         <div className="flex items-center gap-5">
           <div className="relative w-28 h-28 rounded-full overflow-hidden">
             <Image
-              src={profileData?.image}
+              src={
+                profileData?.image && !profileData.image.includes("undefined")
+                  ? profileData.image
+                  : "https://placehold.co/400x400?text=No+Image"
+              }
               alt="Profile"
               fill
               className="object-cover rounded-full"

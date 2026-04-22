@@ -53,9 +53,10 @@ export default function MessagingApp() {
   const currentUser = useAppSelector(selectCurrentUser);
   const token = useAppSelector(selectCurrentToken);
 
-  const myUserId = (currentUser as any)?.user?.userId;
+  const myUserId = (currentUser as any)?.user?.userId || (currentUser as any)?.userId || (currentUser as any)?._id;
   // Role is nested inside user object in JWT payload
-  const myRole = (currentUser as any)?.user?.role;
+  const myRole = (currentUser as any)?.user?.role || (currentUser as any)?.role;
+
 
 
   const { data: allUsers, isLoading: usersLoading } =
@@ -86,51 +87,43 @@ export default function MessagingApp() {
     messageEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
 
-  // --- SOCKET SETUP (token-based connection) ---
+  // --- SOCKET SETUP & MESSAGE HANDLING ---
   useEffect(() => {
     if (!token) return;
 
-    const socket = getSocket(token);
-    socketRef.current = socket;
+    const s = getSocket(token);
+    socketRef.current = s;
 
+    // Online users listener
     const handleOnlineUsers = (userIds: string[]) => {
       setOnlineUsers(userIds);
     };
+    s.on("getOnlineUsers", handleOnlineUsers);
 
-    socket.on("getOnlineUsers", handleOnlineUsers);
+    // New message listener
+    const handleNewMessage = (newMessage: any) => {
+      const msg = newMessage.data || newMessage;
+      const senderId = msg.senderId?.toString();
+      const receiverId = msg.receiverId?.toString();
+      const currentSelectedId = selectedUserId?.toString();
+      const myId = myUserId?.toString();
 
-    return () => {
-      socket.off("getOnlineUsers", handleOnlineUsers);
-      disconnectSocket();
-    };
-  }, [token]);
-
-  // --- HANDLE NEW MESSAGES ---
-  useEffect(() => {
-    const socket = socketRef.current;
-    if (!socket) return;
-
-    const handleNewMessage = (newMessage: Message) => {
-      // Show message if it's part of the current conversation
-      if (
-        newMessage.senderId === selectedUserId ||
-        newMessage.receiverId === selectedUserId ||
-        newMessage.senderId === myUserId ||
-        newMessage.receiverId === myUserId
-      ) {
+      if ((senderId === currentSelectedId && receiverId === myId) || 
+          (senderId === myId && receiverId === currentSelectedId)) {
         setMessages((prev) => {
-          // Prevent duplicate messages
-          if (prev.find((m) => m._id === newMessage._id)) return prev;
-          return [...prev, newMessage];
+          const exists = prev.find((m) => m._id === msg._id);
+          if (exists) return prev;
+          return [...prev, msg];
         });
       }
     };
+    s.on("newMessage", handleNewMessage);
 
-    socket.on("newMessage", handleNewMessage);
     return () => {
-      socket.off("newMessage", handleNewMessage);
+      s.off("getOnlineUsers", handleOnlineUsers);
+      s.off("newMessage", handleNewMessage);
     };
-  }, [selectedUserId, myUserId]);
+  }, [token, selectedUserId, myUserId]);
 
   // --- FILE UPLOAD ---
   const handleFileUpload = (e: ChangeEvent<HTMLInputElement>) => {
@@ -186,17 +179,30 @@ export default function MessagingApp() {
   // --- FILTER USERS BY TAB ---
   // Messages tab shows users with role "user"
   // Ask a Pro tab shows users with role "vipContractor"
-  const regularUsers = useMemo(
-    () =>
-      allUsers?.data?.filter((u: any) => u.role === "user") || [],
-    [allUsers]
-  );
+  const experts = useMemo(() => {
+    if (!allUsers?.data) return [];
 
-  const experts = useMemo(
-    () =>
-      allUsers?.data?.filter((u: any) => u.role === "vipContractor") || [],
-    [allUsers]
-  );
+    // If I am a vipMember, show me Pros (vipContractors)
+    if (myRole === "vipMember") {
+      return allUsers.data.filter((u: any) => u.role === "vipContractor" && u._id.toString() !== myUserId?.toString());
+    }
+
+    // If I am a Pro (vipContractor), show me Premium Clients (vipMembers)
+    if (myRole === "vipContractor") {
+      return allUsers.data.filter((u: any) => u.role === "vipMember" && u._id.toString() !== myUserId?.toString());
+    }
+
+    return [];
+  }, [allUsers, myRole, myUserId]);
+
+  const regularUsers = useMemo(() => {
+    if (!allUsers?.data) return [];
+    
+    // Show everyone else who is not in the "experts" list to avoid losing any conversations
+    // AND exclude the current user themselves
+    const expertIds = new Set(experts.map((u: any) => u._id.toString()));
+    return allUsers.data.filter((u: any) => !expertIds.has(u._id.toString()) && u._id.toString() !== myUserId?.toString());
+  }, [allUsers, experts, myUserId]);
 
   const filteredUsers = useMemo(() => {
     const list = activeTab === "askAPro" ? experts : regularUsers;
@@ -294,7 +300,11 @@ export default function MessagingApp() {
                 >
                   <div className="relative">
                     <Image
-                      src={contact.image || avatar}
+                      src={
+                        contact.image && !contact.image.includes("undefined")
+                          ? contact.image
+                          : avatar
+                      }
                       alt="avatar"
                       width={48}
                       height={48}
@@ -342,7 +352,12 @@ export default function MessagingApp() {
           <div className="bg-white border-b border-gray-200 px-4 py-3 flex items-center gap-3">
             <div className="relative">
               <Image
-                src={selectedContactData.image || avatar}
+                src={
+                  selectedContactData.image &&
+                  !selectedContactData.image.includes("undefined")
+                    ? selectedContactData.image
+                    : avatar
+                }
                 alt="user"
                 width={40}
                 height={40}
@@ -382,7 +397,12 @@ export default function MessagingApp() {
                 >
                   {!isMe && (
                     <Image
-                      src={selectedContactData?.image || avatar}
+                      src={
+                        selectedContactData?.image &&
+                        !selectedContactData.image.includes("undefined")
+                          ? selectedContactData.image
+                          : avatar
+                      }
                       alt="user"
                       width={28}
                       height={28}
@@ -397,7 +417,7 @@ export default function MessagingApp() {
                     }`}
                   >
                     {msg.text && <p>{msg.text}</p>}
-                    {msg.image && (
+                    {msg.image && !msg.image.includes("undefined") && (
                       <div className="mt-2">
                         <Image
                           src={msg.image}

@@ -214,8 +214,9 @@ export default function Navbar() {
                 <button className="flex items-center space-x-2 cursor-pointer">
                   <Image
                     src={
-                      specUser?.data?.image ||
-                      'https://tse3.mm.bing.net/th/id/OIP.kUFzwD5-mfBV0PfqgI5GrAHaHa?cb=thfvnext&rs=1&pid=ImgDetMain&o=7&rm=3'
+                      specUser?.data?.image && !specUser.data.image.includes("undefined")
+                        ? specUser.data.image
+                        : 'https://tse3.mm.bing.net/th/id/OIP.kUFzwD5-mfBV0PfqgI5GrAHaHa?cb=thfvnext&rs=1&pid=ImgDetMain&o=7&rm=3'
                     }
                     alt="User Avatar"
                     width={30}
@@ -335,7 +336,11 @@ export default function Navbar() {
                     <Link href={profileLink}>
                       <button className="flex items-center space-x-2 cursor-pointer">
                         <Image
-                          src={specUser?.data?.image}
+                          src={
+                            specUser?.data?.image && !specUser.data.image.includes("undefined")
+                              ? specUser.data.image
+                              : 'https://tse3.mm.bing.net/th/id/OIP.kUFzwD5-mfBV0PfqgI5GrAHaHa?cb=thfvnext&rs=1&pid=ImgDetMain&o=7&rm=3'
+                          }
                           alt="User Avatar"
                           width={30}
                           height={30}

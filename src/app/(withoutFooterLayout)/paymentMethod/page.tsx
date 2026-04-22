@@ -43,9 +43,6 @@ const PaymentMethodPage = () => {
       remainingPrice = 0;
       dispatch(reduceAndUpdateCredit(price));
     } else {
-        "Remaining credit is negative, user needs to pay the absolute value of:",
-        Math.abs(remainingCredit)
-      );
       remainingPrice = Number(Math.abs(remainingCredit).toFixed(2)); // Set it to the absolute value
       dispatch(reduceAndUpdateCredit(creditfromrdux));
     }

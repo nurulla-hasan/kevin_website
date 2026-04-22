@@ -36,6 +36,7 @@ export default function RootLayout({ children }) {
       >
         <NextTopLoader
           color="#2299DD"
+          showSpinner={false}
           height={3}
         />
         <Providers>
