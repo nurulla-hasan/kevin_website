@@ -1,19 +1,27 @@
 "use client";
 
-import ConstractorCard from '../Card/ConstractorCard';
-import styles from '@/app/styles.module.css';
-import { useState } from 'react';
-import { useGetAllUserQuery } from '@/redux/features/user/userApi';
-import { Pagination } from 'antd';
+import ConstractorCard from "../Card/ConstractorCard";
+import styles from "@/app/styles.module.css";
+import { useState } from "react";
+import { useGetAllUserQuery } from "@/redux/features/user/userApi";
+import { Pagination } from "antd";
 
-const ExpertConstructor = ({ debouncedSearchTerm, filter, cmsData }: { debouncedSearchTerm: string; filter: string; cmsData?: any }) => {
+const ExpertConstructor = ({
+  debouncedSearchTerm,
+  filter,
+  cmsData,
+}: {
+  debouncedSearchTerm: string;
+  filter: string;
+  cmsData?: any;
+}) => {
   const [page, setPage] = useState(1);
   const role = "contractor";
   const { data: contractors } = useGetAllUserQuery({
     page,
     role,
     search: debouncedSearchTerm,
-    categotyName: filter
+    categotyName: filter,
   });
   const meta = contractors?.data?.meta;
   // Use the 'limit' from meta for dynamic items per page
@@ -33,11 +41,11 @@ const ExpertConstructor = ({ debouncedSearchTerm, filter, cmsData }: { debounced
   return (
     <div>
       <div className={`container mx-auto ${styles.fontDmSans}`}>
-        <h1 className={`text-4xl font-bold  my-10   ${styles.fontDmSans}`}>
+        <h1 className={`text-4xl font-bold my-10   ${styles.fontDmSans}`}>
           {cmsData?.title || "Expert Contractor"}
         </h1>
 
-        <div className="px-3 mb-3">
+        <div className="px-3 mb-6">
           {currentItems && currentItems.length > 0 ? (
             <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6">
               {currentItems?.map((contractor, idx) => {

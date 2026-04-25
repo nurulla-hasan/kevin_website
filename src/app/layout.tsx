@@ -24,8 +24,8 @@ const inter = Inter({
 });
 
 export const metadata = {
-  title: "Kevin",
-  description: "Let's build something different",
+  title: "YTS - Find Expert Contractors & Home Services",
+  description: "Connect with trusted professional contractors for your home projects. Get quotes, read reviews, and find the perfect expert for interior design, construction, and more.",
 };
 
 export default function RootLayout({ children }) {

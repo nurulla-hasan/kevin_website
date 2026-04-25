@@ -56,7 +56,7 @@ const Stats = () => {
               </p>
               <Link href={'/serviceDetails'}>
                 <button className="w-full my-5 sm:w-auto bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-colors duration-200 shadow-lg hover:shadow-xl">
-                  Sign up for pro
+                  Become A Contractor
                 </button>
               </Link>
             </div>

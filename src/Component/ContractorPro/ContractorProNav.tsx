@@ -21,7 +21,7 @@ const steps = [
   },
   {
     icon: <Hammer className="w-6 h-6" />,
-    label: 'Leads',
+    label: 'Complete Setup',
     path: '/maxLead',
   },
 ];

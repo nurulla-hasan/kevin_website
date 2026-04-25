@@ -118,7 +118,7 @@ export default function ProfilePage() {
           <Link href={"/contractorHome"}>
             {role === "user" && (
               <button className="bg-blue-600 text-white px-4 py-2 ml-1 rounded hover:bg-blue-700">
-                Become a Pro
+                Become a Contractor
               </button>
             )}
           </Link>

@@ -80,7 +80,7 @@ const ProjectsNear = ({
       </div>
 
       {/* Pagination */}
-      <div className="mb-3">
+      <div className="my-6">
         <Pagination
           current={page}
           pageSize={limit} // Use dynamic page size based on 'limit'
