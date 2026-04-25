@@ -34,16 +34,16 @@ export default function ProjectStatus() {
   };
 
   return (
-    <div className="container min-h-screen mx-auto p-4 bg-white">
+    <div className="container min-h-screen mx-auto p-4 bg-background">
       {/* Tabs */}
-      <div className="flex border-b py-3 border-gray-300 mb-4">
+      <div className="flex border-b py-3 border-border mb-4">
         {['Inprogress', 'Done'].map(tab => (
           <button
             key={tab}
             className={`mr-6 pb-2 text-xl font-dm font-medium capitalize ${
               activeTab === tab
-                ? 'border-b-2 border-blue-600 text-blue-600'
-                : 'text-gray-500'
+                ? 'border-b-2 border-primary text-primary'
+                : 'text-muted-foreground'
             }`}
             onClick={() => setActiveTab(tab)}
           >
@@ -59,7 +59,7 @@ export default function ProjectStatus() {
             (
               <div
                 key={booking.id}
-                className="bg-[#F7F8F8] rounded-md p-4 mb-6 shadow-sm"
+                className="bg-muted rounded-md p-4 mb-6 shadow-sm border border-border"
               >
                 {/* Header */}
                 <div className="flex items-center mb-4">
@@ -71,49 +71,49 @@ export default function ProjectStatus() {
                     height={100}
                   />
                   <div>
-                    <h3 className="text-xl font-semibold">
+                    <h3 className="text-xl font-semibold text-foreground">
                       You&apos;ve Booked {booking.name}
                     </h3>
-                    <p className="text-xs w-96 text-gray-500">
+                    <p className="text-xs w-96 text-muted-foreground">
                       Giovanni C. is currently offline and will reach out once
                       available in the app. You will be notified as soon as they
                       respond.
                     </p>
                   </div>
-                  <span className="ml-auto text-sm text-green-500 font-medium">
+                  <span className="ml-auto text-sm text-primary font-medium">
                     Inprogress
                   </span>
                 </div>
                 {/* Divider */}
-                <div className="border-b border-gray-200 mb-8"></div>
+                <div className="border-b border-border mb-8"></div>
                 {/* Service Info */}
                 <div className="mb-4">
-                  <p className="text-xl font-dm font-medium mb-2">
+                  <p className="text-xl font-dm font-medium mb-2 text-foreground">
                     {booking.service}
                   </p>
-                  <div className="flex items-center text-sm text-gray-600 mb-1">
+                  <div className="flex items-center text-sm text-muted-foreground mb-1">
                     <FaCalendarAlt className="mr-2" />
                     {booking.date}
                   </div>
-                  <div className="flex items-center text-sm text-gray-600 mb-1">
+                  <div className="flex items-center text-sm text-muted-foreground mb-1">
                     <FaMapMarkerAlt className="mr-2" />
                     {booking.location}
                   </div>
-                  <div className="flex items-center text-sm text-gray-600">
+                  <div className="flex items-center text-sm text-muted-foreground">
                     <FaClock className="mr-2" />
                     {booking.time}
                   </div>
                 </div>
                 {/* Divider */}
-                <div className="border-b border-gray-200 mb-8"></div>
+                <div className="border-b border-border mb-8"></div>
                 {/* Actions */}
                 <div className="flex w-full gap-4">
                   <Link className="w-1/2" href={`/status/${booking.id}`}>
-                    <button className="w-full  border border-black px-4 py-2 rounded-md text-black  text-sm">
+                    <button className="w-full  border border-border px-4 py-2 rounded-md text-foreground  text-sm">
                       Project Details
                     </button>
                   </Link>
-                  <button className="w-1/2 bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 text-sm">
+                  <button className="w-1/2 bg-primary text-primary-foreground px-4 py-2 rounded-md hover:bg-primary/90 text-sm">
                     Mark as done
                   </button>
                 </div>
@@ -122,7 +122,7 @@ export default function ProjectStatus() {
           )
         )
       ) : (
-        <p className="text-gray-500 text-sm">No bookings in this tab.</p>
+        <p className="text-muted-foreground text-sm">No bookings in this tab.</p>
       )}
     </div>
   );

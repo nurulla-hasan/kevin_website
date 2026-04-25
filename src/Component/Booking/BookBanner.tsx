@@ -54,60 +54,60 @@ const BookBanner = () => {
       </div>
 
       {/* Process Steps Section */}
-      <div className="bg-green-200 py-16 px-4 sm:px-6 lg:px-8">
+      <div className="bg-muted/50 py-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-6xl mx-auto">
           {/* Desktop Layout */}
           <div className="hidden lg:block">
             <div className="flex items-center justify-between relative">
               {/* Connecting Lines */}
-              <div className="absolute top-1/2 left-9 right-1 h-0.5 bg-blue-600 transform -translate-y-1/2 z-0"></div>
+              <div className="absolute top-1/2 left-9 right-1 h-0.5 bg-primary transform -translate-y-1/2 z-0"></div>
 
               {/* Step 1 */}
               <div className="flex flex-col items-center relative z-10">
-                <div className="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mb-4 shadow-lg relative top-10">
-                  <PiMapPinAreaBold className="w-8 h-8 text-white" />
+                <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center mb-4 shadow-lg relative top-10">
+                  <PiMapPinAreaBold className="w-8 h-8 text-primary-foreground" />
                 </div>
-                <p className="text-blue-600 font-semibold mt-8 text-center max-w-32">
+                <p className="text-primary font-semibold mt-8 text-center max-w-32">
                   Enter your location
                 </p>
               </div>
 
               {/* Step 2 */}
               <div className="flex flex-col items-center relative z-10">
-                <div className="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mb-4 shadow-lg relative top-10">
-                  <Settings className="w-8 h-8 text-white" />
+                <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center mb-4 shadow-lg relative top-10">
+                  <Settings className="w-8 h-8 text-primary-foreground" />
                 </div>
-                <p className="text-blue-600 font-semibold text-center max-w-32 mt-8">
+                <p className="text-primary font-semibold text-center max-w-32 mt-8">
                   Choose your service
                 </p>
               </div>
 
               {/* Step 3 */}
               <div className="flex flex-col items-center relative z-10">
-                <div className="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mb-4 shadow-lg relative top-7">
-                  <Calendar className="w-8 h-8 text-white" />
+                <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center mb-4 shadow-lg relative top-7">
+                  <Calendar className="w-8 h-8 text-primary-foreground" />
                 </div>
-                <p className="text-blue-600 font-semibold text-center max-w-32 mt-8">
+                <p className="text-primary font-semibold text-center max-w-32 mt-8">
                   Pick a time
                 </p>
               </div>
 
               {/* Step 4 */}
               <div className="flex flex-col items-center relative z-10">
-                <div className="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mb-4 shadow-lg relative top-10">
-                  <Hammer className="w-8 h-8 text-white" />
+                <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center mb-4 shadow-lg relative top-10">
+                  <Hammer className="w-8 h-8 text-primary-foreground" />
                 </div>
-                <p className="text-blue-600 font-semibold text-center max-w-32 mt-8">
+                <p className="text-primary font-semibold text-center max-w-32 mt-8">
                   Select a contractor
                 </p>
               </div>
 
               {/* Step 5 */}
               <div className="flex flex-col items-center relative z-10">
-                <div className="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mb-4 shadow-lg relative top-7">
-                  <Handshake className="w-8 h-8 text-white" />
+                <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center mb-4 shadow-lg relative top-7">
+                  <Handshake className="w-8 h-8 text-primary-foreground" />
                 </div>
-                <p className="text-blue-600 font-semibold text-center max-w-32 mt-8">
+                <p className="text-primary font-semibold text-center max-w-32 mt-8">
                   Confirm
                 </p>
               </div>
@@ -119,50 +119,50 @@ const BookBanner = () => {
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-8">
               {/* Step 1 */}
               <div className="flex flex-col items-center">
-                <div className="w-14 h-14 bg-blue-600 rounded-full flex items-center justify-center mb-3 shadow-lg">
-                  <Download className="w-7 h-7 text-white" />
+                <div className="w-14 h-14 bg-primary rounded-full flex items-center justify-center mb-3 shadow-lg">
+                  <Download className="w-7 h-7 text-primary-foreground" />
                 </div>
-                <p className="text-blue-600 font-semibold text-center text-sm">
+                <p className="text-primary font-semibold text-center text-sm">
                   Enter your location
                 </p>
               </div>
 
               {/* Step 2 */}
               <div className="flex flex-col items-center">
-                <div className="w-14 h-14 bg-blue-600 rounded-full flex items-center justify-center mb-3 shadow-lg">
-                  <Settings className="w-7 h-7 text-white" />
+                <div className="w-14 h-14 bg-primary rounded-full flex items-center justify-center mb-3 shadow-lg">
+                  <Settings className="w-7 h-7 text-primary-foreground" />
                 </div>
-                <p className="text-blue-600 font-semibold text-center text-sm">
+                <p className="text-primary font-semibold text-center text-sm">
                   Choose your service
                 </p>
               </div>
 
               {/* Step 3 */}
               <div className="flex flex-col items-center">
-                <div className="w-14 h-14 bg-blue-600 rounded-full flex items-center justify-center mb-3 shadow-lg">
-                  <Calendar className="w-7 h-7 text-white" />
+                <div className="w-14 h-14 bg-primary rounded-full flex items-center justify-center mb-3 shadow-lg">
+                  <Calendar className="w-7 h-7 text-primary-foreground" />
                 </div>
-                <p className="text-blue-600 font-semibold text-center text-sm">
+                <p className="text-primary font-semibold text-center text-sm">
                   Pick a time
                 </p>
               </div>
 
               {/* Step 4 */}
               <div className="flex flex-col items-center sm:col-start-2">
-                <div className="w-14 h-14 bg-blue-600 rounded-full flex items-center justify-center mb-3 shadow-lg">
-                  <Hammer className="w-7 h-7 text-white" />
+                <div className="w-14 h-14 bg-primary rounded-full flex items-center justify-center mb-3 shadow-lg">
+                  <Hammer className="w-7 h-7 text-primary-foreground" />
                 </div>
-                <p className="text-blue-600 font-semibold text-center text-sm">
+                <p className="text-primary font-semibold text-center text-sm">
                   Select a contractor
                 </p>
               </div>
 
               {/* Step 5 */}
               <div className="flex flex-col items-center col-span-2 sm:col-span-1">
-                <div className="w-14 h-14 bg-blue-600 rounded-full flex items-center justify-center mb-3 shadow-lg">
-                  <Handshake className="w-7 h-7 text-white" />
+                <div className="w-14 h-14 bg-primary rounded-full flex items-center justify-center mb-3 shadow-lg">
+                  <Handshake className="w-7 h-7 text-primary-foreground" />
                 </div>
-                <p className="text-blue-600 font-semibold text-center text-sm">
+                <p className="text-primary font-semibold text-center text-sm">
                   Confirm
                 </p>
               </div>

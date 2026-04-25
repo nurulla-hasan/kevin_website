@@ -6,7 +6,6 @@ import { FaStar, FaStarHalfAlt } from 'react-icons/fa';
 import { SlBadge } from 'react-icons/sl';
 import { IoIosHammer } from 'react-icons/io';
 import { Modal, Pagination } from 'antd';
-import styles from '@/app/styles.module.css';
 import img from '@/assests/bannerImg.jpg';
 
 const reviews = [
@@ -153,8 +152,8 @@ const SelectConstractorCard = ({ contractor, selected, onSelect }) => {
   return (
     <>
       <div
-        className={`bg-white rounded-lg overflow-hidden shadow-sm border-2 cursor-pointer transition ${
-          selected ? 'border-blue-600' : 'border-transparent'
+        className={`bg-card border-2 border-border rounded-xl overflow-hidden shadow-sm cursor-pointer transition ${
+          selected ? 'border-primary ring-2 ring-primary/20' : 'hover:border-border'
         }`}
         onClick={onSelect}
       >
@@ -177,53 +176,53 @@ const SelectConstractorCard = ({ contractor, selected, onSelect }) => {
               e.stopPropagation();
               setIsModalOpen(true);
             }}
-            className="absolute top-4 right-4 bg-blue-600 text-white px-3 py-1 rounded text-sm font-medium hover:bg-blue-700"
+            className="absolute top-4 right-4 bg-primary text-primary-foreground px-3 py-1 rounded-lg text-sm font-medium hover:bg-primary/90"
           >
             View Profile
           </button>
         </div>
 
         {/* Info Section */}
-        <div className="bg-green-200 p-4">
+        <div className="bg-muted/50 p-4">
           <div className="flex items-center justify-between mb-3">
             <div className="space-y-1">
               <div className="flex items-center gap-2">
-                <div className="w-5 h-5 bg-blue-600 rounded-full flex items-center justify-center">
-                  <SlBadge className="text-white w-3 h-3" />
+                <div className="w-5 h-5 bg-primary rounded-full flex items-center justify-center">
+                  <SlBadge className="text-primary-foreground w-3 h-3" />
                 </div>
-                <span className="text-sm font-medium text-gray-700">
+                <span className="text-sm font-medium text-foreground">
                   Verified Contractor
                 </span>
               </div>
               <div className="flex items-center gap-2">
-                <div className="w-5 h-5 bg-blue-600 rounded-full flex items-center justify-center">
-                  <IoIosHammer className="text-white w-3 h-3" />
+                <div className="w-5 h-5 bg-primary rounded-full flex items-center justify-center">
+                  <IoIosHammer className="text-primary-foreground w-3 h-3" />
                 </div>
-                <span className="text-sm text-gray-600">
+                <span className="text-sm text-muted-foreground">
                   {contractor.completedTasks || 0} Completed Task
                 </span>
               </div>
               <div className="flex items-center gap-2">
                 <StarRating rating={contractor.rating} />
-                <span className="text-sm font-medium text-gray-700">
+                <span className="text-sm font-medium text-foreground">
                   ({contractor.reviews || 10} reviews)
                 </span>
               </div>
             </div>
             <div className="text-right">
-              <div className="text-2xl font-bold text-gray-900">
+              <div className="text-2xl font-bold text-foreground">
                 ${contractor.price}/Hr
               </div>
             </div>
           </div>
 
           <div className="mb-4">
-            <h4 className="font-semibold text-gray-900 mb-1">Expertise</h4>
-            <p className="text-sm text-gray-600">{contractor.expertise}</p>
+            <h4 className="font-semibold text-foreground mb-1">Expertise</h4>
+            <p className="text-sm text-muted-foreground">{contractor.expertise}</p>
           </div>
 
           {/* <Link href={'/confirm'}> */}
-          <button className="w-full bg-blue-600 text-white py-3 rounded-md font-medium hover:bg-blue-700 transition-colors">
+          <button className="w-full bg-primary text-primary-foreground py-3 rounded-lg font-medium hover:bg-primary/90 transition-colors">
             Book and Continue
           </button>
           {/* </Link> */}
@@ -241,7 +240,7 @@ const SelectConstractorCard = ({ contractor, selected, onSelect }) => {
       >
         <div className="flex flex-col lg:flex-row">
           {/* Left Side */}
-          <div className="p-6 border-r border-gray-200 flex flex-col items-center text-center">
+          <div className="p-6 border-r border-border flex flex-col items-center text-center">
             <Image
               src={contractor.image}
               alt={contractor.name}
@@ -249,33 +248,33 @@ const SelectConstractorCard = ({ contractor, selected, onSelect }) => {
               height={150}
               className="rounded-full w-44 h-44 object-cover mb-4"
             />
-            <h2 className="text-2xl font-bold mb-1">{contractor.name}</h2>
-            <p className="text-sm text-green-600 mb-4">
+            <h2 className="text-2xl font-bold mb-1 text-foreground">{contractor.name}</h2>
+            <p className="text-sm text-primary mb-4">
               {contractor.minimumHours || 2} Hour minimum
             </p>
-            <p className="text-3xl font-bold text-gray-900 mb-4">
+            <p className="text-3xl font-bold text-foreground mb-4">
               ${contractor.hourlyRate}/Hr
             </p>
 
             <div className="w-full space-y-3 mb-6">
               <div className="flex items-center gap-2">
-                <SlBadge className="text-white w-5 h-5 bg-blue-600 rounded-full p-1" />
-                <span className="text-sm">Verified Contractor</span>
+                <SlBadge className="text-primary-foreground w-5 h-5 bg-primary rounded-full p-1" />
+                <span className="text-sm text-foreground">Verified Contractor</span>
               </div>
               <div className="flex items-center gap-2">
-                <IoIosHammer className="text-white w-5 h-5 bg-blue-600 rounded-full p-1" />
-                <span className="text-sm">
+                <IoIosHammer className="text-primary-foreground w-5 h-5 bg-primary rounded-full p-1" />
+                <span className="text-sm text-foreground">
                   {contractor.completedTasks} Completed Task
                 </span>
               </div>
               <div className="flex items-center gap-2">
                 <StarRating rating={contractor.rating} />
-                <span className="text-sm">({contractor.reviews} reviews)</span>
+                <span className="text-sm text-foreground">({contractor.reviews} reviews)</span>
               </div>
             </div>
 
             {/* <Link href={'/confirm'}> */}
-            <button className="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition font-medium">
+            <button className="w-full bg-primary text-primary-foreground py-3 rounded-lg hover:bg-primary/90 transition font-medium">
               Select & Continue
             </button>
             {/* </Link> */}
@@ -284,22 +283,22 @@ const SelectConstractorCard = ({ contractor, selected, onSelect }) => {
           {/* Right Side - Details & Reviews */}
           <div className="lg:w-2/3 p-6 space-y-6">
             <div>
-              <h3 className="text-xl font-semibold mb-4 pb-2 border-b border-gray-200">
+              <h3 className="text-xl font-semibold mb-4 pb-2 border-b border-border text-foreground">
                 How I Can Help You
               </h3>
-              <p className="text-gray-700 mb-4 leading-relaxed">
+              <p className="text-foreground mb-4 leading-relaxed">
                 {contractor.description}
               </p>
-              <div className="mb-4 border-2 p-3 rounded-xl border-gray-200">
-                <p>
+              <div className="mb-4 border-2 p-3 rounded-xl border-border bg-muted/30">
+                <p className="text-foreground">
                   2-hour minimum per booking. I have 5+ years of experience and
                   come fully equipped with my own tools.
                 </p>
-                <p className="font-medium mb-2">Services include:</p>
+                <p className="font-medium mb-2 text-foreground">Services include:</p>
                 <ul className="space-y-1">
                   {contractor?.services?.map((service, index) => (
-                    <li key={index} className="flex items-center text-gray-700">
-                      <span className="w-2 h-2 bg-gray-400 rounded-full mr-3"></span>
+                    <li key={index} className="flex items-center text-foreground">
+                      <span className="w-2 h-2 bg-primary rounded-full mr-3"></span>
                       {service}
                     </li>
                   ))}
@@ -307,11 +306,11 @@ const SelectConstractorCard = ({ contractor, selected, onSelect }) => {
               </div>
             </div>
 
-            <div className={`space-y-4 ${styles.fontDMSans}`}>
+            <div className="space-y-4">
               {paginatedReviews.map((review, idx) => (
                 <div
                   key={idx}
-                  className="border-b border-gray-200 py-4 flex gap-4 items-start"
+                  className="border-b border-border py-4 flex gap-4 items-start"
                 >
                   <Image
                     src={img}
@@ -322,11 +321,11 @@ const SelectConstractorCard = ({ contractor, selected, onSelect }) => {
                   />
                   <div className="flex-1">
                     <div className="flex justify-between items-center mb-0.5">
-                      <p className="font-bold text-sm">{review.name}</p>
+                      <p className="font-bold text-sm text-foreground">{review.name}</p>
                       <StarRating rating={review.rating} />
                     </div>
-                    <p className="text-xs text-gray-600 mb-1">{review.date}</p>
-                    <p className="text-gray-800 text-sm">{review.review}</p>
+                    <p className="text-xs text-muted-foreground mb-1">{review.date}</p>
+                    <p className="text-foreground text-sm">{review.review}</p>
                   </div>
                 </div>
               ))}

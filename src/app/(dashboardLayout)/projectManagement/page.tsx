@@ -280,8 +280,8 @@ const StarRating = ({ value = 0 }: { value?: number }) => {
   const isLoading = isLoadingOrders || isLoadingQuotes;
 
   return (
-    <div className="max-w-7xl mx-auto p-4 bg-white min-h-screen">
-      <h1 className="text-3xl font-bold mb-6">Project Management</h1>
+    <div className="max-w-7xl mx-auto p-4 bg-card border border-border min-h-screen">
+      <h1 className="text-3xl font-bold text-foreground mb-6">Project Management</h1>
 
       {/* Tabs */}
       <div className="flex gap-2 mb-6">
@@ -291,8 +291,8 @@ const StarRating = ({ value = 0 }: { value?: number }) => {
             onClick={() => setActiveTab(tab)}
             className={`px-6 py-2 rounded-md font-semibold ${
               activeTab === tab
-                ? "bg-blue-600 text-white"
-                : "bg-gray-100 text-gray-700 border hover:bg-gray-200"
+                ? "bg-primary text-primary-foreground"
+                : "bg-muted text-foreground border border-border hover:bg-muted-foreground/10"
             }`}
           >
             {tab}
@@ -311,20 +311,20 @@ const StarRating = ({ value = 0 }: { value?: number }) => {
         <div className="overflow-x-auto">
           <table className="w-full table-auto">
             <thead>
-              <tr className="bg-green-200">
-                <th className="px-6 py-3 text-left">Project Info</th>
-                <th className="px-6 py-3 text-left">Price</th>
-                <th className="px-6 py-3 text-left">Date</th>
-                <th className="px-6 py-3 text-left">Action</th>
+              <tr className="bg-muted">
+                <th className="px-6 py-3 text-left text-foreground">Project Info</th>
+                <th className="px-6 py-3 text-left text-foreground">Price</th>
+                <th className="px-6 py-3 text-left text-foreground">Date</th>
+                <th className="px-6 py-3 text-left text-foreground">Action</th>
               </tr>
             </thead>
-            <tbody className="divide-y">
+            <tbody className="divide-y divide-border">
               {orders?.map((project) => {
                 // const reviews: TReviewItem[] = project?.user?.review || [];
                 // const userFullName = getUserFullName(project?.user);
 
                 return (
-                  <tr key={project._id} className="hover:bg-gray-50">
+                  <tr key={project._id} className="hover:bg-muted">
                     <td className="px-6 py-4">
                       <div className="flex items-start gap-2">
                         <div className="w-[25%] flex flex-col justify-center items-center">
@@ -335,20 +335,20 @@ const StarRating = ({ value = 0 }: { value?: number }) => {
                             height={48}
                             className="w-12 h-12 rounded-full object-cover"
                           />
-                          <div className="font-semibold mt-1 text-gray-900">
+                          <div className="font-semibold mt-1 text-foreground">
                             {project?.firstName || project?.user?.firstName}
                           </div>
                         </div>
 
                         <div>
-                          <div className="text-sm">{project?.serviceType}</div>
+                          <div className="text-sm text-foreground">{project?.serviceType}</div>
 
-                          <div className="flex gap-2 items-center text-sm text-gray-500">
-                            <FiClock className="text-gray-400" />
+                          <div className="flex gap-2 items-center text-sm text-muted-foreground">
+                            <FiClock className="text-muted-foreground" />
                             {project?.time}
                           </div>
-                          <div className="flex gap-2 items-center text-sm text-gray-500">
-                            <FiMapPin className="text-gray-400" />
+                          <div className="flex gap-2 items-center text-sm text-muted-foreground">
+                            <FiMapPin className="text-muted-foreground" />
                             {project?.location}
                           </div>
 
@@ -356,36 +356,36 @@ const StarRating = ({ value = 0 }: { value?: number }) => {
                           <button
                             type="button"
                             onClick={() => openAllReviewModal(project)}
-                            className="flex gap-2 items-center text-sm text-blue-600 hover:underline mt-2"
+                            className="flex gap-2 items-center text-sm text-primary hover:underline mt-2"
                           >
-                            <Star size={14} className="text-blue-600 " />
+                            <Star size={14} className="text-primary " />
                             All Review
                           </button>
                         </div>
                       </div>
                     </td>
 
-                    <td className="px-6 py-4 text-sm font-inter">
+                    <td className="px-6 py-4 text-sm font-inter text-foreground">
                       ${project?.serviceId?.price}
                     </td>
-                    <td className="px-6 py-4 text-sm">{project?.date}</td>
+                    <td className="px-6 py-4 text-sm text-foreground">{project?.date}</td>
                     <td className="px-6 py-4 space-y-2">
                       <button
                         onClick={() => gotoDetails(project._id)}
-                        className="w-full border px-4 py-2 rounded-md text-sm hover:bg-gray-100"
+                        className="w-full border border-border px-4 py-2 rounded-md text-sm hover:bg-muted text-foreground"
                       >
                         View Job Details
                       </button>
                       <div className="flex gap-2">
                         <button
                           onClick={() => handleProjectReject(project._id)}
-                          className="flex-1 bg-red-500 text-white px-4 py-2 rounded-md text-sm"
+                          className="flex-1 bg-destructive text-destructive-foreground px-4 py-2 rounded-md text-sm"
                         >
                           Reject
                         </button>
                         <button
                           onClick={() => handleProjectAccept(project._id)}
-                          className="flex-1 bg-blue-600 text-white px-4 py-2 rounded-md text-sm"
+                          className="flex-1 bg-primary text-primary-foreground px-4 py-2 rounded-md text-sm"
                         >
                           Accept
                         </button>
@@ -414,16 +414,16 @@ const StarRating = ({ value = 0 }: { value?: number }) => {
         <div className="overflow-x-auto">
           <table className="w-full table-auto">
             <thead>
-              <tr className="bg-green-200">
-                <th className="px-6 py-3 text-left">Project Info</th>
-                <th className="px-6 py-3 text-left">Status</th>
-                <th className="px-6 py-3 text-left">Date</th>
-                <th className="px-6 py-3 text-left">Action</th>
+              <tr className="bg-muted">
+                <th className="px-6 py-3 text-left text-foreground">Project Info</th>
+                <th className="px-6 py-3 text-left text-foreground">Status</th>
+                <th className="px-6 py-3 text-left text-foreground">Date</th>
+                <th className="px-6 py-3 text-left text-foreground">Action</th>
               </tr>
             </thead>
-            <tbody className="divide-y">
+            <tbody className="divide-y divide-border">
               {quotes?.map((project: any) => (
-                <tr key={project._id} className="hover:bg-gray-50">
+                <tr key={project._id} className="hover:bg-muted">
                   <td className="px-6 py-4 flex items-start gap-2">
                     <div className="w-[50%] flex flex-col justify-center items-center">
                       <Image
@@ -436,19 +436,19 @@ const StarRating = ({ value = 0 }: { value?: number }) => {
                     </div>
 
                     <div>
-                      <div className="font-semibold text-gray-900">
+                      <div className="font-semibold text-foreground">
                         {(project?.user?.firstName || "") +
                           (project?.user?.lastName ? ` ${project?.user?.lastName}` : "")}
                       </div>
-                      <div className="text-sm">{project?.service}</div>
-                      <div className="text-sm text-gray-500">{project?.projectLocation}</div>
+                      <div className="text-sm text-foreground">{project?.service}</div>
+                      <div className="text-sm text-muted-foreground">{project?.projectLocation}</div>
                        {/* All Review link */}
                           <button
                             type="button"
                             onClick={() => openAllReviewModal(project)}
-                            className="flex gap-2 items-center text-sm text-blue-600 hover:underline mt-2"
+                            className="flex gap-2 items-center text-sm text-primary hover:underline mt-2"
                           >
-                            <Star size={14} className="text-blue-600 " />
+                            <Star size={14} className="text-primary " />
                             All Review
                           </button>
                     </div>
@@ -457,22 +457,22 @@ const StarRating = ({ value = 0 }: { value?: number }) => {
                     <span
                       className={`text-sm font-semibold ${
                         project?.status === "pending"
-                          ? "text-blue-500"
+                          ? "text-primary"
                           : project?.status === "accepted"
                           ? "text-green-500"
-                          : "text-red-500"
+                          : "text-destructive"
                       }`}
                     >
                       {project?.status}
                     </span>
                   </td>
-                  <td className="px-6 py-4 text-sm">
+                  <td className="px-6 py-4 text-sm text-foreground">
                     {(project?.date || "").split("T")[0]}
                   </td>
                   <td className="px-6 py-4 space-y-2">
                     <button
                       onClick={() => gotoDetails(project?._id)}
-                      className="w-full border px-4 py-2 rounded-md text-sm hover:bg-gray-100"
+                      className="w-full border border-border px-4 py-2 rounded-md text-sm hover:bg-muted text-foreground"
                     >
                       View Job Details
                     </button>
@@ -481,13 +481,13 @@ const StarRating = ({ value = 0 }: { value?: number }) => {
                       <div className="flex gap-2">
                         <button
                           onClick={() => handleReject(project?._id)}
-                          className="flex-1 bg-red-500 text-white px-4 py-2 rounded-md text-sm"
+                          className="flex-1 bg-destructive text-destructive-foreground px-4 py-2 rounded-md text-sm"
                         >
                           Reject
                         </button>
                         <button
                           onClick={() => handleAccept(project?._id)}
-                          className="flex-1 bg-blue-600 text-white px-4 py-2 rounded-md text-sm"
+                          className="flex-1 bg-primary text-primary-foreground px-4 py-2 rounded-md text-sm"
                         >
                           Accept
                         </button>
@@ -496,7 +496,7 @@ const StarRating = ({ value = 0 }: { value?: number }) => {
 
                     {project?.status === "accepted" && (
                       <button
-                        className="w-full bg-blue-600 text-white px-4 py-2 rounded-md text-sm"
+                        className="w-full bg-primary text-primary-foreground px-4 py-2 rounded-md text-sm"
                       >
                         Message Client
                       </button>
@@ -524,15 +524,15 @@ const StarRating = ({ value = 0 }: { value?: number }) => {
         <div className="overflow-x-auto">
           <table className="w-full table-auto">
             <thead>
-              <tr className="bg-green-200">
-                <th className="px-6 py-3 text-left">Clients</th>
-                <th className="px-6 py-3 text-left">Service</th>
-                <th className="px-6 py-3 text-left">Status</th>
+              <tr className="bg-muted">
+                <th className="px-6 py-3 text-left text-foreground">Clients</th>
+                <th className="px-6 py-3 text-left text-foreground">Service</th>
+                <th className="px-6 py-3 text-left text-foreground">Status</th>
               </tr>
             </thead>
-            <tbody className="divide-y">
+            <tbody className="divide-y divide-border">
               {projectData.map((project) => (
-                <tr key={project.id} className="hover:bg-gray-50">
+                <tr key={project.id} className="hover:bg-muted">
                   <td className="px-6 py-4">
                     <div className="flex items-center gap-4">
                       <Image
@@ -541,26 +541,26 @@ const StarRating = ({ value = 0 }: { value?: number }) => {
                         className="w-10 h-10 rounded-full"
                       />
                       <div>
-                        <div className="font-semibold text-gray-900">{project.client}</div>
-                        <div className="text-sm text-gray-500">Omaha, NE</div>
+                        <div className="font-semibold text-foreground">{project.client}</div>
+                        <div className="text-sm text-muted-foreground">Omaha, NE</div>
                       </div>
-                      <div className="flex gap-2 text-blue-500 ">
-                        <IoCallSharp className="w-6 h-6 text-white  bg-blue-600 rounded-full p-1" />
-                        <MdOutlineMessage className="w-6 h-6 text-white  bg-blue-600 rounded-full p-1" />
+                      <div className="flex gap-2 text-primary ">
+                        <IoCallSharp className="w-6 h-6 text-primary-foreground  bg-primary rounded-full p-1" />
+                        <MdOutlineMessage className="w-6 h-6 text-primary-foreground  bg-primary rounded-full p-1" />
                       </div>
                     </div>
                   </td>
-                  <td className="px-6 py-4">{project.service}</td>
+                  <td className="px-6 py-4 text-foreground">{project.service}</td>
                   <td className="px-6 py-4">
                     <span
                       className={`font-semibold ${
                         project.status === "Accepted"
                           ? "text-green-500"
                           : project.status === "Declined"
-                          ? "text-red-500"
+                          ? "text-destructive"
                           : project.status === "Pending"
                           ? "text-yellow-500"
-                          : "text-gray-500"
+                          : "text-muted-foreground"
                       }`}
                     >
                       {project.status === "Accepted"
@@ -588,15 +588,15 @@ const StarRating = ({ value = 0 }: { value?: number }) => {
 >
   {!selectedReviews?.length ? (
     <div className="py-10 text-center">
-      <div className="mx-auto mb-3 h-12 w-12 rounded-full bg-gray-100 flex items-center justify-center">
-        <svg viewBox="0 0 24 24" className="h-6 w-6 text-gray-400">
+      <div className="mx-auto mb-3 h-12 w-12 rounded-full bg-muted flex items-center justify-center">
+        <svg viewBox="0 0 24 24" className="h-6 w-6 text-muted-foreground">
           <path
             fill="currentColor"
             d="M12 12c2.7 0 5-2.3 5-5s-2.3-5-5-5-5 2.3-5 5 2.3 5 5 5Zm0 2c-4 0-8 2-8 6v1h16v-1c0-4-4-6-8-6Z"
           />
         </svg>
       </div>
-      <p className="text-sm text-gray-500">No reviews yet</p>
+      <p className="text-sm text-muted-foreground">No reviews yet</p>
     </div>
   ) : (
     <div className="max-h-[70vh] overflow-y-auto space-y-4">
@@ -607,7 +607,7 @@ const StarRating = ({ value = 0 }: { value?: number }) => {
         return (
           <div
             key={i}
-            className="rounded-lg border border-gray-100 bg-white p-4 shadow-sm hover:shadow-md transition-shadow"
+            className="rounded-lg border border-border bg-card p-4 shadow-sm hover:shadow-md transition-shadow"
           >
             <div className="flex items-start gap-3">
               {/* Avatar */}
@@ -616,26 +616,26 @@ const StarRating = ({ value = 0 }: { value?: number }) => {
                 alt={name}
                 width={40}
                 height={40}
-                className="h-10 w-10 rounded-full object-cover border border-gray-100"
+                className="h-10 w-10 rounded-full object-cover border border-border"
               />
 
               {/* Header: name + rating + date */}
               <div className="flex-1">
                 <div className="flex flex-wrap items-center gap-2">
-                  <span className="font-medium text-gray-900">{name}</span>
+                  <span className="font-medium text-foreground">{name}</span>
                   <StarRating value={parseFloat(item?.rating) || 0} />
-                  <span className="text-xs text-gray-500">
+                  <span className="text-xs text-muted-foreground">
                     {formatDate(item?.createdAt)}
                   </span>
                 </div>
 
                 {/* Comment */}
                 {item?.comment ? (
-                  <p className="mt-2 whitespace-pre-wrap text-gray-800">
+                  <p className="mt-2 whitespace-pre-wrap text-foreground">
                     {item.comment}
                   </p>
                 ) : (
-                  <p className="mt-2 text-gray-400 italic">
+                  <p className="mt-2 text-muted-foreground italic">
                     No comment provided.
                   </p>
                 )}

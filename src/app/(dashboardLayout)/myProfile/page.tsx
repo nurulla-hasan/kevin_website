@@ -104,20 +104,20 @@ export default function ProfilePage() {
   };
 
   return (
-    <div className="w-full   min-h-screen bg-white p-6">
+    <div className="w-full   min-h-screen bg-background p-6">
       {/* Header */}
       <div className="flex justify-between items-center mb-4">
-        <h1 className="text-2xl font-bold text-gray-800">Profile</h1>
+        <h1 className="text-2xl font-bold text-foreground">Profile</h1>
         <div>
           <button
-            className="px-6 py-2 border border-gray-300 rounded text-gray-700 hover:bg-gray-50 transition"
+            className="px-6 py-2 border border-border rounded text-foreground hover:bg-muted transition"
             onClick={showModal}
           >
             Edit
           </button>
           <Link href={"/contractorHome"}>
             {role === "user" && (
-              <button className="bg-blue-600 text-white px-4 py-2 ml-1 rounded hover:bg-blue-700">
+              <button className="bg-primary text-primary-foreground px-4 py-2 ml-1 rounded hover:bg-primary/90">
                 Become a Contractor
               </button>
             )}
@@ -126,12 +126,12 @@ export default function ProfilePage() {
       </div>
 
       {/* Divider */}
-      <div className="border-b border-gray-200 mb-8"></div>
+      <div className="border-b border-border mb-8"></div>
 
       {/* Profile Content */}
       <div className="flex flex-col md:flex-row justify-center xl:mt-48 items-center md:items-start gap-12">
         {/* Profile Photo */}
-        <div className="relative w-44 h-44 rounded-full overflow-hidden">
+        <div className="relative w-44 h-44 rounded-full overflow-hidden border-4 border-border">
           <Image
             src={
               specUser?.data?.image ||
@@ -144,31 +144,31 @@ export default function ProfilePage() {
         </div>
 
         {/* User Information */}
-        <div className="flex flex-col space-y-6 flex-grow">
+        <div className="flex flex-col space-y-6 flex-grow p-6 border border-border rounded-xl bg-card">
           <div className="flex items-center gap-4">
-            <FaUser className="text-gray-600 w-5 h-5" />
-            <span className="text-lg text-gray-900">
+            <FaUser className="text-muted-foreground w-5 h-5" />
+            <span className="text-lg text-foreground">
               {(specUser?.data?.firstName)+' '+(specUser?.data?.lastName)}
             </span>
           </div>
 
           <div className="flex items-center gap-4">
-            <FaEnvelope className="text-gray-600 w-5 h-5" />
-            <span className="text-lg text-gray-900">
+            <FaEnvelope className="text-muted-foreground w-5 h-5" />
+            <span className="text-lg text-foreground">
               {specUser?.data?.email}
             </span>
           </div>
 
           <div className="flex items-center gap-4">
-            <FaPhone className="text-gray-600 w-5 h-5" />
-            <span className="text-lg text-gray-900">
+            <FaPhone className="text-muted-foreground w-5 h-5" />
+            <span className="text-lg text-foreground">
               {specUser?.data?.phone}
             </span>
           </div>
 
           <div className="flex items-center gap-4">
-            <FaMapMarkerAlt className="text-gray-600 w-5 h-5" />
-            <span className="text-lg text-gray-900">
+            <FaMapMarkerAlt className="text-muted-foreground w-5 h-5" />
+            <span className="text-lg text-foreground">
               {specUser?.data?.address}
             </span>
           </div>
@@ -198,7 +198,7 @@ export default function ProfilePage() {
           {/* Profile Image */}
           <div className="flex flex-col items-center gap-2">
             <div className="flex flex-col items-center gap-2">
-              <div className="relative w-44 h-44 rounded-full overflow-hidden bg-gray-200 flex items-center justify-center">
+              <div className="relative w-44 h-44 rounded-full overflow-hidden bg-muted flex items-center justify-center border border-border">
                 {/* Image preview */}
                 <Image
                   src={previewImage || specUser?.data?.image || ""}
@@ -210,7 +210,7 @@ export default function ProfilePage() {
                 />
                 {/* If no image is available, show placeholder text */}
                 {!previewImage && !specUser?.data?.image && (
-                  <span className="text-gray-500">No Image</span>
+                  <span className="text-muted-foreground">No Image</span>
                 )}
                 {/* Invisible file input */}
                 <input
@@ -220,10 +220,10 @@ export default function ProfilePage() {
                   className="absolute inset-0 opacity-0 cursor-pointer"
                 />
                 {/* Camera icon (upload button) */}
-                <label className="bg-black opacity-80 w-full p-1 shadow-md cursor-pointer absolute top-36 py-4">
+                <label className="bg-foreground opacity-80 w-full p-1 shadow-md cursor-pointer absolute top-36 py-4">
                   <IoCameraOutline
                     size={24}
-                    className="text-white absolute bottom-1 left-20"
+                    className="text-background absolute bottom-1 left-20"
                   />
                 </label>
               </div>
@@ -233,7 +233,7 @@ export default function ProfilePage() {
           <div className="flex-1 space-y-4">
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <label className="block text-sm text-gray-500 mb-2">
+                <label className="block text-sm text-muted-foreground mb-2">
                   First Name
                 </label>
                 <Controller
@@ -243,13 +243,13 @@ export default function ProfilePage() {
                   render={({ field }) => (
                     <input
                       {...field}
-                      className="rounded-lg border p-2 w-full"
+                      className="rounded-lg border border-border p-2 w-full bg-background text-foreground"
                     />
                   )}
                 />
               </div>
               <div>
-                <label className="block text-sm text-gray-500 mb-2">
+                <label className="block text-sm text-muted-foreground mb-2">
                   Last Name
                 </label>
                 <Controller
@@ -259,7 +259,7 @@ export default function ProfilePage() {
                   render={({ field }) => (
                     <input
                       {...field}
-                      className="rounded-lg border p-2 w-full"
+                      className="rounded-lg border border-border p-2 w-full bg-background text-foreground"
                     />
                   )}
                 />
@@ -267,7 +267,7 @@ export default function ProfilePage() {
             </div>
 
             <div>
-              <label className="block text-sm text-gray-500 mb-2">Bio</label>
+              <label className="block text-sm text-muted-foreground mb-2">Bio</label>
               <Controller
                 name="bio"
                 control={control}
@@ -275,7 +275,7 @@ export default function ProfilePage() {
                 render={({ field }) => (
                   <textarea
                     {...field}
-                    className="rounded-lg border p-2 w-full"
+                    className="rounded-lg border border-border p-2 w-full bg-background text-foreground"
                     rows={4}
                   />
                 )}
@@ -286,7 +286,7 @@ export default function ProfilePage() {
             <div className="flex justify-end pt-4">
               <button
                 type="submit"
-                className="bg-blue-600 text-white rounded-lg px-4 py-2"
+                className="bg-primary text-primary-foreground rounded-lg px-4 py-2 hover:bg-primary/90 transition"
               >
                 Update
               </button>

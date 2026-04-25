@@ -1,26 +1,14 @@
-import { DM_Sans, Urbanist, Inter } from "next/font/google";
+import { Lato } from "next/font/google";
 import "@/app/globals.css";
 import { AntdRegistry } from "@ant-design/nextjs-registry";
 import Providers from "@/Providers/Providers";
 import NextTopLoader from 'nextjs-toploader';
 
-// Import fonts
-const dmSans = DM_Sans({
-  weight: ["300", "400", "500", "700"],
+// Import Lato font
+const lato = Lato({
+  weight: ["300", "400", "700"],
   subsets: ["latin"],
-  variable: "--font-dm-sans",
-});
-
-const urbanist = Urbanist({
-  weight: ["300", "400", "500", "700"],
-  subsets: ["latin"],
-  variable: "--font-urbanist",
-});
-
-const inter = Inter({
-  weight: ["300", "400", "500", "700"],
-  subsets: ["latin"],
-  variable: "--font-inter",
+  variable: "--font-lato",
 });
 
 export const metadata = {
@@ -32,7 +20,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
-        className={`${dmSans.variable} ${urbanist.variable} ${inter.variable} antialiased bg-[#EAECEE]`}
+        className={`${lato.variable} font-sans antialiased bg-background`}
       >
         <NextTopLoader
           color="#2299DD"

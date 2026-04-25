@@ -84,12 +84,12 @@ const AddProject = () => {
   return (
     <div>
       <nav
-        className="flex items-center font-normal text-base leading-6  bg-white pl-3 md:pl-5 lg:pl-10 xl:pl-44 border-t border-gray-500 py-3"
+        className="flex items-center font-normal text-base leading-6  bg-card pl-3 md:pl-5 lg:pl-10 xl:pl-44 border-t border-border py-3"
         aria-label="breadcrumb"
       >
-        <p className="text-black text-xl">Dashboard</p>
+        <p className="text-foreground text-xl">Dashboard</p>
         <svg
-          className="mx-2 w-6 h-6 text-black"
+          className="mx-2 w-6 h-6 text-foreground"
           fill="none"
           stroke="currentColor"
           strokeWidth={2}
@@ -100,71 +100,71 @@ const AddProject = () => {
         >
           <path d="M9 18l6-6-6-6" />
         </svg>
-        <span className="text-black cursor-default text-xl">
+        <span className="text-foreground cursor-default text-xl">
           Public Profile
         </span>
       </nav>
-      <h1 className="text-3xl font-bold max-w-7xl mx-auto my-5">
+      <h1 className="text-3xl font-bold max-w-7xl mx-auto my-5 text-foreground">
         Upload Project Content
       </h1>
-      <div className="bg-white max-w-7xl mx-auto p-5">
+      <div className="bg-card border border-border max-w-7xl mx-auto p-5">
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
           <div>
             <input
               type="text"
               {...register('title')}
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all duration-200"
+              className="w-full px-4 py-3 border border-border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all duration-200 bg-background text-foreground placeholder:text-muted-foreground"
               placeholder="Enter project title..."
             />
           </div>
 
           {/* Project Details */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-sm font-medium text-foreground mb-2">
               Project Details
             </label>
             <textarea
               {...register('projectDetails')}
               rows={6}
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all duration-200 resize-none"
+              className="w-full px-4 py-3 border border-border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all duration-200 resize-none bg-background text-foreground placeholder:text-muted-foreground"
               placeholder="Describe your project details..."
             />
           </div>
 
           {/* Category Name (Service) */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-sm font-medium text-foreground mb-2">
               Category Name (Service)
             </label>
             <input
               type="text"
               {...register('searchServices')}
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all duration-200"
+              className="w-full px-4 py-3 border border-border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all duration-200 bg-background text-foreground placeholder:text-muted-foreground"
               placeholder="Enter category (e.g., Cleaning)"
             />
           </div>
 
           {/* Price */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-sm font-medium text-foreground mb-2">
               Price
             </label>
             <input
               type="number"
               {...register('projectPrices')}
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all duration-200"
+              className="w-full px-4 py-3 border border-border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all duration-200 bg-background text-foreground placeholder:text-muted-foreground"
               placeholder="Enter project price"
             />
           </div>
 
           {/* Type (Indoor/Outdoor) */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-sm font-medium text-foreground mb-2">
               Project Type
             </label>
             <select
               {...register('projectType')}
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all duration-200"
+              className="w-full px-4 py-3 border border-border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all duration-200 bg-background text-foreground"
             >
               <option value="outdoor">Outdoor</option>
               <option value="indoor">Indoor</option>
@@ -173,12 +173,12 @@ const AddProject = () => {
 
           {/* Location */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-sm font-medium text-foreground mb-2">
               Location
             </label>
             <select
               {...register('projectLocation')}
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all duration-200"
+              className="w-full px-4 py-3 border border-border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all duration-200 bg-background text-foreground"
             >
               <option value="usa">USA</option>
               <option value="india">India</option>
@@ -189,7 +189,7 @@ const AddProject = () => {
 
           {/* Upload Project Photo */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-3">
+            <label className="block text-sm font-medium text-foreground mb-3">
               Upload Project Photo
             </label>
 
@@ -200,12 +200,12 @@ const AddProject = () => {
                   alt={uploadedPhoto.name}
                   width={300}
                   height={96}
-                  className="w-full h-24 object-cover rounded-lg border border-gray-300"
+                  className="w-full h-24 object-cover rounded-lg border border-border"
                 />
                 <button
                   type="button"
                   onClick={removePhoto}
-                  className="absolute -top-2 -right-2 w-6 h-6 bg-red-500 text-white rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200"
+                  className="absolute -top-2 -right-2 w-6 h-6 bg-destructive text-destructive-foreground rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200"
                 >
                   <FaTimes className="w-3 h-3" />
                 </button>
@@ -219,15 +219,15 @@ const AddProject = () => {
               onClick={handleUploadClick}
               className={`border-2 border-dashed rounded-lg p-12 text-center cursor-pointer transition-all duration-200 ${
                 isDragOver
-                  ? 'border-blue-500 bg-blue-50'
-                  : 'border-gray-300 bg-white hover:border-gray-400 hover:bg-gray-50'
+                  ? 'border-primary bg-primary/10'
+                  : 'border-border bg-card hover:border-border hover:bg-muted'
               }`}
             >
               <div className="flex flex-col items-center">
-                <div className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center mb-4">
-                  <FaPlus className="text-white text-xl" />
+                <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center mb-4">
+                  <FaPlus className="text-primary-foreground text-xl" />
                 </div>
-                <p className="text-gray-600 text-base">
+                <p className="text-muted-foreground text-base">
                   Drop photo here or click to upload
                 </p>
               </div>
@@ -244,7 +244,7 @@ const AddProject = () => {
           {/* Submit Button */}
           <button
             type="submit"
-            className="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-4 px-6 rounded-lg transition-colors duration-200 text-lg"
+            className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-medium py-4 px-6 rounded-lg transition-colors duration-200 text-lg"
           >
             Upload Project
           </button>

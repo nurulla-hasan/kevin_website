@@ -18,7 +18,7 @@ const RecentlyPosted = ({ allArticles, setPage, page, cmsData = undefined }) => 
   if (cmsData?.isVisible === false) return null;
 
   // Split title if it exists, otherwise use default
-  const title = cmsData?.title || "Recently Posted";
+  const title = cmsData?.title || "Please set title in CMS";
   const titleWords = title.split(" ");
   const firstWord = titleWords[0];
   const restOfTitle = titleWords.slice(1).join(" ");
@@ -26,11 +26,11 @@ const RecentlyPosted = ({ allArticles, setPage, page, cmsData = undefined }) => 
   return (
     <div className={`container my-10 mx-auto font-inter`}>
       <div className="my-6">
-        <span className="inline-flex items-center rounded bg-blue-600 px-3 py-1 text-3xl font-medium text-white">
+        <span className="inline-flex items-center rounded bg-primary px-3 py-1 text-3xl font-medium text-primary-foreground">
           {firstWord}
         </span>
         {restOfTitle && (
-          <span className="ml-2 text-3xl text-gray-600">{restOfTitle}</span>
+          <span className="ml-2 text-3xl text-muted-foreground">{restOfTitle}</span>
         )}
       </div>
 

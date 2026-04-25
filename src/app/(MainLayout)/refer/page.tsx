@@ -43,11 +43,11 @@ export default function ReferPage() {
     <div>
       {/* Main Heading - from CMS */}
       {heroSection?.isVisible !== false && (
-        <h1 className="text-3xl sm:text-4xl lg:text-5xl container mx-auto my-12 font-bold text-gray-900 mb-6 leading-tight">
-          {heroSection?.title || "Help Your Friends & Get $10"}
+        <h1 className="text-3xl sm:text-4xl lg:text-5xl container mx-auto my-12 font-bold text-foreground mb-6 leading-tight">
+          {heroSection?.title || "Please set title in CMS"}
         </h1>
       )}
-      <div className="w-full container mx-auto mb-8 bg-[#ffffff] rounded-xl py-12 px-4 sm:py-16 sm:px-6 lg:py-20 lg:px-8">
+      <div className="w-full container mx-auto mb-8 bg-card border border-border rounded-xl py-12 px-4 sm:py-16 sm:px-6 lg:py-20 lg:px-8 shadow-lg">
         <div className="max-w-7xl">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
             {/* Left Content */}
@@ -55,41 +55,26 @@ export default function ReferPage() {
               {/* Description - from CMS */}
               <div className="mb-8">
                 {heroSection?.isVisible !== false && heroSection?.content && (
-                  <p className="text-gray-700 text-lg mb-4 leading-relaxed">
+                  <p className="text-foreground text-lg mb-4 leading-relaxed">
                     {heroSection.content}
                   </p>
                 )}
 
                 {howItWorksSection?.isVisible !== false && (
                   <>
-                    <p className="text-gray-700 text-lg mb-4 font-medium">
-                      {howItWorksSection?.title || "Here's how it works:"}
+                    <p className="text-foreground text-lg mb-4 font-medium">
+                      {howItWorksSection?.title || "Please set title in CMS"}
                     </p>
 
-                    <ul className="space-y-3 text-gray-700">
+                    <ul className="space-y-3 text-foreground">
                       {howItWorksSection?.content?.split('\n').map((line: string, index: number) => (
                         line.trim() && (
                           <li key={index} className="flex items-start">
-                            <span className="inline-block w-2 h-2 bg-gray-400 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                            <span className="inline-block w-2 h-2 bg-primary rounded-full mt-2 mr-3 flex-shrink-0"></span>
                             <span>{line.trim()}</span>
                           </li>
                         )
-                      )) || (
-                        <>
-                          <li className="flex items-start">
-                            <span className="inline-block w-2 h-2 bg-gray-400 rounded-full mt-2 mr-3 flex-shrink-0"></span>
-                            <span>Your friend gets $10 off their first completed service.</span>
-                          </li>
-                          <li className="flex items-start">
-                            <span className="inline-block w-2 h-2 bg-gray-400 rounded-full mt-2 mr-3 flex-shrink-0"></span>
-                            <span>You get a $10 credit toward your next service once they complete their first task.</span>
-                          </li>
-                          <li className="flex items-start">
-                            <span className="inline-block w-2 h-2 bg-gray-400 rounded-full mt-2 mr-3 flex-shrink-0"></span>
-                            <span>Simply enter a referral code to claim your reward.</span>
-                          </li>
-                        </>
-                      )}
+                      ))}
                     </ul>
                   </>
                 )}
@@ -106,19 +91,19 @@ export default function ReferPage() {
                         {...register("code", {
                           required: "Refer Code is required",
                         })}
-                        className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none text-gray-700"
+                        className="w-full pl-10 pr-4 py-3 border border-border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none bg-background text-foreground placeholder:text-muted-foreground"
                       />
                     </div>
                     <button
                       type="submit"
-                      className="px-6 py-3 bg-gray-400 hover:bg-gray-500 text-white font-medium rounded-lg transition-colors duration-200 whitespace-nowrap"
+                      className="px-6 py-3 bg-primary hover:bg-primary/90 text-primary-foreground font-medium rounded-lg transition-colors duration-200 whitespace-nowrap"
                     >
                       Get Reward
                     </button>
                   </div>
                   {/* Error message */}
                   {errors.code && (
-                    <p className="text-red-500 text-xs">
+                    <p className="text-destructive text-xs">
                       {typeof errors.code.message === "string" &&
                         errors.code.message}
                     </p>

@@ -138,16 +138,16 @@ export default function CreateServiceForm() {
 
   return (
     <div className="max-w-7xl mx-auto 2">
-      <div className="bg-white rounded-lg p-6 sm:p-8">
+      <div className="bg-card border border-border rounded-lg p-6 sm:p-8">
         {/* Form Title */}
-        <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-8">
+        <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-foreground mb-8">
           Create Your Service
         </h1>
 
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
           {/* Upload Section */}
           <div>
-            <label className="block text-sm font-medium text-gray-900 mb-3">
+            <label className="block text-sm font-medium text-foreground mb-3">
               Upload cover of your service
             </label>
     
@@ -157,7 +157,7 @@ export default function CreateServiceForm() {
               control={control}
               // eslint-disable-next-line no-unused-vars
               render={({ field: { onChange, value, ...field } }) => (
-                <div className="border-2 border-dashed border-gray-300 rounded-lg p-5 text-center hover:border-gray-400 transition-colors cursor-pointer">
+                <div className="border-2 border-dashed border-border rounded-lg p-5 text-center hover:border-muted-foreground transition-colors cursor-pointer">
                   <input
                     {...field}
                     type="file"
@@ -178,8 +178,8 @@ export default function CreateServiceForm() {
                   />
                   <label htmlFor="file-upload" className="cursor-pointer">
                     <div className="flex flex-col items-center">
-                      <FiPlus className="w-8 h-8 text-gray-400 mb-3" />
-                      <span className="text-lg font-medium text-gray-600">
+                      <FiPlus className="w-8 h-8 text-muted-foreground mb-3" />
+                      <span className="text-lg font-medium text-foreground">
                         {selectedImage ? 'Image Selected' : 'Upload'}
                       </span>
                       {/* If an image is selected, display the image preview */}
@@ -205,7 +205,7 @@ export default function CreateServiceForm() {
           <div>
             <label
               htmlFor="title"
-              className="block text-sm font-medium text-gray-900 mb-3"
+              className="block text-sm font-medium text-foreground mb-3"
             >
               Title of your service
             </label>
@@ -213,11 +213,11 @@ export default function CreateServiceForm() {
               {...register('title', { required: 'Title is required' })}
               type="text"
               id="title"
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all"
+              className="w-full px-4 py-3 border border-border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all bg-background text-foreground"
               placeholder=""
             />
             {errors.title && (
-              <p className="mt-1 text-sm text-red-600">
+              <p className="mt-1 text-sm text-destructive">
                 {errors.title.message}
               </p>
             )}
@@ -227,7 +227,7 @@ export default function CreateServiceForm() {
           <div>
             <label
               htmlFor="details"
-              className="block text-sm font-medium text-gray-900 mb-3"
+              className="block text-sm font-medium text-foreground mb-3"
             >
               Service Details
             </label>
@@ -237,7 +237,7 @@ export default function CreateServiceForm() {
               })}
               id="details"
               rows={2}
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all resize-none"
+              className="w-full px-4 py-3 border border-border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all resize-none bg-background text-foreground"
               placeholder=""
             />
           </div>
@@ -263,12 +263,12 @@ export default function CreateServiceForm() {
             {selectedCategories.map((category, index) => (
               <div
                 key={index}
-                className="inline-flex items-center gap-2 bg-slate-700 text-white px-4 py-2 rounded-full text-sm font-medium"
+                className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-4 py-2 rounded-full text-sm font-medium"
               >
                 <span>{category.label}</span>
                 <button
                   onClick={() => removeService(category)}
-                  className="hover:bg-slate-600 rounded-full p-0.5 transition-colors"
+                  className="hover:bg-primary/90 rounded-full p-0.5 transition-colors"
                   aria-label={`Remove ${category.label}`}
                 >
                   <MdClose className="w-4 h-4" />
@@ -278,25 +278,25 @@ export default function CreateServiceForm() {
           </div>
           {/* service type dropdown */}
  <div className="mt-4">
-        <label htmlFor="type" className="block">Service Type</label>
+        <label htmlFor="type" className="block text-foreground">Service Type</label>
         <select
           id="type"
           name="type"
           {...register("type" ,{ required: 'Type is required' })}
-          className="border rounded p-2 w-full"
+          className="border border-border rounded p-2 w-full bg-background text-foreground"
         >
           <option value="">Select Type</option>
           <option value="indoor">Indoor</option>
           <option value="outdoor">Outdoor</option>
           <option value="garden">Garden</option>
         </select>
-        {errors.type && <p className="text-red-500 text-sm">{errors.type.message}</p>}
+        {errors.type && <p className="text-destructive text-sm">{errors.type.message}</p>}
       </div>
           {/* Price Input */}
           <div>
             <label
               htmlFor="price"
-              className="block text-sm font-medium text-gray-900 mb-3"
+              className="block text-sm font-medium text-foreground mb-3"
             >
               Item Price
             </label>
@@ -304,11 +304,11 @@ export default function CreateServiceForm() {
               {...register('price', { required: 'Price is required' })}
               type="text"
               id="price"
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all"
+              className="w-full px-4 py-3 border border-border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all bg-background text-foreground"
               placeholder="Price starts from"
             />
             {errors.price && (
-              <p className="mt-1 text-sm text-red-600">
+              <p className="mt-1 text-sm text-destructive">
                 {errors.price.message}
               </p>
             )}
@@ -317,7 +317,7 @@ export default function CreateServiceForm() {
           {/* Submit Button */}
           <button
             type="submit"
-            className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-4 px-6 rounded-lg transition-colors duration-200 text-lg"
+            className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-semibold py-4 px-6 rounded-lg transition-colors duration-200 text-lg"
           >
             Create Service
           </button>

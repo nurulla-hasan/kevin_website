@@ -16,7 +16,7 @@ const DashboardPage = () => {
   return (
     <>
       {role ==='vipContractor' ? (
-        <div className="bg-white w-full  p-4 min-h-screen flex gap-3">
+        <div className="bg-background w-full  p-4 min-h-screen flex gap-3">
           <div className="w-full">
             <Statics dashboardStats={dashboardStats}/>
             <PastPerformance dashboardStats={dashboardStats}/>
@@ -48,7 +48,7 @@ const DashboardPage = () => {
           </div> */}
         </div>
       ) : (
-        <div className="bg-white w-full  p-4 min-h-screen">
+        <div className="bg-background w-full  p-4 min-h-screen">
           <Statics dashboardStats={dashboardStats}/>
           <PastPerformance dashboardStats={dashboardStats}/>
         </div>

@@ -13,15 +13,15 @@ const YourServicePage = () => {
 const user = useAppSelector(selectCurrentUser)
 
   return (
-    <div className="bg-white p-5">
-      <div className="max-w-7xl border border-gray rounded-xl  mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12">
+    <div className="bg-background p-5">
+      <div className="max-w-7xl border border-border rounded-xl  mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12">
         {/* Section Title */}
         <div className="flex justify-between items-center ">
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-8 lg:mb-12">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-foreground mb-8 lg:mb-12">
             Your Services
           </h2>
           <Link href={`/profile/${user?.user?.userId}`}>
-          <button className="bg-[#1D69E1]  text-white p-2 rounded-xl">
+          <button className="bg-primary  text-primary-foreground p-2 rounded-xl">
             All Services
           </button>
           </Link>
@@ -32,7 +32,7 @@ const user = useAppSelector(selectCurrentUser)
             ?.map((service) => (
               <div
                 key={service?._id}
-                className="bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 hover:shadow-lg transition-shadow duration-300"
+                className="bg-card border border-border rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-300"
               >
                 {/* Service Image */}
                 <div className="relative h-48 sm:h-56 lg:h-64 overflow-hidden">
@@ -48,12 +48,12 @@ const user = useAppSelector(selectCurrentUser)
                 {/* Service Content */}
                 <div className="p-6">
                   {/* Service Title */}
-                  <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-3">
+                  <h3 className="text-xl sm:text-2xl font-bold text-foreground mb-3">
                     {service?.title}
                   </h3>
 
                   {/* Service Description */}
-                  <p className="text-gray-600 text-sm sm:text-base mb-6 leading-relaxed">
+                  <p className="text-muted-foreground text-sm sm:text-base mb-6 leading-relaxed">
                     {service?.details}
                   </p>
 
@@ -64,8 +64,8 @@ const user = useAppSelector(selectCurrentUser)
                     {service?.review?.map((r, i) => (
                       <div className="flex items-center gap-2" key={i}>
                         <div className="flex items-center gap-1">
-                          <FaStar className="w-4 h-4 text-blue-500 fill-current" />
-                          <span className="font-semibold text-gray-900 text-sm sm:text-base">
+                          <FaStar className="w-4 h-4 text-primary fill-current" />
+                          <span className="font-semibold text-foreground text-sm sm:text-base">
                             {r?.rating}
                           </span>
                         </div>
@@ -74,8 +74,8 @@ const user = useAppSelector(selectCurrentUser)
 
                     {/* Price Section */}
                     <div className="text-right">
-                      <span className="text-gray-600 text-sm">from </span>
-                      <span className="font-semibold text-gray-900 text-base">
+                      <span className="text-muted-foreground text-sm">from </span>
+                      <span className="font-semibold text-foreground text-base">
                         ${service?.price}
                       </span>
                     </div>
@@ -88,7 +88,7 @@ const user = useAppSelector(selectCurrentUser)
       </div>
       <div className="mt-3">
         <Link href={"/createService"}>
-          <button className="bg-[#1D69E1]  text-white w-full py-3 rounded-xl">
+          <button className="bg-primary  text-primary-foreground w-full py-3 rounded-xl">
             + Create More Service
           </button>
         </Link>

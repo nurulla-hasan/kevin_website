@@ -4,12 +4,12 @@ import Navbar from '@/Component/shared/Navbar';
 const MainLayout = ({ children }) => {
   return (
     <>
-      <div>
+      <div className="bg-background">
         <div className="min-h-screen ">
           <Navbar />
           {children}
         </div>
-        <div>
+        <div className="border-t border-border">
           <FooterPage />
         </div>
       </div>

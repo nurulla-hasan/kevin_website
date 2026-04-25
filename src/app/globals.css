@@ -3,30 +3,83 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Branding colors from logo */
+  --background: oklch(0.98 0.01 200);
+  --foreground: oklch(0.25 0.02 210);
+  
+  /* Primary: Cyan/Blue from 'Y' */
+  --primary: oklch(0.75 0.18 215); 
+  --primary-foreground: oklch(1 0 0);
+  
+  /* Accent: Light Green from 'T' */
+  --accent: oklch(0.88 0.12 155);
+  --accent-foreground: oklch(0.25 0.05 160);
+
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.25 0.02 210);
+  
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.25 0.02 210);
+  
+  --secondary: oklch(0.96 0.02 210);
+  --secondary-foreground: oklch(0.25 0.02 210);
+  
+  --muted: oklch(0.96 0.01 210);
+  --muted-foreground: oklch(0.45 0.05 210);
+  
+  --destructive: oklch(0.6 0.18 25);
+  --destructive-foreground: oklch(1 0 0);
+  
+  --border: oklch(0.9 0.02 210);
+  --input: oklch(0.9 0.02 210);
+  --ring: oklch(0.75 0.18 215);
+  
+  --radius: 0.75rem;
+  --font-sans: var(--font-lato), 'Lato', sans-serif;
+  --font-serif: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #ffffff;
-    --foreground: #000000;
-  }
+.dark {
+  --background: oklch(0.2068 0.0247 224.4533);
+  --foreground: oklch(0.8520 0.1269 195.0354);
+  --card: oklch(0.2293 0.0276 216.0674);
+  --card-foreground: oklch(0.8520 0.1269 195.0354);
+  --popover: oklch(0.2293 0.0276 216.0674);
+  --popover-foreground: oklch(0.8520 0.1269 195.0354);
+  --primary: oklch(0.8520 0.1269 195.0354);
+  --primary-foreground: oklch(0.2068 0.0247 224.4533);
+  --secondary: oklch(0.3775 0.0564 216.5010);
+  --secondary-foreground: oklch(0.8520 0.1269 195.0354);
+  --muted: oklch(0.2894 0.0412 218.8153);
+  --muted-foreground: oklch(0.6611 0.0975 195.0526);
+  --accent: oklch(0.3775 0.0564 216.5010);
+  --accent-foreground: oklch(0.8520 0.1269 195.0354);
+  --destructive: oklch(0.6168 0.2086 25.8088);
+  --border: oklch(0.3775 0.0564 216.5010);
+  --input: oklch(0.3775 0.0564 216.5010);
+  --ring: oklch(0.8520 0.1269 195.0354);
+  --chart-1: oklch(0.8520 0.1269 195.0354);
+  --chart-2: oklch(0.6611 0.0975 195.0526);
+  --chart-3: oklch(0.5804 0.0849 195.0673);
+  --chart-4: oklch(0.4269 0.0630 202.6247);
+  --chart-5: oklch(0.3142 0.0455 204.1575);
+  --sidebar: oklch(0.2068 0.0247 224.4533);
+  --sidebar-foreground: oklch(0.8520 0.1269 195.0354);
+  --sidebar-primary: oklch(0.8520 0.1269 195.0354);
+  --sidebar-primary-foreground: oklch(0.2068 0.0247 224.4533);
+  --sidebar-accent: oklch(0.3775 0.0564 216.5010);
+  --sidebar-accent-foreground: oklch(0.8520 0.1269 195.0354);
+  --sidebar-border: oklch(0.3775 0.0564 216.5010);
+  --sidebar-ring: oklch(0.8520 0.1269 195.0354);
 }
-.font-dm-sans {
-  font-family: var(--font-dm-sans), sans-serif;
-}
-.font-urbanist {
-  font-family: var(--font-urbanist), sans-serif;
-}
-.font-inter {
-  font-family: var(--font-inter), sans-serif;
+.font-lato {
+  font-family: var(--font-lato), sans-serif;
 }
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: var(--font-dm-sans), var(--font-urbanist), var(--font-inter),
-    Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
 }
 
 @layer utilities {

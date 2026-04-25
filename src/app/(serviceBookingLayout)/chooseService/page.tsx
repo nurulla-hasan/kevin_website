@@ -63,44 +63,44 @@ const ChooseServicePage = () => {
   };
 
   return (
-    <div className="max-w-4xl mx-auto p-5">
-      <h1 className="text-3xl sm:text-4xl lg:text-5xl my-12 font-bold text-gray-900 mb-6 leading-tight">
+    <div className="max-w-4xl mx-auto p-4 sm:p-6 lg:p-8">
+      <h1 className="text-2xl sm:text-3xl lg:text-4xl my-8 sm:my-12 font-bold text-foreground mb-6 leading-tight">
         Choose the service that most closely matches your project
       </h1>
 
-      <div className="bg-white py-8 px-4 sm:px-6 lg:px-8">
+      <div className="bg-card border border-border rounded-xl py-8 px-4 sm:px-6 lg:px-8 shadow-lg">
         <div className="max-w-4xl mx-auto">
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-8">
             {/* Header Section */}
             <div className="space-y-4">
-              <h1 className="text-2xl lg:text-3xl font-bold text-blue-600 leading-tight">
+              <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold text-primary leading-tight">
                 Choose More Specific Service
               </h1>
-              <p className="text-gray-600 text-base sm:text-lg leading-relaxed max-w-3xl">
+              <p className="text-muted-foreground text-base sm:text-lg leading-relaxed max-w-3xl">
                 Select the specific service you need from a wide range of
                 professional offerings like plumbing, electrical work, or home
                 renovations.
               </p>
-              <hr className="border-gray-300" />
+              <hr className="border-border" />
             </div>
 
             {/* Project Options Section */}
             <div className="space-y-6">
-              <h2 className="text-xl sm:text-2xl font-semibold text-gray-900">
+              <h2 className="text-xl sm:text-2xl font-semibold text-foreground">
                 Project options
               </h2>
 
-              <div className="bg-white rounded-2xl overflow-hidden border border-gray-200">
+              <div className="bg-background rounded-2xl overflow-hidden border border-border">
                 {categoryOptions?.map((option, index) => (
                   <label
                     key={index}
                     className={`flex items-center space-x-4 px-6 py-4 cursor-pointer transition-colors duration-200
                       ${
                         index !== categoryOptions.length - 1
-                          ? 'border-b border-gray-200'
+                          ? 'border-b border-border'
                           : ''
                       }
-                      hover:bg-gray-50`}
+                      hover:bg-muted`}
                   >
                     <input
                       type="radio"
@@ -108,9 +108,9 @@ const ChooseServicePage = () => {
                       {...register('serviceType', {
                         required: 'Please select a service type',
                       })}
-                      className="w-5 h-5 text-blue-600 border-2 border-gray-400"
+                      className="w-5 h-5 text-primary border-2 border-border accent-primary"
                     />
-                    <span className="text-gray-800 text-base sm:text-lg font-medium">
+                    <span className="text-foreground text-base sm:text-lg font-medium">
                       {option.label}
                     </span>
                   </label>
@@ -118,12 +118,11 @@ const ChooseServicePage = () => {
               </div>
 
               {errors.serviceType && (
-                <p className="text-red-500 text-sm mt-2">
+                <p className="text-destructive text-sm mt-2">
                   {errors.serviceType.message}
                 </p>
               )}
             </div>
-<h1 className='text-xl font-bold my-3'>Todo List</h1>
             {/* Project Description */}
             <div className="space-y-4">
               <textarea
@@ -136,10 +135,10 @@ const ChooseServicePage = () => {
                 })}
                 placeholder="Tell us more about your project"
                 rows={3}
-                className="w-full px-4 py-4 text-base border border-gray-300 rounded-xl bg-gray-50 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
+                className="w-full px-4 py-4 text-base border border-border rounded-xl bg-background placeholder:text-muted-foreground text-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent resize-none"
               />
               {errors.projectDescription && (
-                <p className="text-red-500 text-sm">
+                <p className="text-destructive text-sm">
                   {errors.projectDescription.message}
                 </p>
               )}
@@ -150,14 +149,14 @@ const ChooseServicePage = () => {
               <button
                 type="button"
                 onClick={handlePrevious}
-                className="w-1/2 px-6 py-4 text-base font-semibold text-gray-700 bg-white border-2 border-gray-300 rounded-xl hover:bg-gray-50 hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 transition-colors duration-200"
+                className="w-1/2 px-6 py-4 text-base font-semibold text-foreground bg-card border-2 border-border rounded-xl hover:bg-muted hover:border-border focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 transition-colors duration-200"
               >
                 Previous
               </button>
               <button
                 type="submit"
                 disabled={!isValid || isSubmitting}
-                className="w-1/2 px-6 py-4 text-base font-semibold text-white bg-blue-600 rounded-xl hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200"
+                className="w-1/2 px-6 py-4 text-base font-semibold text-primary-foreground bg-primary rounded-xl hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200"
               >
                 {isSubmitting ? 'Processing...' : 'Continue'}
               </button>

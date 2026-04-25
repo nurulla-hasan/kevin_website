@@ -97,23 +97,23 @@ const NotificationPage = () => {
   };
 
   return (
-    <div className="max-w-7xl bg-white my-5 mx-auto px-4 py-8">
+    <div className="max-w-7xl bg-card border border-border my-5 mx-auto px-4 py-8">
       <div className="flex justify-between items-center mb-6">
-        <h2 className="text-2xl font-semibold text-gray-900 pr-4">
+        <h2 className="text-2xl font-semibold text-foreground pr-4">
           Notifications
         </h2>
         <div className="min-w-[100px] text-right">
           {notifications?.some(notification => !notification.isRead) && (
             <button
               onClick={handleMarkAllNoticeAsRead}
-              className="text-sm text-blue-600 hover:underline"
+              className="text-sm text-primary hover:underline"
             >
               Mark all as read
             </button>
           )}
         </div>
       </div>
-      <div className="border-b border-gray-200 mb-5"></div>
+      <div className="border-b border-border mb-5"></div>
 
       {notifications?.length === 0 ? (
         <div className="flex flex-col items-center justify-center py-20 text-center">
@@ -124,10 +124,10 @@ const NotificationPage = () => {
             height={200}
             className="mb-6"
           />
-          <h3 className="text-lg font-semibold text-gray-800">
+          <h3 className="text-lg font-semibold text-foreground">
             Nothing to display here!
           </h3>
-          <p className="text-sm text-gray-500">
+          <p className="text-sm text-muted-foreground">
             We&apos;ll notify you once we have new notifications.
           </p>
         </div>
@@ -137,7 +137,7 @@ const NotificationPage = () => {
             {notifications?.map((notice, index) => (
               <div
                 key={index}
-                className={`rounded-lg ${!notice.isRead ? 'bg-blue-100' : ''}`}
+                className={`rounded-lg ${!notice.isRead ? 'bg-primary/10' : ''}`}
               >
                 <div className="flex items-start gap-4 p-4">
                   <Image
@@ -151,8 +151,8 @@ const NotificationPage = () => {
                     <p
                       className={`text-base ${
                         !notice.isRead
-                          ? 'font-medium text-blue-900'
-                          : 'text-gray-700'
+                          ? 'font-medium text-foreground'
+                          : 'text-muted-foreground'
                       }`}
                     >
                       {notice.title}
@@ -161,14 +161,14 @@ const NotificationPage = () => {
                     <p
                       className={`text-xs ${
                         !notice.isRead
-                          ? 'font-medium text-blue-900'
-                          : 'text-gray-700'
+                          ? 'font-medium text-foreground'
+                          : 'text-muted-foreground'
                       }`}
                     >
                       {notice.message}
                     </p>
 
-                    <p className="text-xs text-gray-500 mt-1">
+                    <p className="text-xs text-muted-foreground mt-1">
                       {dayjs(notice.createdAt).format('DD MMMM YYYY @ h:mm a')}
                     </p>
                   </div>
@@ -181,7 +181,7 @@ const NotificationPage = () => {
                   <div className="flex justify-end px-2 pb-2">
                     <button
                       onClick={() => handleMarkSingleNoticeAsRead(notice?._id)}
-                      className="text-sm text-blue-600 hover:underline"
+                      className="text-sm text-primary hover:underline"
                     >
                       Mark as read
                     </button>

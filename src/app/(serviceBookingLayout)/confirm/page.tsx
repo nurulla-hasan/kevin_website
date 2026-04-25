@@ -95,43 +95,43 @@ export default function PaymentBookingInterface() {
   );
 
   return (
-    <div className="min-h-screen bg-gray-50 p-4">
+    <div className="min-h-screen bg-background p-4 sm:p-6 lg:p-8">
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Left Side - Payment Method */}
-          <div className="bg-white rounded-lg p-6 h-fit">
-            <h2 className="text-3xl font-bold text-black mb-6">Payment</h2>
+          <div className="bg-card border border-border rounded-xl p-6 h-fit shadow-lg">
+            <h2 className="text-2xl sm:text-3xl font-bold text-foreground mb-6">Payment</h2>
 
             {/* Price Details */}
-            <div className="mt-8 pt-6 border-t border-gray-200">
-              <h3 className="text-xl font-bold text-gray-900 mb-4">
+            <div className="mt-8 pt-6 border-t border-border">
+              <h3 className="text-xl font-bold text-foreground mb-4">
                 Price Details
               </h3>
 
               <div className="space-y-3">
                 <div className="flex justify-between">
-                  <span className="text-gray-700">Hourly Rate</span>
-                  <span className="font-medium">
+                  <span className="text-muted-foreground">Hourly Rate</span>
+                  <span className="font-medium text-foreground">
                     ${storedService.hourlyRate}/hr
                   </span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-gray-700">Trust & Support fee</span>
-                  <span className="font-medium">$10/hr</span>
+                  <span className="text-muted-foreground">Trust & Support fee</span>
+                  <span className="font-medium text-foreground">$10/hr</span>
                 </div>
-                <div className="border-t border-gray-200 pt-3">
+                <div className="border-t border-border pt-3">
                   <div className="flex justify-between">
-                    <span className="text-xl font-bold text-gray-900">
+                    <span className="text-xl font-bold text-foreground">
                       Total Rate
                     </span>
-                    <span className="text-xl font-bold text-gray-900">
+                    <span className="text-xl font-bold text-foreground">
                       ${finalPrice}
                     </span>
                   </div>
                 </div>
               </div>
 
-              <div className="mt-4 text-sm text-gray-600 leading-relaxed">
+              <div className="mt-4 text-sm text-muted-foreground leading-relaxed">
                 You may see a temporary hold on your payment method in the
                 amount of your Tasker&apos;s hourly rate of $65.00. You can cancel at
                 any time. Tasks cancelled less than 24 hours before the
@@ -143,7 +143,7 @@ export default function PaymentBookingInterface() {
           </div>
 
           {/* Right Side - Task Details */}
-          <div className="bg-white rounded-lg p-6 h-fit">
+          <div className="bg-card border border-border rounded-xl p-6 h-fit shadow-lg">
             {/* Contractor Profile */}
             <div className=" mb-6">
               <div className="flex flex-col justify-center items-center">
@@ -156,8 +156,8 @@ export default function PaymentBookingInterface() {
                     className="rounded-full w-44 h-44 object-cover"
                   />
                 </div>
-                <h3 className="font-semibold text-gray-900 flex gap-3  border-b border-gray-500 py-3">
-                  <span className="bg-blue-600 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs">
+                <h3 className="font-semibold text-foreground flex gap-3  border-b border-border py-3">
+                  <span className="bg-primary text-primary-foreground rounded-full w-5 h-5 flex items-center justify-center text-xs">
                     <SlBadge />
                   </span>
                   <span>{storedService.contractorName}</span>
@@ -168,50 +168,50 @@ export default function PaymentBookingInterface() {
             {/* Task Info */}
             <div className="space-y-4 mb-6">
               <div className="flex items-center justify-between">
-                <h2 className="text-2xl font-bold text-gray-900">
+                <h2 className="text-2xl font-bold text-foreground">
                   {storedService.serviceType}
                 </h2>
                 <Link
                   href="/location"
-                  className="px-4 py-2 border border-black rounded-lg text-black hover:bg-gray-50 transition"
+                  className="px-4 py-2 border border-border rounded-lg text-foreground hover:bg-muted transition"
                 >
                   Edit Task
                 </Link>
               </div>
 
               <div className="space-y-3">
-                <div className="flex items-center space-x-3 text-gray-700">
+                <div className="flex items-center space-x-3 text-muted-foreground">
                   <FaCalendarAlt className="w-5 h-5" />
-                  <span>
+                  <span className="text-foreground">
                     {storedTime.preferredDate}, {storedTime.preferredTime}
                   </span>
                 </div>
 
-                <div className="flex items-center space-x-3 text-gray-700">
+                <div className="flex items-center space-x-3 text-muted-foreground">
                   <FaMapMarkerAlt className="w-5 h-5" />
-                  <span>{storedLocation.address}</span>
+                  <span className="text-foreground">{storedLocation.address}</span>
                 </div>
 
-                <div className="flex items-center space-x-3 text-gray-700">
+                <div className="flex items-center space-x-3 text-muted-foreground">
                   <FaBuilding className="w-5 h-5" />
-                  <span>{storedLocation.apt}</span>
+                  <span className="text-foreground">{storedLocation.apt}</span>
                 </div>
               </div>
             </div>
 
             {/* Task Details */}
             <div className="mb-6">
-              <h3 className="text-xl font-bold text-gray-900 mb-4">
+              <h3 className="text-xl font-bold text-foreground mb-4">
                 Task Details
               </h3>
-              <div className="bg-gray-50 p-4 rounded-lg">
+              <div className="bg-muted/30 p-4 rounded-lg border border-border">
         
-                <p className="text-gray-700 mb-2">Services include:</p>
-                <ul className="text-gray-700">
+                <p className="text-foreground mb-2">Services include:</p>
+                <ul className="text-foreground">
                   {service?.data?.contractorId?.servicesYouProvide?.map(
                     (service, index) => (
                       <li key={index} className="flex items-center">
-                        <span className="w-2 h-2 bg-gray-400 rounded-full mr-3"></span>
+                        <span className="w-2 h-2 bg-primary rounded-full mr-3"></span>
                         {service}
                       </li>
                     )
@@ -223,7 +223,7 @@ export default function PaymentBookingInterface() {
             {/* Confirm Button */}
             <button
               onClick={() => handleConfirm()}
-              className="w-full bg-blue-600 text-white py-4 rounded-lg font-semibold text-lg hover:bg-blue-700 transition"
+              className="w-full bg-primary text-primary-foreground py-4 rounded-lg font-semibold text-lg hover:bg-primary/90 transition"
             >
               Confirm and Chat
             </button>

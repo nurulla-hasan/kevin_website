@@ -127,7 +127,7 @@ export default function Navbar() {
 
   return (
     <nav
-      className={` bg-white lg:px-2 xl:px-8 px-3 py-3 flex justify-center items-center ${styles.fontDmSans}`}
+      className={`bg-background border-b border-border lg:px-2 xl:px-8 px-3 py-3 flex justify-center items-center`}
     >
       {/* Logo */}
       <div className="lg:mr-5 xl:mr-6 2xl:mr-44 mr-auto flex items-center ">
@@ -143,15 +143,15 @@ export default function Navbar() {
       </div>
 
       {/* Desktop nav items */}
-      <ul className="hidden lg:flex lg:space-x-4 xl:space-x-5 2xl:space-x-8 font-medium text-gray-800 lg:mr-3 xl:mr-5 2xl:mr-20">
+      <ul className="hidden lg:flex lg:space-x-4 xl:space-x-5 2xl:space-x-8 font-medium text-foreground lg:mr-3 xl:mr-5 2xl:mr-20">
         {navItems.map(item => {
           const isActive = item.href === pathname;
           return (
             <li key={item.label}>
               <Link
                 href={item.href}
-                className={`hover:text-blue-600 ${
-                  isActive ? 'text-blue-600 font-semibold' : ''
+                className={`hover:text-primary transition-colors ${
+                  isActive ? 'text-primary font-semibold' : 'text-muted-foreground'
                 }`}
               >
                 {item.label}
@@ -168,22 +168,22 @@ export default function Navbar() {
             {isGet10Visible && (
               <Link
                 href="/refer"
-                className={`font-medium hover:text-blue-600 ${
+                className={`font-medium hover:text-primary transition-colors ${
                   pathname === '/refer'
-                    ? 'text-blue-600 font-semibold'
-                    : 'text-gray-700'
+                    ? 'text-primary font-semibold'
+                    : 'text-muted-foreground'
                 }`}
               >
                 {get10Label}
               </Link>
             )}
-            <div className="border flex justify-evenly lg:gap-2 xl:gap-2 2xl:gap-3  items-center border-gray-300 rounded-md shadow-md lg:px-3 xl:px-8 py-2">
+            <div className="border flex justify-evenly lg:gap-2 xl:gap-2 2xl:gap-3 items-center border-border rounded-lg shadow-sm bg-card lg:px-3 xl:px-8 py-2">
               <Link href="/inbox">
                 <div
-                  className={`p-2 border border-black rounded-full cursor-pointer ${
+                  className={`p-2 border border-border rounded-full cursor-pointer transition-colors ${
                     pathname === '/inbox'
-                      ? 'bg-blue-500 text-white border-blue-500'
-                      : 'hover:bg-gray-100 border-gray-300'
+                      ? 'bg-primary text-primary-foreground border-primary'
+                      : 'hover:bg-muted'
                   }`}
                 >
                   <LuMessageSquareMore size={24} />
@@ -195,8 +195,8 @@ export default function Navbar() {
                   <div
                     className={`p-2 border rounded-full transition-all duration-200 shadow-sm cursor-pointer ${
                       pathname === '/notificationPage'
-                        ? 'bg-blue-500 text-white border-blue-500'
-                        : 'hover:bg-gray-100 border-gray-300'
+                        ? 'bg-primary text-primary-foreground border-primary'
+                        : 'hover:bg-muted border-border'
                     }`}
                   >
                     <IoNotificationsOutline size={24} />
@@ -204,7 +204,7 @@ export default function Navbar() {
 
                   {/* Notification Counter Badge */}
                   {notificationCount > 0 && (
-                    <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs font-medium px-1.5 py-0.5 rounded-full shadow-md animate-bounce">
+                    <span className="absolute -top-1 -right-1 bg-destructive text-destructive-foreground text-xs font-medium px-1.5 py-0.5 rounded-full shadow-md animate-bounce">
                       {notificationCount}
                     </span>
                   )}
@@ -223,7 +223,7 @@ export default function Navbar() {
                     height={30}
                     className="rounded-full w-10 h-10 "
                   />
-                  <span className="font-medium text-gray-700">
+                  <span className="font-medium text-foreground">
                     Hi, {specUser?.data?.firstName}
                   </span>
                 </button>
@@ -233,7 +233,7 @@ export default function Navbar() {
         ) : (
           <>
             <Link href={'/authentication'}>
-              <button className="border border-black lg:px-4 xl:px-4 py-1 rounded hover:bg-gray-100">
+              <button className="border border-border lg:px-4 xl:px-4 py-1 rounded hover:bg-muted transition-colors">
                 Log In / Sign Up
               </button>
             </Link>
@@ -248,7 +248,7 @@ export default function Navbar() {
         aria-label="Toggle menu"
       >
         <svg
-          className="w-6 h-6 text-gray-800"
+          className="w-6 h-6 text-foreground"
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
@@ -274,15 +274,15 @@ export default function Navbar() {
 
       {/* Mobile menu */}
       {isOpen && (
-        <ul className="absolute top-16 left-0 right-0 bg-white border-t border-gray-300 flex flex-col lg:hidden z-10">
+        <ul className="absolute top-16 left-0 right-0 bg-background border-t border-border flex flex-col lg:hidden z-10">
           {navItems.map(item => {
             const isActive = item.href === pathname;
             return (
-              <li key={item.label} className="border-b border-gray-200">
+              <li key={item.label} className="border-b border-border">
                 <Link
                   href={item.href}
-                  className={`block px-6 py-3 text-gray-800 hover:bg-gray-100 ${
-                    isActive ? 'text-blue-600 font-semibold' : ''
+                  className={`block px-6 py-3 text-foreground hover:bg-muted transition-colors ${
+                    isActive ? 'text-primary font-semibold' : ''
                   }`}
                   onClick={() => setIsOpen(false)}
                 >
@@ -299,23 +299,23 @@ export default function Navbar() {
                 {isGet10Visible && (
                   <Link
                     href="/refer"
-                    className={`font-medium hover:text-blue-600 text-center py-2 rounded ${
+                    className={`font-medium hover:text-primary text-center py-2 rounded transition-colors ${
                       pathname === '/refer'
-                        ? 'text-blue-600 font-semibold'
-                        : 'text-gray-700'
+                        ? 'text-primary font-semibold'
+                        : 'text-muted-foreground'
                     }`}
                     onClick={() => setIsOpen(false)}
                   >
                     {get10Label}
                   </Link>
                 )}
-                <div className="flex justify-between items-center border border-gray-300 rounded-md shadow-md px-4 py-2 space-x-4">
+                <div className="flex justify-between items-center border border-border rounded-lg shadow-sm bg-card px-4 py-2 space-x-4">
                   <Link href="/inbox">
                     <div
-                      className={`p-2 border border-black rounded-full cursor-pointer ${
+                      className={`p-2 border border-border rounded-full cursor-pointer transition-colors ${
                         pathname === '/inbox'
-                          ? 'bg-blue-500 text-white'
-                          : 'hover:bg-gray-200'
+                          ? 'bg-primary text-primary-foreground border-primary'
+                          : 'hover:bg-muted'
                       }`}
                     >
                       <LuMessageSquareMore size={24} />
@@ -323,10 +323,10 @@ export default function Navbar() {
                   </Link>
                   <Link href="/notificationPage">
                     <div
-                      className={`p-2 border border-black rounded-full cursor-pointer ${
+                      className={`p-2 border border-border rounded-full cursor-pointer transition-colors ${
                         pathname === '/notificationPage'
-                          ? 'bg-blue-500 text-white'
-                          : 'hover:bg-gray-200'
+                          ? 'bg-primary text-primary-foreground border-primary'
+                          : 'hover:bg-muted'
                       }`}
                     >
                       <IoNotificationsOutline size={24} />
@@ -346,7 +346,7 @@ export default function Navbar() {
                           height={30}
                           className="rounded-full w-10 h-10"
                         />
-                        <span className="font-medium text-gray-700">
+                        <span className="font-medium text-foreground">
                           Hi, {specUser?.data?.firstName}
                         </span>
                       </button>
@@ -355,7 +355,7 @@ export default function Navbar() {
                 </div>
                 <button
                   onClick={() => handleLogout()}
-                  className="bg-blue-600 text-white px-4 p-2 rounded hover:bg-blue-700 w-full text-center"
+                  className="bg-primary text-primary-foreground px-4 p-2 rounded hover:bg-primary/90 w-full text-center transition-colors"
                 >
                   Logout
                 </button>
@@ -363,7 +363,7 @@ export default function Navbar() {
             ) : (
               <>
                 <Link href="/authentication" onClick={() => setIsOpen(false)}>
-                  <button className="border border-black px-4 py-2 rounded text-center hover:bg-gray-100 w-full">
+                  <button className="border border-border px-4 py-2 rounded text-center hover:bg-muted w-full transition-colors">
                     Log In / Sign Up
                   </button>
                 </Link>

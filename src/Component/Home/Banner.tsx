@@ -24,7 +24,7 @@ export default function Banner({
 
   return (
     <>
-      <div className={`relative w-full mb-8  ${styles.fontDmSans}`}>
+      <div className="relative w-full mb-8">
         <div className="relative overflow-hidden">
           {/* Background Image */}
           <div className="absolute inset-0">
@@ -39,46 +39,18 @@ export default function Banner({
 
           {/* Content */}
           <div className="relative px-8 py-16 2xl:px-64 lg:py-64 text-center rounded-lg">
-            <div className="bg-black bg-opacity-50 px-8 py-4 sm:px-12 sm:py-4 md:py-12">
+            <div className="bg-black/50 px-8 py-4 sm:px-12 sm:py-4 md:py-12 backdrop-blur-sm">
               {/* Heading with icon */}
               <div className="flex items-center justify-center gap-3 mb-6">
                 <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white">
-                  {cmsData?.title || "Connect With"}
+                  {cmsData?.title || "Please set title in CMS"}
                 </h1>
               </div>
-              {!cmsData?.title && (
-                <div className="flex items-center justify-center gap-3 mb-8">
-                  <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#ABE7B4]">
-                    Trusted Contractors
-                  </h2>
-
-                  <Image
-                    src={hamer}
-                    alt="Professional contractor"
-                    width={100}
-                    height={100}
-                    className="sm:w-20 sm:h-20"
-                  />
-                </div>
-              )}
+              {/* CMS title not provided - no secondary heading shown */}
 
               {/* Description */}
               <p className="text-white/90 text-lg md:text-xl max-w-4xl mx-auto mb-12 leading-relaxed">
-                {cmsData?.content || (
-                  <>
-                    YourTradeSource connects homeowners with trusted, verified
-                    contractors for home improvement, remodeling, and repairs.
-                    Find the{" "}
-                    <span className="text-[#ABE7B4] font-semibold">
-                      perfect professional
-                    </span>{" "}
-                    for your project and bring your{" "}
-                    <span className="text-[#ABE7B4] font-semibold">
-                      vision to life
-                    </span>
-                    .
-                  </>
-                )}
+                {cmsData?.content || "Please set content in CMS"}
               </p>
 
               {/* Search Bar */}
@@ -88,9 +60,9 @@ export default function Banner({
                     type="text"
                      onChange={(e) =>handleSearchChange(e)}
                     placeholder="What are you looking for?"
-                    className="w-full px-6 py-4 pr-14 text-gray-700 bg-white rounded-full shadow-lg focus:outline-none focus:ring-2 focus:ring-[#ABE7B4] focus:ring-offset-2 focus:ring-offset-transparent text-lg"
+                    className="w-full px-6 py-4 pr-14 text-foreground bg-background rounded-full shadow-lg focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-transparent text-lg placeholder:text-muted-foreground"
                   />
-                  <button className="absolute right-2 top-1/2 transform -translate-y-1/2 p-3 text-gray-500 hover:text-[#ABE7B4] transition-colors">
+                  <button className="absolute right-2 top-1/2 transform -translate-y-1/2 p-3 text-muted-foreground hover:text-primary transition-colors">
                     <Search className="w-5 h-5" />
                   </button>
                 </div>

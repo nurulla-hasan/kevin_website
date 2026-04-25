@@ -32,19 +32,19 @@ const Projects=[]
               </h1>
             </div>
             <div>
-              <h1 className="text-sm underline text-blue-700">View All</h1>
+              <h1 className="text-sm underline text-primary">View All</h1>
             </div>
           </div>
           <div className="grid  grid-cols-2 md:grid-cols-3 2xl:grid-cols-3 gap-3 px-3">
             {/* Add New Media Button */}
             <div className="">
               <Link href={'/addProject'}>
-                <button className="w-full h-full border-2 border-dashed border-gray-300 hover:border-blue-500 rounded-xl flex items-center justify-center bg-gray-50 hover:bg-blue-50 transition-all duration-200 hover:scale-105">
+                <button className="w-full h-full border-2 border-dashed border-border hover:border-primary rounded-xl flex items-center justify-center bg-muted hover:bg-primary/10 transition-all duration-200 hover:scale-105">
                   <div className="text-center">
-                    <div className="w-8 h-8 bg-blue-600 hover:bg-blue-700 rounded-full flex items-center justify-center mx-auto mb-3 transition-colors duration-200 shadow-lg">
-                      <FaPlus className="text-white text-xl" />
+                    <div className="w-8 h-8 bg-primary hover:bg-primary/90 rounded-full flex items-center justify-center mx-auto mb-3 transition-colors duration-200 shadow-lg">
+                      <FaPlus className="text-primary-foreground text-xl" />
                     </div>
-                    <p className="text-gray-600 text-base font-medium">
+                    <p className="text-muted-foreground text-base font-medium">
                       Add More Project
                     </p>
                   </div>
@@ -109,12 +109,12 @@ const profileData = {}
   return (
     <div>
       <nav
-        className="flex items-center font-normal text-base leading-6  bg-white pl-3 md:pl-5 lg:pl-10 xl:pl-44 border-t border-gray-500 py-3"
+        className="flex items-center font-normal text-base leading-6  bg-card pl-3 md:pl-5 lg:pl-10 xl:pl-44 border-t border-border py-3"
         aria-label="breadcrumb"
       >
-        <p className="text-black text-xl">Dashboard</p>
+        <p className="text-foreground text-xl">Dashboard</p>
         <svg
-          className="mx-2 w-6 h-6 text-black"
+          className="mx-2 w-6 h-6 text-foreground"
           fill="none"
           stroke="currentColor"
           strokeWidth={2}
@@ -125,28 +125,28 @@ const profileData = {}
         >
           <path d="M9 18l6-6-6-6" />
         </svg>
-        <span className="text-black cursor-default text-xl">
+        <span className="text-foreground cursor-default text-xl">
           Public Profile
         </span>
       </nav>
       <div className="max-w-7xl mx-auto">
-        <h1 className="text-2xl font-bold my-5">Edit Public Profile</h1>
+        <h1 className="text-2xl font-bold my-5 text-foreground">Edit Public Profile</h1>
         {/* Components */}
-        <div className="bg-white p-8 rounded-xl">
+        <div className="bg-card border border-border p-8 rounded-xl">
           <FeaturedMedia />
           
           <ProfDet contractorId={contractorId}  profileData={profileData}/>
           {/* tab */}
           <div className="container mx-auto my-8">
-            <div className="flex border-b border-gray-300">
+            <div className="flex border-b border-border">
               {tabs.map(tab => (
                 <button
                   key={tab}
                   onClick={() => setActiveTab(tab)}
                   className={`pb-3 px-4 text-sm font-medium focus:outline-none ${
                     activeTab === tab
-                      ? 'text-blue-600 border-b-2 border-blue-600'
-                      : 'text-gray-500 hover:text-gray-700'
+                      ? 'text-primary border-b-2 border-primary'
+                      : 'text-muted-foreground hover:text-foreground'
                   }`}
                 >
                   {tab}

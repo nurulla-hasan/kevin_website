@@ -59,16 +59,16 @@ const downloadHistory = () => {
 
 const TransactionHistory = () => {
   return (
-    <div className="max-w-4xl min-h-screen mx-auto px-4 py-8 bg-white">
-      <div className="flex justify-between items-center border-b pb-4 mb-4">
-        <h1 className="text-2xl font-semibold text-gray-800 mb-4">
+    <div className="max-w-4xl min-h-screen mx-auto px-4 py-8 bg-card border border-border">
+      <div className="flex justify-between items-center border-b border-border pb-4 mb-4">
+        <h1 className="text-2xl font-semibold text-foreground mb-4">
           Transaction History
         </h1>
 
         {transactions.length > 0 && (
           <button
             onClick={downloadHistory}
-            className="text-sm text-blue-600 hover:underline flex items-center"
+            className="text-sm text-primary hover:underline flex items-center"
           >
             <FiDownload className="mr-1" />
             Download Transaction History
@@ -78,7 +78,7 @@ const TransactionHistory = () => {
 
       {transactions.length === 0 ? (
         <div className="mb-2 max-w-xl mx-auto">
-          <p className="text-xs text-gray-500 mt-1">
+          <p className="text-xs text-muted-foreground mt-1">
             Looks like you haven&apos;t made any transactions yet. Get started!
           </p>
         </div>
@@ -87,23 +87,23 @@ const TransactionHistory = () => {
           {transactions.map(txn => (
             <div
               key={txn.id}
-              className="border rounded-md p-4 flex flex-col md:flex-row md:justify-between md:items-center"
+              className="border border-border rounded-md p-4 flex flex-col md:flex-row md:justify-between md:items-center"
             >
               <div className="space-y-1">
-                <p className="font-semibold text-gray-900">{txn.title}</p>
-                <p className="text-sm text-gray-500">with {txn.user}</p>
-                <p className="text-sm text-gray-500">{txn.date}</p>
+                <p className="font-semibold text-foreground">{txn.title}</p>
+                <p className="text-sm text-muted-foreground">with {txn.user}</p>
+                <p className="text-sm text-muted-foreground">{txn.date}</p>
               </div>
 
               <div className="flex flex-col gap-3 items-center justify-between md:justify-end mt-4 md:mt-0 md:space-x-4 w-full md:w-auto">
                 <div className="flex items-center space-x-1">
-                  <p className="text-base font-semibold text-gray-800">
+                  <p className="text-base font-semibold text-foreground">
                     {txn.amount}
                   </p>
-                  <IoIosArrowDown className="text-gray-600" />
+                  <IoIosArrowDown className="text-muted-foreground" />
                 </div>
                 <span
-                  className={`text-white text-sm px-3 py-1 rounded-md ${txn.statusColor}`}
+                  className={`text-primary-foreground text-sm px-3 py-1 rounded-md ${txn.statusColor}`}
                 >
                   {txn.status}
                 </span>

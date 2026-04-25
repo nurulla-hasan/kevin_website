@@ -137,19 +137,19 @@ const firstWord = categoryName.split(' ')[0];
   // };
 
   return (
-    <div className="min-h-screen bg-gray-100">
+    <div className="min-h-screen bg-background">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="flex flex-col lg:flex-row gap-8">
           {/* Sidebar Filters */}
           <div className="w-full lg:w-80 space-y-8">
             {/* Date Filter */}
-            <div className="bg-white rounded-lg p-6 shadow-sm">
+            <div className="bg-card border border-border rounded-xl p-6 shadow-sm">
               <div className="flex items-center gap-2 mb-4">
-                <FiCalendar className="w-5 h-5 text-gray-600" />
-                <h3 className="font-semibold text-gray-900">Date</h3>
+                <FiCalendar className="w-5 h-5 text-muted-foreground" />
+                <h3 className="font-semibold text-foreground">Date</h3>
                 <button
                   onClick={() => setIsModalOpen(true)}
-                  className="ml-auto text-blue-600 text-sm font-medium"
+                  className="ml-auto text-primary text-sm font-medium hover:text-primary/80"
                 >
                   Choose a date
                 </button>
@@ -160,8 +160,8 @@ const firstWord = categoryName.split(' ')[0];
                     key={option.id}
                     className={`w-full text-left px-4 py-3 rounded-full border transition-colors ${
                       storedTime.preferredDate === option.value
-                        ? 'border-blue-500 bg-blue-50 text-blue-700'
-                        : 'border-gray-300 hover:border-gray-400'
+                        ? 'border-primary bg-primary/10 text-primary'
+                        : 'border-border hover:border-border'
                     }`}
                   >
                     {option.value}
@@ -171,10 +171,10 @@ const firstWord = categoryName.split(' ')[0];
             </div>
 
             {/* Time Filter */}
-            <div className="bg-white rounded-lg p-6 shadow-sm">
+            <div className="bg-card border border-border rounded-xl p-6 shadow-sm">
               <div className="flex items-center gap-2 mb-4">
-                <FiClock className="w-5 h-5 text-gray-600" />
-                <h3 className="font-semibold text-gray-900">Time</h3>
+                <FiClock className="w-5 h-5 text-muted-foreground" />
+                <h3 className="font-semibold text-foreground">Time</h3>
               </div>
               <div className="space-y-3">
                 {timeOptions.map(option => (
@@ -182,8 +182,8 @@ const firstWord = categoryName.split(' ')[0];
                     key={option}
                     className={`w-full text-left px-4 py-3 rounded-full border transition-colors ${
                       storedTime.preferredTime === option
-                        ? 'border-blue-500 bg-blue-50 text-blue-700'
-                        : 'border-gray-300 hover:border-gray-400'
+                        ? 'border-primary bg-primary/10 text-primary'
+                        : 'border-border hover:border-border'
                     }`}
                   >
                     {option}
@@ -235,11 +235,11 @@ const firstWord = categoryName.split(' ')[0];
             {/* Sort */}
             <div className="flex justify-end mb-6">
               <div className="relative">
-                <div className="flex items-center gap-2 text-sm text-gray-600">
+                <div className="flex items-center gap-2 text-sm text-muted-foreground">
                   <span>Sort by</span>
                   <button
                     onClick={() => setShowSortDropdown(!showSortDropdown)}
-                    className="flex items-center gap-1 px-3 py-2 border border-gray-300 rounded-md bg-white hover:bg-gray-50"
+                    className="flex items-center gap-1 px-3 py-2 border border-border rounded-md bg-card hover:bg-muted text-foreground"
                   >
                     {sortBy}
                     <FiChevronDown className="w-4 h-4" />
@@ -247,7 +247,7 @@ const firstWord = categoryName.split(' ')[0];
                 </div>
 
                 {showSortDropdown && (
-                  <div className="absolute right-0 top-full mt-1 w-56 bg-white border border-gray-200 rounded-md shadow-lg z-10">
+                  <div className="absolute right-0 top-full mt-1 w-56 bg-card border border-border rounded-md shadow-lg z-10">
                     {sortOptions.map(option => (
                       <button
                         key={option}
@@ -255,7 +255,7 @@ const firstWord = categoryName.split(' ')[0];
                           setSortBy(option);
                           setShowSortDropdown(false);
                         }}
-                        className="w-full text-left px-3 py-2 text-sm text-gray-700 hover:bg-gray-50"
+                        className="w-full text-left px-3 py-2 text-sm text-foreground hover:bg-muted"
                       >
                         {option}
                       </button>
@@ -282,17 +282,17 @@ const firstWord = categoryName.split(' ')[0];
               <button
                 onClick={() => setPage(p => Math.max(1, p - 1))}
                 disabled={page === 1}
-                className="px-4 py-2 border rounded-lg bg-white disabled:opacity-50"
+                className="px-4 py-2 border border-border rounded-lg bg-card text-foreground hover:bg-muted disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 Prev
               </button>
-              <span className="text-gray-700">
+              <span className="text-foreground font-medium">
                 Page {page} of {totalPage}
               </span>
               <button
                 onClick={() => setPage(p => Math.min(totalPage, p + 1))}
                 disabled={page === totalPage}
-                className="px-4 py-2 border rounded-lg bg-white disabled:opacity-50"
+                className="px-4 py-2 border border-border rounded-lg bg-card text-foreground hover:bg-muted disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 Next
               </button>
@@ -318,7 +318,7 @@ const firstWord = categoryName.split(' ')[0];
         closable={false}
       >
         <div className="flex flex-col justify-center items-center py-5">
-          <p className="text-center text-3xl font-bold pb-5">
+          <p className="text-center text-2xl sm:text-3xl font-bold pb-5 text-foreground">
             Choose Date & Time
           </p>
           <Calendar

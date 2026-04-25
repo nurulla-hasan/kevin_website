@@ -24,7 +24,7 @@ export default function ProjectDetails() {
   };
 
   return (
-    <div className="max-w-7xl mx-auto bg-gray-50 p-6 rounded-lg">
+    <div className="max-w-7xl mx-auto bg-muted p-6 rounded-lg border border-border">
       {/* Header Section */}
       <div className="flex flex-col md:flex-row gap-4 w-full">
         <div className="flex flex-col items-center md:w-[15%] w-full">
@@ -33,89 +33,89 @@ export default function ProjectDetails() {
             alt="Ellie Smith"
             width={100}
             height={100}
-            className="rounded-full object-cover w-20 h-20 border-2 border-black"
+            className="rounded-full object-cover w-20 h-20 border-2 border-border"
           />
-          <button className="px-3 mt-3 py-1 border border-black  rounded-lg text-black hover:bg-gray-100 transition text-sm">
+          <button className="px-3 mt-3 py-1 border border-border  rounded-lg text-foreground hover:bg-muted-foreground/10 transition text-sm">
             View Profile
           </button>
         </div>
 
         <div className="flex flex-col md:flex-row justify-between items-start w-full gap-4">
           <div className="w-full md:w-[70%]">
-            <h1 className="text-xl md:text-2xl font-bold text-gray-900">
+            <h1 className="text-xl md:text-2xl font-bold text-foreground">
               You&apos;ve Booked Ellie Smith
             </h1>
-            <p className="text-gray-600 mt-2 text-sm md:text-base">
+            <p className="text-muted-foreground mt-2 text-sm md:text-base">
               Giovanni C. is currently offline and will reach out once available
               in the app. You will be notified as soon as they respond.
             </p>
           </div>
 
           <div className="w-full md:w-auto">
-            <button className="w-full md:w-auto px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition text-sm">
+            <button className="w-full md:w-auto px-4 py-2 bg-primary text-primary-foreground rounded hover:bg-primary/90 transition text-sm">
               Chat Contractor
             </button>
           </div>
         </div>
       </div>
 
-      <hr className="border-gray-200 my-6" />
+      <hr className="border-border my-6" />
 
       {/* Cleaning Details */}
       <div className="mb-6">
-        <h2 className="text-xl font-bold text-gray-900 mb-4">Cleaning</h2>
+        <h2 className="text-xl font-bold text-foreground mb-4">Cleaning</h2>
         <div className="space-y-3">
-          <div className="flex items-center gap-3 text-gray-700">
-            <FaCalendarAlt className="text-gray-500" />
+          <div className="flex items-center gap-3 text-foreground">
+            <FaCalendarAlt className="text-muted-foreground" />
             <span>Apr 28, 12:00 PM</span>
           </div>
-          <div className="flex items-center gap-3 text-gray-700">
-            <FaMapMarkerAlt className="text-gray-500" />
+          <div className="flex items-center gap-3 text-foreground">
+            <FaMapMarkerAlt className="text-muted-foreground" />
             <span>123 Main Street, New York, NY 10001</span>
           </div>
-          <div className="flex items-center gap-3 text-gray-700">
-            <FaClock className="text-gray-500" />
+          <div className="flex items-center gap-3 text-foreground">
+            <FaClock className="text-muted-foreground" />
             <span>Apr 28, 12:00 PM</span>
           </div>
         </div>
       </div>
 
-      <hr className="border-gray-200 my-6" />
+      <hr className="border-border my-6" />
 
       {/* Price Details */}
       <div className="mb-6">
-        <h2 className="text-xl font-bold text-gray-900 mb-4">Price Details</h2>
+        <h2 className="text-xl font-bold text-foreground mb-4">Price Details</h2>
         <div className="space-y-3">
           <div className="flex justify-between">
-            <span className="text-gray-700">Hourly Rate</span>
-            <span className="font-medium">$65/hr</span>
+            <span className="text-foreground">Hourly Rate</span>
+            <span className="font-medium text-foreground">$65/hr</span>
           </div>
           <div className="flex justify-between">
-            <span className="text-gray-700">Trust & Support fee</span>
-            <span className="font-medium">$10/hr</span>
+            <span className="text-foreground">Trust & Support fee</span>
+            <span className="font-medium text-foreground">$10/hr</span>
           </div>
-          <div className="flex justify-between pt-2 border-gray-200">
-            <span className="text-lg font-bold text-gray-900">Total Rate</span>
-            <span className="text-lg font-bold text-gray-900">$75/Hr</span>
+          <div className="flex justify-between pt-2 border-border">
+            <span className="text-lg font-bold text-foreground">Total Rate</span>
+            <span className="text-lg font-bold text-foreground">$75/Hr</span>
           </div>
         </div>
       </div>
 
-      <hr className="border-gray-200 my-6" />
+      <hr className="border-border my-6" />
 
       {/* Project Details */}
       <div className="mb-6">
         <div className="flex justify-between items-center mb-4">
-          <h2 className="text-xl font-bold text-gray-900">Project Details</h2>
-          <button className="text-blue-600 hover:underline text-sm">
+          <h2 className="text-xl font-bold text-foreground">Project Details</h2>
+          <button className="text-primary hover:underline text-sm">
             Edit
           </button>
         </div>
         <div>
-          <p className="font-medium text-gray-800 mb-2">
+          <p className="font-medium text-foreground mb-2">
             To-Do List for Cleaner
           </p>
-          <ul className="space-y-2 text-gray-700">
+          <ul className="space-y-2 text-foreground">
             {[
               'Clean kitchen (wipe surfaces, clean sink, stovetop, and appliances)',
               'Clean bathroom(s) (toilet, sink, shower/bath, mirrors)',
@@ -125,7 +125,7 @@ export default function ProjectDetails() {
               'Disinfect high-touch areas (doorknobs, switches, remotes, etc.)',
             ].map((task, i) => (
               <li className="flex items-start" key={i}>
-                <span className="text-gray-400 mr-2">•</span>
+                <span className="text-muted-foreground mr-2">•</span>
                 <span>{task}</span>
               </li>
             ))}
@@ -136,10 +136,10 @@ export default function ProjectDetails() {
       {/* Add Note Section */}
       <button
         onClick={showModal}
-        className="w-full border border-gray-300 rounded py-3 px-4 text-gray-600 flex items-center justify-center gap-2 hover:bg-gray-100 transition mb-6"
+        className="w-full border border-border rounded py-3 px-4 text-muted-foreground flex items-center justify-center gap-2 hover:bg-muted transition mb-6"
       >
-        <FaPlus className="text-black" size={14} />
-        <span className="text-black">
+        <FaPlus className="text-foreground" size={14} />
+        <span className="text-foreground">
           Add Note or Photos for the Contractor
         </span>
       </button>
@@ -151,13 +151,13 @@ export default function ProjectDetails() {
         onCancel={handleCancel}
         footer={null}
       >
-        <div className="max-w-xl mx-auto mt-2 p-4 bg-white rounded-lg shadow">
-          <h2 className="text-lg font-semibold mb-4">Add a Note</h2>
+        <div className="max-w-xl mx-auto mt-2 p-4 bg-card border border-border rounded-lg shadow">
+          <h2 className="text-lg font-semibold text-foreground mb-4">Add a Note</h2>
 
           <div className="mb-4">
             <label
               htmlFor="note"
-              className="block text-sm font-medium text-gray-700 mb-1"
+              className="block text-sm font-medium text-foreground mb-1"
             >
               Note
             </label>
@@ -165,14 +165,14 @@ export default function ProjectDetails() {
               type="text"
               id="note"
               placeholder="I Would Like you to clean the window more carefully"
-              className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full border border-border rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary bg-background text-foreground placeholder:text-muted-foreground"
             />
           </div>
 
           <div className="mb-4">
             <label
               htmlFor="coverImage"
-              className="block text-sm font-medium text-gray-700 mb-1"
+              className="block text-sm font-medium text-foreground mb-1"
             >
               Upload Cover Image
             </label>
@@ -181,9 +181,9 @@ export default function ProjectDetails() {
                 type="file"
                 id="coverImage"
                 accept="image/jpeg, image/png"
-                className="block text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:text-sm file:font-semibold file:bg-gray-100 file:text-gray-700 hover:file:bg-gray-200"
+                className="block text-sm text-muted-foreground file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:text-sm file:font-semibold file:bg-muted file:text-foreground hover:file:bg-muted-foreground/10"
               />
-              <span className="text-xs text-gray-400">
+              <span className="text-xs text-muted-foreground">
                 Accepted formats: JPG, PNG
               </span>
             </div>
@@ -192,28 +192,28 @@ export default function ProjectDetails() {
           <div className="mb-6">
             <label
               htmlFor="details"
-              className="block text-sm font-medium text-gray-700 mb-1"
+              className="block text-sm font-medium text-foreground mb-1"
             >
               Details
             </label>
             <textarea
               id="details"
               rows={4}
-              className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full border border-border rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary bg-background text-foreground"
             ></textarea>
           </div>
 
           <div className="flex justify-between">
             <button
               type="button"
-              className="px-4 py-2 border border-gray-300 text-gray-700 rounded-md hover:bg-gray-100"
+              className="px-4 py-2 border border-border text-foreground rounded-md hover:bg-muted"
               onClick={handleCancel}
             >
               Cancel
             </button>
             <button
               type="submit"
-              className="px-6 py-2 bg-blue-600 text-white text-sm font-medium rounded-md hover:bg-blue-700"
+              className="px-6 py-2 bg-primary text-primary-foreground text-sm font-medium rounded-md hover:bg-primary/90"
             >
               Add Note
             </button>
@@ -223,10 +223,10 @@ export default function ProjectDetails() {
 
       {/* Progress Section */}
       <div className="mb-8">
-        <h2 className="text-xl font-bold text-black mb-6">Progress</h2>
+        <h2 className="text-xl font-bold text-foreground mb-6">Progress</h2>
         <div className="relative">
-          <div className="h-1 bg-gray-200 absolute top-4 left-2 right-0 z-0">
-            <div className="h-full bg-blue-600 w-[35%]"></div>
+          <div className="h-1 bg-muted-foreground/20 absolute top-4 left-2 right-0 z-0">
+            <div className="h-full bg-primary w-[35%]"></div>
           </div>
 
           <div className="flex justify-between relative z-10">
@@ -235,17 +235,17 @@ export default function ProjectDetails() {
                 <div
                   className={`w-8 h-8 rounded-full flex items-center justify-center mb-2 ${
                     index === 0
-                      ? 'bg-green-100 border-2 border-green-500'
-                      : 'bg-white border-2 border-gray-300'
+                      ? 'bg-primary/10 border-2 border-primary'
+                      : 'bg-background border-2 border-border'
                   }`}
                 >
                   {index === 0 ? (
-                    <FaCheck className="text-green-500" />
+                    <FaCheck className="text-primary" />
                   ) : (
-                    <div className="w-2 h-2 rounded-full bg-white"></div>
+                    <div className="w-2 h-2 rounded-full bg-muted-foreground"></div>
                   )}
                 </div>
-                <span className="text-sm text-black">{label}</span>
+                <span className="text-sm text-foreground">{label}</span>
               </div>
             ))}
           </div>
@@ -256,11 +256,11 @@ export default function ProjectDetails() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <button
           onClick={() => setCancelModalVisible(true)}
-          className="w-full py-3 bg-red-500 text-white rounded hover:bg-red-600 transition"
+          className="w-full py-3 bg-destructive text-destructive-foreground rounded hover:bg-destructive/90 transition"
         >
           Cancel Project
         </button>
-        <button className="w-full py-3 bg-blue-600 text-white rounded hover:bg-blue-700 transition">
+        <button className="w-full py-3 bg-primary text-primary-foreground rounded hover:bg-primary/90 transition">
           Mark as done
         </button>
       </div>
@@ -272,7 +272,7 @@ export default function ProjectDetails() {
         onCancel={() => setCancelModalVisible(false)}
       >
         <div className="p-4">
-          <h2 className="text-xl font-bold text-center mb-6 text-black">
+          <h2 className="text-xl font-bold text-center mb-6 text-foreground">
             Why Are You Canceling This Project?
           </h2>
 
@@ -288,10 +288,10 @@ export default function ProjectDetails() {
               <button
                 key={index}
                 onClick={() => setSelectedReason(reason)}
-                className={`w-full border rounded-md px-4 py-2 text-sm text-left ${
+                className={`w-full border border-border rounded-md px-4 py-2 text-sm text-left ${
                   selectedReason === reason
-                    ? 'bg-blue-100 border-blue-500 text-blue-700'
-                    : 'hover:bg-gray-100'
+                    ? 'bg-primary/10 border-primary text-primary'
+                    : 'hover:bg-muted text-foreground'
                 }`}
               >
                 {reason}
@@ -302,16 +302,16 @@ export default function ProjectDetails() {
           <div className="mt-6 flex justify-between gap-4">
             <button
               onClick={() => setCancelModalVisible(false)}
-              className="flex-1 border border-black text-black py-2 rounded hover:bg-blue-50"
+              className="flex-1 border border-border text-foreground py-2 rounded hover:bg-muted"
             >
-              I don&apos;t want to Cancel
+              I don’t want to Cancel
             </button>
             <button
               disabled={!selectedReason}
               onClick={() => {
                 setCancelModalVisible(false);
               }}
-              className="flex-1 bg-[#F44848] text-white py-2 rounded hover:bg-red-600 disabled:opacity-50"
+              className="flex-1 bg-destructive text-destructive-foreground py-2 rounded hover:bg-destructive/90 disabled:opacity-50"
             >
               Confirm Cancellation
             </button>

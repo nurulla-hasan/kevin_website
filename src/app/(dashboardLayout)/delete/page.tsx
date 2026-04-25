@@ -32,20 +32,20 @@ const [deleteProfile]=useDeletProfileMutation()
   };
   return (
     <div>
-      <div className="max-w-7xl min-h-screen mx-auto border rounded-md p-6 shadow-sm bg-white">
-        <h2 className="text-2xl font-semibold text-gray-800 mb-4">
+      <div className="max-w-7xl min-h-screen mx-auto border border-border rounded-md p-6 shadow-sm bg-card">
+        <h2 className="text-2xl font-semibold text-foreground mb-4">
           Delete Account
         </h2>
-        <div className="border-b border-gray-200 mb-8"></div>
+        <div className="border-b border-border mb-8"></div>
 
         <div className="mb-2 max-w-xl mx-auto">
-          <p className="text-xl  text-gray-500 mt-1">
+          <p className="text-xl  text-muted-foreground mt-1">
             Once you delete your account, you will no longer be able to log in
             to Your Trade Source account. This action cannot be undone.
           </p>
           <button
             onClick={showModal}
-            className="w-[60%] mt-3 border-[#F44848] border  text-[#F44848] text-xl py-2 rounded-md  transition  font-semibold"
+            className="w-[60%] mt-3 border border-destructive text-destructive text-xl py-2 rounded-md  transition  font-semibold hover:bg-destructive/10"
           >
             Delete Account
           </button>
@@ -58,20 +58,20 @@ const [deleteProfile]=useDeletProfileMutation()
         width={600}
         centered
       >
-        <div className="max-w-7xl  mx-auto rounded-md p-6 bg-white">
-          <h2 className="text-2xl font-semibold text-gray-800 mb-4">
+        <div className="max-w-7xl  mx-auto rounded-md p-6 bg-card border border-border">
+          <h2 className="text-2xl font-semibold text-foreground mb-4">
             Delete Account
           </h2>
-          <div className="border-b border-gray-200 mb-8"></div>
+          <div className="border-b border-border mb-8"></div>
 
-          <p className="text-xl  text-gray-500 my-3">
+          <p className="text-xl  text-muted-foreground my-3">
             Are you sure you want to delete your account?
           </p>
           <div className="mb-2 max-w-xl mx-auto flex gap-4">
   
             <button
               onClick={()=>handleConfirmDelete(userId)}
-              className="w-[50%] mt-3 bg-[#F44848] border  text-[#ffffff] text-xl py-1 rounded-md  transition  font-semibold"
+              className="w-[50%] mt-3 bg-destructive text-destructive-foreground text-xl py-1 rounded-md  transition  font-semibold hover:bg-destructive/90"
             >
               Yes,Delete
             </button>

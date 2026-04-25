@@ -42,14 +42,14 @@ export default function PasswordPage() {
   const newPassword = watch('newPassword');
 
   return (
-    <div className="w-full  min-h-screen bg-white p-6 font-dm">
+    <div className="w-full  min-h-screen bg-background p-6 font-dm">
       {/* Header */}
       <div className="flex justify-between items-center mb-4">
-        <h1 className="text-2xl font-bold text-gray-800">Password</h1>
+        <h1 className="text-2xl font-bold text-foreground">Password</h1>
       </div>
 
       {/* Divider */}
-      <div className="border-b border-gray-200 mb-8"></div>
+      <div className="border-b border-border mb-8"></div>
 
       {/* Profile Content */}
       <div className="flex xl:mt-48 flex-col md:flex-row items-center md:items-start gap-12">
@@ -63,7 +63,7 @@ export default function PasswordPage() {
             alt="Profile"
             width={256}
             height={256}
-            className="rounded-full object-cover"
+            className="rounded-full object-cover border-4 border-border"
           />
         </div>
 
@@ -74,7 +74,7 @@ export default function PasswordPage() {
           <div className="flex-1 w-full space-y-4">
             {/* Current Password */}
             <div className="relative">
-              <label className="block text-sm font-medium mb-1">
+              <label className="block text-sm font-medium mb-1 text-foreground">
                 Current Password
               </label>
               <input
@@ -83,12 +83,12 @@ export default function PasswordPage() {
                 {...register('oldPassword', {
                   required: 'Password is required',
                 })}
-                className="w-full p-3 rounded border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full p-3 rounded border border-border focus:outline-none focus:ring-2 focus:ring-primary bg-background text-foreground placeholder:text-muted-foreground"
               />
               <button
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
-                className="absolute inset-y-16  top-1/2 right-4 -translate-y-1/2 text-gray-600"
+                className="absolute inset-y-16  top-1/2 right-4 -translate-y-1/2 text-muted-foreground hover:text-foreground"
                 aria-label={showPassword ? 'Hide password' : 'Show password'}
               >
                 {showPassword ? (
@@ -99,14 +99,14 @@ export default function PasswordPage() {
               </button>
             </div>
             {errors.oldPassword && (
-              <p className="text-red-600 text-sm mt-1">
+              <p className="text-destructive text-sm mt-1">
                 {errors.oldPassword.message.toString()}
               </p>
             )}
 
             {/* New Password */}
             <div className="relative">
-              <label className="block text-sm font-medium mb-1">
+              <label className="block text-sm font-medium mb-1 text-foreground">
                 New Password
               </label>
               <input
@@ -115,12 +115,12 @@ export default function PasswordPage() {
                 {...register('newPassword', {
                   required: 'Password is required',
                 })}
-                className="w-full p-3 rounded border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full p-3 rounded border border-border focus:outline-none focus:ring-2 focus:ring-primary bg-background text-foreground placeholder:text-muted-foreground"
               />
               <button
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
-                className="absolute inset-y-16  top-1/2 right-4 -translate-y-1/2 text-gray-600"
+                className="absolute inset-y-16  top-1/2 right-4 -translate-y-1/2 text-muted-foreground hover:text-foreground"
                 aria-label={showPassword ? 'Hide password' : 'Show password'}
               >
                 {showPassword ? (
@@ -131,14 +131,14 @@ export default function PasswordPage() {
               </button>
             </div>
             {errors.newPassword && (
-              <p className="text-red-600 text-sm mt-1">
+              <p className="text-destructive text-sm mt-1">
                 {errors.newPassword.message.toString()}
               </p>
             )}
 
             {/* Confirm Password */}
             <div className="relative">
-              <label className="block text-sm font-medium mb-1">
+              <label className="block text-sm font-medium mb-1 text-foreground">
                 Confirm Password
               </label>
               <input
@@ -149,12 +149,12 @@ export default function PasswordPage() {
                   validate: value =>
                     value === newPassword || 'Passwords do not match',
                 })}
-                className="w-full p-3 rounded border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full p-3 rounded border border-border focus:outline-none focus:ring-2 focus:ring-primary bg-background text-foreground placeholder:text-muted-foreground"
               />
               <button
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
-                className="absolute inset-y-16  top-1/2 right-4 -translate-y-1/2 text-gray-600"
+                className="absolute inset-y-16  top-1/2 right-4 -translate-y-1/2 text-muted-foreground hover:text-foreground"
                 aria-label={showPassword ? 'Hide password' : 'Show password'}
               >
                 {showPassword ? (
@@ -165,7 +165,7 @@ export default function PasswordPage() {
               </button>
             </div>
             {errors.confirmPassword && (
-              <p className="text-red-600 text-sm mt-1">
+              <p className="text-destructive text-sm mt-1">
                 {errors.confirmPassword.message.toString()}
               </p>
             )}
@@ -183,7 +183,7 @@ export default function PasswordPage() {
               <Button
                 type="primary"
                 htmlType="submit"
-                className="bg-blue-600 w-1/2"
+                className="bg-primary hover:bg-primary/90 w-1/2"
               >
                 Update
               </Button>

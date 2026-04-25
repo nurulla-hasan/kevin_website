@@ -87,16 +87,16 @@ return
   };
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12 bg-white">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12 bg-background">
       <div className="">
         {/* Left Column - Form */}
-        <div className=" rounded-lg p-6 sm:p-8">
+        <div className="bg-card border border-border rounded-lg p-6 sm:p-8">
           {/* Form Title and Description */}
-          <div className="mb-8 border-b border-black pb-3">
-            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
+          <div className="mb-8 border-b border-border pb-3">
+            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-foreground mb-4">
               Verify Your License/Insurance
             </h1>
-            <p className="text-gray-600 text-base leading-relaxed">
+            <p className="text-muted-foreground text-base leading-relaxed">
               Ensure your credentials are verified for a trusted and
               professional presence on YourTradeSource.
             </p>
@@ -104,7 +104,7 @@ return
 
           <form onSubmit={handleSubmit} className="space-y-6">
             {/* Document Type Dropdown */}
-            <label className="block text-sm font-medium text-gray-900 mb-3">
+            <label className="block text-sm font-medium text-foreground mb-3">
               Document Type
             </label>
             <div className="flex justify-between gap-8">
@@ -112,18 +112,18 @@ return
                 <button
                   type="button"
                   onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all text-left bg-white flex items-center justify-between"
+                  className="w-full px-4 py-3 border border-border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all text-left bg-background text-foreground flex items-center justify-between"
                 >
-                  <span className="text-gray-900">{selectedDocumentType}</span>
+                  <span className="text-foreground">{selectedDocumentType}</span>
                   <FiChevronDown
-                    className={`w-5 h-5 text-gray-400 transition-transform ${
+                    className={`w-5 h-5 text-muted-foreground transition-transform ${
                       isDropdownOpen ? "rotate-180" : ""
                     }`}
                   />
                 </button>
 
                 {isDropdownOpen && (
-                  <div className="absolute z-10 w-full mt-1 bg-white border border-gray-300 rounded-lg shadow-lg">
+                  <div className="absolute z-10 w-full mt-1 bg-card border border-border rounded-lg shadow-lg">
                     {documentTypes.map((type) => (
                       <button
                         key={type}
@@ -132,7 +132,7 @@ return
                           setSelectedDocumentType(type);
                           setIsDropdownOpen(false);
                         }}
-                        className="w-full px-4 py-3 text-left hover:bg-gray-50 first:rounded-t-lg last:rounded-b-lg transition-colors"
+                        className="w-full px-4 py-3 text-left hover:bg-muted first:rounded-t-lg last:rounded-b-lg transition-colors text-foreground"
                       >
                         {type}
                       </button>
@@ -141,10 +141,10 @@ return
                 )}
                 {/* Front of License Upload */}
                 <div>
-                  <label className="block text-sm font-medium text-gray-900 mt-5">
+                  <label className="block text-sm font-medium text-foreground mt-5">
                     Front of your license
                   </label>
-                  <div className="border-2 w-[100%] mt-5 border-dashed border-gray-300 rounded-lg p-12 sm:p-16 text-center hover:border-gray-400 transition-colors cursor-pointer">
+                  <div className="border-2 w-[100%] mt-5 border-dashed border-border rounded-lg p-12 sm:p-16 text-center hover:border-muted-foreground transition-colors cursor-pointer">
                     <input
                       type="file"
                       accept="image/*,.pdf"
@@ -154,8 +154,8 @@ return
                     />
                     <label htmlFor="front-upload" className="cursor-pointer">
                       <div className="flex w-full flex-col items-center">
-                        <FiPlus className="w-8 h-8 text-gray-400 mb-3" />
-                        <span className="text-lg font-medium text-gray-600">
+                        <FiPlus className="w-8 h-8 text-muted-foreground mb-3" />
+                        <span className="text-lg font-medium text-foreground">
                           {frontLicense ? frontLicense.name : "Upload"}
                         </span>
                       </div>
@@ -180,10 +180,10 @@ return
 
             {/* Back of License Upload */}
             <div>
-              <label className="block text-sm font-medium text-gray-900 mb-3">
+              <label className="block text-sm font-medium text-foreground mb-3">
                 Back of your license
               </label>
-              <div className="border-2 border-dashed border-gray-300 rounded-lg p-12 sm:p-16 text-center hover:border-gray-400 transition-colors cursor-pointer">
+              <div className="border-2 border-dashed border-border rounded-lg p-12 sm:p-16 text-center hover:border-muted-foreground transition-colors cursor-pointer">
                 <input
                   type="file"
                   accept="image/*,.pdf"
@@ -193,8 +193,8 @@ return
                 />
                 <label htmlFor="back-upload" className="cursor-pointer">
                   <div className="flex flex-col items-center">
-                    <FiPlus className="w-8 h-8 text-gray-400 mb-3" />
-                    <span className="text-lg font-medium text-gray-600">
+                    <FiPlus className="w-8 h-8 text-muted-foreground mb-3" />
+                    <span className="text-lg font-medium text-foreground">
                       {backLicense ? backLicense.name : "Upload"}
                     </span>
                   </div>
@@ -203,18 +203,18 @@ return
             </div>
 
             {/* Terms and Conditions */}
-            <div className="text-sm text-gray-600 leading-relaxed">
+            <div className="text-sm text-muted-foreground leading-relaxed">
               By clicking Submit for Review,you agree to the{" "}
               <a
                 href="#"
-                className="text-blue-600 hover:text-blue-700 underline"
+                className="text-primary hover:text-primary/80 underline"
               >
                 Terms of Service
               </a>{" "}
               and{" "}
               <a
                 href="#"
-                className="text-blue-600 hover:text-blue-700 underline"
+                className="text-primary hover:text-primary/80 underline"
               >
                 Privacy Policy
               </a>
@@ -224,7 +224,7 @@ return
             {/* Submit Button */}
             <button
               type="submit"
-              className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-4 px-6 rounded-lg transition-colors duration-200 text-lg"
+              className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-semibold py-4 px-6 rounded-lg transition-colors duration-200 text-lg"
             >
               Submit for verification
             </button>

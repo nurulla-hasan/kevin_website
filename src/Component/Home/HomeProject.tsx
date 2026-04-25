@@ -2,7 +2,6 @@
 'use client';
 
 import ProjectCard from '../Card/ProjectCard';
-import styles from '@/app/styles.module.css';
 import Link from 'next/link';
 import { useState } from 'react';
 import { useGetAllServicesQuery } from '@/redux/features/contractor/contractorApi';
@@ -30,12 +29,12 @@ const HomeProject = () => {
   });
 
   return (
-    <div className={`container mx-auto ${styles.fontDmSans}`}>
-      <h1 className={`text-4xl font-bold mb-5 ${styles.fontDmSans}`}>
-        Popular Home Project
+    <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
+      <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 md:mb-8 text-foreground">
+        Please set title in CMS
       </h1>
 
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-3 px-3">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6">
         {filtered && filtered.length > 0 ? (
           filtered.map((project: any, idx: number) => (
             <Link key={project._id || idx} href="/location">
@@ -43,28 +42,28 @@ const HomeProject = () => {
             </Link>
           ))
         ) : (
-          <p className="col-span-full text-center text-gray-500">
+          <p className="col-span-full text-center text-muted-foreground py-8">
             No popular projects found
           </p>
         )}
       </div>
 
       {/* Pagination */}
-      <div className="flex justify-center items-center gap-3 mt-8">
+      <div className="flex justify-center items-center gap-3 mt-8 md:mt-10">
         <button
           onClick={() => setPage(p => Math.max(1, p - 1))}
           disabled={page === 1}
-          className="px-4 py-2 border rounded-lg bg-white disabled:opacity-50"
+          className="px-4 py-2 border border-border rounded-lg bg-card text-card-foreground hover:bg-muted disabled:opacity-50 transition-colors"
         >
           Prev
         </button>
-        <span className="text-gray-700">
+        <span className="text-foreground font-medium">
           Page {page} of {totalPage}
         </span>
         <button
           onClick={() => setPage(p => Math.min(totalPage, p + 1))}
           disabled={page === totalPage}
-          className="px-4 py-2 border rounded-lg bg-white disabled:opacity-50"
+          className="px-4 py-2 border border-border rounded-lg bg-card text-card-foreground hover:bg-muted disabled:opacity-50 transition-colors"
         >
           Next
         </button>

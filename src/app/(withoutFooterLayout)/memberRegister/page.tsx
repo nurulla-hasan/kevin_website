@@ -42,12 +42,12 @@ const VipMemberRegister = () => {
   return (
     <>
       <nav
-        className="flex items-center font-normal text-base leading-6  bg-white pl-3 md:pl-5 lg:pl-10 xl:pl-44 border-t border-gray-500 py-3"
+        className="flex items-center font-normal text-base leading-6  bg-card pl-3 md:pl-5 lg:pl-10 xl:pl-44 border-t border-border py-3"
         aria-label="breadcrumb"
       >
-        <p className="text-black text-xl">Home</p>
+        <p className="text-foreground text-xl">Home</p>
         <svg
-          className="mx-2 w-6 h-6 text-black"
+          className="mx-2 w-6 h-6 text-foreground"
           fill="none"
           stroke="currentColor"
           strokeWidth={2}
@@ -58,12 +58,12 @@ const VipMemberRegister = () => {
         >
           <path d="M9 18l6-6-6-6" />
         </svg>
-        <span className="text-black cursor-default text-xl">VIP Member</span>
+        <span className="text-foreground cursor-default text-xl">VIP Member</span>
       </nav>
       {/* Overlay */}
       <div className="flex items-center justify-center p-4 sm:p-8 md:p-12 lg:p-16">
         {/* Form Container */}
-        <div className="bg-white bg-opacity-80 rounded-md shadow-md max-w-full p-6 sm:p-10 md:p-14 text-center">
+        <div className="bg-card border border-border rounded-md shadow-md max-w-full p-6 sm:p-10 md:p-14 text-center">
           {/* Sign Up Form */}
           <form
             onSubmit={handleSubmit(onSubmit)}
@@ -79,10 +79,10 @@ const VipMemberRegister = () => {
                   {...register('firstName', {
                     required: 'First Name is required',
                   })}
-                  className="w-full p-3 rounded border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full p-3 rounded border border-border focus:outline-none focus:ring-2 focus:ring-primary bg-background text-foreground placeholder:text-muted-foreground"
                 />
                 {errors.firstName && (
-                  <p className="text-red-600 text-sm mt-1">
+                  <p className="text-destructive text-sm mt-1">
                     {errors.firstName.message.toString()}
                   </p>
                 )}
@@ -96,10 +96,10 @@ const VipMemberRegister = () => {
                   {...register('lastName', {
                     required: 'Last Name is required',
                   })}
-                  className="w-full p-3 rounded border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full p-3 rounded border border-border focus:outline-none focus:ring-2 focus:ring-primary bg-background text-foreground placeholder:text-muted-foreground"
                 />
                 {errors.lastName && (
-                  <p className="text-red-600 text-sm mt-1">
+                  <p className="text-destructive text-sm mt-1">
                     {errors.lastName.message.toString()}
                   </p>
                 )}
@@ -119,10 +119,10 @@ const VipMemberRegister = () => {
                     message: 'Invalid email format',
                   },
                 })}
-                className="w-full p-3 rounded border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full p-3 rounded border border-border focus:outline-none focus:ring-2 focus:ring-primary bg-background text-foreground placeholder:text-muted-foreground"
               />
               {errors.email && (
-                <p className="text-red-600 text-sm mt-1">
+                <p className="text-destructive text-sm mt-1">
                   {errors.email.message.toString()}
                 </p>
               )}
@@ -139,13 +139,13 @@ const VipMemberRegister = () => {
                   autoFocus: false,
                 }}
                 containerClass=""
-                inputClass="p-3 rounded-r-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                buttonClass="rounded-l-md border border-gray-300 custom-flag-button"
+                inputClass="p-3 rounded-r-md border border-border focus:outline-none focus:ring-2 focus:ring-primary bg-background text-foreground"
+                buttonClass="rounded-l-md border border-border custom-flag-button"
                 dropdownClass="rounded-md"
                 specialLabel={''}
               />
               {(phoneError || errors.phoneNumber) && (
-                <p className="text-red-600 text-sm mt-1">
+                <p className="text-destructive text-sm mt-1">
                   {phoneError || errors.phoneNumber.message.toString()}
                 </p>
               )}
@@ -157,11 +157,11 @@ const VipMemberRegister = () => {
               <input
                 placeholder="St Helen road, Glen Flora, TX 77443"
                 {...register('address', { required: 'Password is required' })}
-                className="w-full p-3 rounded border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full p-3 rounded border border-border focus:outline-none focus:ring-2 focus:ring-primary bg-background text-foreground placeholder:text-muted-foreground"
               />
 
               {errors.address && (
-                <p className="text-red-600 text-sm mt-1">
+                <p className="text-destructive text-sm mt-1">
                   {errors.address.message.toString()}
                 </p>
               )}
@@ -176,10 +176,10 @@ const VipMemberRegister = () => {
                   {...register('city', {
                     required: 'city is required',
                   })}
-                  className="w-full p-3 rounded border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full p-3 rounded border border-border focus:outline-none focus:ring-2 focus:ring-primary bg-background text-foreground placeholder:text-muted-foreground"
                 />
                 {errors.city && (
-                  <p className="text-red-600 text-sm mt-1">
+                  <p className="text-destructive text-sm mt-1">
                     {errors.city.message.toString()}
                   </p>
                 )}
@@ -193,10 +193,10 @@ const VipMemberRegister = () => {
                   {...register('State', {
                     required: 'State is required',
                   })}
-                  className="w-full p-3 rounded border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full p-3 rounded border border-border focus:outline-none focus:ring-2 focus:ring-primary bg-background text-foreground placeholder:text-muted-foreground"
                 />
                 {errors.State && (
-                  <p className="text-red-600 text-sm mt-1">
+                  <p className="text-destructive text-sm mt-1">
                     {errors.State.message.toString()}
                   </p>
                 )}
@@ -210,10 +210,10 @@ const VipMemberRegister = () => {
                   {...register('zip', {
                     required: 'zip is required',
                   })}
-                  className="w-full p-3 rounded border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full p-3 rounded border border-border focus:outline-none focus:ring-2 focus:ring-primary bg-background text-foreground placeholder:text-muted-foreground"
                 />
                 {errors.zip && (
-                  <p className="text-red-600 text-sm mt-1">
+                  <p className="text-destructive text-sm mt-1">
                     {errors.zip.message.toString()}
                   </p>
                 )}
@@ -226,7 +226,7 @@ const VipMemberRegister = () => {
                 <Link href={'/'}>
                   <button
                     type="submit"
-                    className="w-full mt-4  text-blue-700 border border-blue-700 py-3 rounded  transition"
+                    className="w-full mt-4  text-primary border border-primary py-3 rounded  transition"
                   >
                     Back
                   </button>
@@ -237,7 +237,7 @@ const VipMemberRegister = () => {
                 <Link href={'/paymentMethod'}>
                   <button
                     type="submit"
-                    className="w-full mt-4 bg-blue-600 text-white py-3 rounded hover:bg-blue-700 transition"
+                    className="w-full mt-4 bg-primary text-primary-foreground py-3 rounded hover:bg-primary/90 transition"
                   >
                     Continue
                   </button>

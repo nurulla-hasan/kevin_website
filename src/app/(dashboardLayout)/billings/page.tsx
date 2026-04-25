@@ -58,13 +58,13 @@ export default function TransactionHistory() {
   ];
 
   return (
-    <div className="max-w-7xl mx-auto p-6 bg-white min-h-screen">
+    <div className="max-w-7xl mx-auto p-6 bg-card border border-border min-h-screen">
       {/* Header */}
       <div className="mb-8">
-        <h1 className="text-2xl font-semibold text-gray-900 mb-4">
+        <h1 className="text-2xl font-semibold text-foreground mb-4">
           Transaction History
         </h1>
-        <hr className="border-gray-300" />
+        <hr className="border-border" />
       </div>
 
       {/* Tabs */}
@@ -75,8 +75,8 @@ export default function TransactionHistory() {
             onClick={() => setActiveTab(tab)}
             className={`px-6 py-2 rounded-md font-medium transition-colors ${
               activeTab === tab
-                ? 'bg-blue-600 text-white'
-                : 'border border-gray-300 text-gray-700 hover:bg-gray-50'
+                ? 'bg-primary text-primary-foreground'
+                : 'border border-border text-foreground hover:bg-muted'
             }`}
           >
             {tab}
@@ -90,51 +90,51 @@ export default function TransactionHistory() {
           <table className="w-full">
             {/* Table Header */}
             <thead>
-              <tr className="bg-green-200">
-                <th className="px-6 py-4 text-left text-sm font-medium text-gray-900">
+              <tr className="bg-muted">
+                <th className="px-6 py-4 text-left text-sm font-medium text-foreground">
                   Date
                 </th>
-                <th className="px-6 py-4 text-left text-sm font-medium text-gray-900">
+                <th className="px-6 py-4 text-left text-sm font-medium text-foreground">
                   Transaction ID
                 </th>
-                <th className="px-6 py-4 text-left text-sm font-medium text-gray-900">
+                <th className="px-6 py-4 text-left text-sm font-medium text-foreground">
                   Client
                 </th>
-                <th className="px-6 py-4 text-left text-sm font-medium text-gray-900">
+                <th className="px-6 py-4 text-left text-sm font-medium text-foreground">
                   Amount
                 </th>
-                <th className="px-6 py-4 text-left text-sm font-medium text-gray-900">
+                <th className="px-6 py-4 text-left text-sm font-medium text-foreground">
                   Status
                 </th>
-                <th className="px-6 py-4 text-left text-sm font-medium text-gray-900">
+                <th className="px-6 py-4 text-left text-sm font-medium text-foreground">
                   Actions
                 </th>
               </tr>
             </thead>
             {/* Table Body */}
-            <tbody className="divide-y divide-gray-200">
+            <tbody className="divide-y divide-border">
               {transactions.map((transaction, index) => (
-                <tr key={index} className="hover:bg-gray-50">
-                  <td className="px-6 py-4 text-sm text-gray-900">
+                <tr key={index} className="hover:bg-muted">
+                  <td className="px-6 py-4 text-sm text-foreground">
                     {transaction.date}
                   </td>
-                  <td className="px-6 py-4 text-sm text-gray-900">
+                  <td className="px-6 py-4 text-sm text-foreground">
                     {transaction.transactionId}
                   </td>
                   <td className="px-6 py-4">
                     <div>
-                      <div className="text-sm font-medium text-gray-900">
+                      <div className="text-sm font-medium text-foreground">
                         {transaction.client}
                       </div>
-                      <div className="text-sm text-gray-500">
+                      <div className="text-sm text-muted-foreground">
                         {transaction.service},{' '}
-                        <span className="text-gray-400">
+                        <span className="text-muted-foreground">
                           {transaction.location}
                         </span>
                       </div>
                     </div>
                   </td>
-                  <td className="px-6 py-4 text-sm font-medium text-gray-900">
+                  <td className="px-6 py-4 text-sm font-medium text-foreground">
                     {transaction.amount}
                   </td>
                   <td className="px-6 py-4">
@@ -145,7 +145,7 @@ export default function TransactionHistory() {
                     </span>
                   </td>
                   <td className="px-6 py-4">
-                    <button className="flex items-center space-x-2 text-gray-700 hover:text-gray-900">
+                    <button className="flex items-center space-x-2 text-foreground hover:text-primary">
                       <span className="text-sm">View Receipt</span>
                       <FileText className="w-4 h-4" />
                     </button>
@@ -161,10 +161,10 @@ export default function TransactionHistory() {
       {activeTab === 'Balances' && (
         <div className="">
           <div className="mb-2">
-            <p className="font-semibold text-lg">
-              Available balance: <span className=" text-gray-700 ">$0</span>
+            <p className="font-semibold text-lg text-foreground">
+              Available balance: <span className="text-foreground font-bold">$0</span>
             </p>
-            <p className="text-xs text-gray-500 mt-1">
+            <p className="text-xs text-muted-foreground mt-1">
               *Account balances automatically update when a task is completed.
             </p>
           </div>
@@ -172,19 +172,19 @@ export default function TransactionHistory() {
           <input
             type="text"
             placeholder="Enter a redemption code here"
-            className="w-full border border-gray-300 rounded-md px-3 py-2 mt-4 mb-4 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full border border-border rounded-md px-3 py-2 mt-4 mb-4 text-sm focus:outline-none focus:ring-2 focus:ring-primary bg-background text-foreground placeholder:text-muted-foreground"
           />
 
-          <button className="w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700 transition text-sm font-medium">
+          <button className="w-full bg-primary text-primary-foreground py-2 rounded-md hover:bg-primary/90 transition text-sm font-medium">
             Apply code
           </button>
         </div>
       )}
 
       {activeTab === 'Payment Methods' && (
-        <div className="bg-white min-h-screen rounded-md shadow-sm p-3">
+        <div className="bg-card border border-border min-h-screen rounded-md shadow-sm p-3">
           <div className="mb-6">
-            <h3 className="text-lg font-medium text-gray-900 mb-2">
+            <h3 className="text-lg font-medium text-foreground mb-2">
               Payment Method
             </h3>
 
@@ -200,12 +200,12 @@ export default function TransactionHistory() {
               <input
                 type="text"
                 placeholder="Card number"
-                className="w-full pl-10 pr-32 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full pl-10 pr-32 py-2 border border-border rounded-md placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary bg-background text-foreground"
               />
-              <FaCreditCard className="absolute top-2.5 left-3 text-gray-400 text-lg" />
-              <button className="absolute right-2 top-1.5 bg-black text-white text-sm px-3 py-1 rounded-md">
+              <FaCreditCard className="absolute top-2.5 left-3 text-muted-foreground text-lg" />
+              <button className="absolute right-2 top-1.5 bg-foreground text-background text-sm px-3 py-1 rounded-md">
                 Autofill{' '}
-                <span className="text-green-400 font-medium ml-1">link</span>
+                <span className="text-primary font-medium ml-1">link</span>
               </button>
             </div>
 
@@ -213,7 +213,7 @@ export default function TransactionHistory() {
             <input
               type="text"
               placeholder="Name on Card"
-              className="w-full px-4 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-4 py-2 border border-border rounded-md placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary bg-background text-foreground"
             />
           </div>
 
@@ -223,7 +223,7 @@ export default function TransactionHistory() {
             <Button
               type="primary"
               htmlType="submit"
-              className="bg-blue-600 w-1/2"
+              className="bg-primary hover:bg-primary/90 w-1/2"
             >
               Update
             </Button>

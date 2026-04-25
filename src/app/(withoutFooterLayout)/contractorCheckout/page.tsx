@@ -69,10 +69,10 @@ const router=useRouter()
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 flex items-center justify-center px-4">
-      <div className="bg-white w-full max-w-3xl rounded-2xl shadow-lg p-8">
+    <div className="min-h-screen bg-muted flex items-center justify-center px-4">
+      <div className="bg-card border border-border w-full max-w-3xl rounded-2xl shadow-lg p-8">
         {/* Header */}
-        <h2 className="text-3xl font-extrabold text-gray-900 text-center mb-8">
+        <h2 className="text-3xl font-extrabold text-foreground text-center mb-8">
           Choose Your Plan
         </h2>
    
@@ -83,8 +83,8 @@ const router=useRouter()
             onClick={() => setSelectedPlan("monthly")}
             className={`px-6 py-3 rounded-lg font-semibold transition-all ${
               selectedPlan === "monthly"
-                ? "bg-blue-600 text-white shadow-md"
-                : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                ? "bg-primary text-primary-foreground shadow-md"
+                : "bg-muted text-foreground hover:bg-muted-foreground/10"
             }`}
           >
             Monthly – ${monthlyValue}
@@ -93,8 +93,8 @@ const router=useRouter()
             onClick={() => setSelectedPlan("yearly")}
             className={`px-6 py-3 rounded-lg font-semibold transition-all ${
               selectedPlan === "yearly"
-                ? "bg-blue-600 text-white shadow-md"
-                : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                ? "bg-primary text-primary-foreground shadow-md"
+                : "bg-muted text-foreground hover:bg-muted-foreground/10"
             }`}
           >
             Yearly – ${yearlyValue}
@@ -102,36 +102,36 @@ const router=useRouter()
         </div>
 
         {/* Plan Summary Section */}
-        <div className="bg-gray-50 p-6 rounded-xl mb-10">
-          <h3 className="text-xl font-semibold text-gray-800 mb-4">
+        <div className="bg-muted p-6 rounded-xl mb-10">
+          <h3 className="text-xl font-semibold text-foreground mb-4">
             Plan Summary
           </h3>
           <div className="flex justify-between items-center mb-2">
-            <span className="text-gray-600">Selected Plan</span>
-            <span className="font-medium capitalize">{selectedPlan}</span>
+            <span className="text-muted-foreground">Selected Plan</span>
+            <span className="font-medium capitalize text-foreground">{selectedPlan}</span>
           </div>
           <div className="flex justify-between items-center">
-            <span className="text-gray-600">Price</span>
-            <span className="text-lg font-bold text-gray-900">
+            <span className="text-muted-foreground">Price</span>
+            <span className="text-lg font-bold text-foreground">
               $
               {selectedPlan === "monthly"
                 ? monthlyValue.toFixed(2)
                 : yearlyValue.toFixed(2)}
             </span>
           </div>
-          <p className="text-sm text-gray-500 mt-3">
+          <p className="text-sm text-muted-foreground mt-3">
             All payments are processed securely through{" "}
-            <span className="font-medium text-blue-600">Stripe</span>.
+            <span className="font-medium text-primary">Stripe</span>.
           </p>
         </div>
 
         {/* Terms */}
         <div className="flex items-start gap-3 mb-6">
           <SiTicktick className="text-green-500 mt-1" size={22} />
-          <p className="text-gray-600 text-sm leading-relaxed">
+          <p className="text-muted-foreground text-sm leading-relaxed">
             By purchasing, you agree to automatic renewal of your membership and
             accept all{" "}
-            <span className="text-blue-600 underline cursor-pointer">
+            <span className="text-primary underline cursor-pointer">
               terms & conditions
             </span>
             .
@@ -141,7 +141,7 @@ const router=useRouter()
         {/* Purchase Button */}
         <button
           onClick={handlePurchase}
-          className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 rounded-xl transition-all shadow-md"
+          className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-bold py-4 rounded-xl transition-all shadow-md"
         >
           Purchase Membership
         </button>

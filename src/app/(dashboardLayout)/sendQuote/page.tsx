@@ -57,10 +57,10 @@ export default function SendQuote() {
   };
 
   return (
-    <div className="max-w-6xl mx-auto p-6 bg-white">
+    <div className="max-w-6xl mx-auto p-6 bg-card border border-border rounded-xl">
       {/* Header */}
-      <div className="flex items-center justify-between mb-8 border-b pb-3">
-        <h1 className="text-2xl font-semibold text-gray-900">Send A Quote</h1>
+      <div className="flex items-center justify-between mb-8 border-b border-border pb-3">
+        <h1 className="text-2xl font-semibold text-foreground">Send A Quote</h1>
         <div className="flex items-center space-x-3">
           <Image
             src={userImg}
@@ -68,8 +68,8 @@ export default function SendQuote() {
             className="w-10 h-10 rounded-full object-cover"
           />
           <div>
-            <div className="font-medium text-gray-900">Ellie Smith</div>
-            <div className="text-sm text-gray-500">Omaha, NE</div>
+            <div className="font-medium text-foreground">Ellie Smith</div>
+            <div className="text-sm text-muted-foreground">Omaha, NE</div>
           </div>
         </div>
       </div>
@@ -78,24 +78,24 @@ export default function SendQuote() {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
         {/* Project Requirement */}
         <div>
-          <h2 className="text-xl font-semibold text-gray-900 mb-6">
+          <h2 className="text-xl font-semibold text-foreground mb-6">
             Project Requirement
           </h2>
 
           <div className="mb-6">
-            <h3 className="text-lg font-medium text-gray-900 mb-4">Cleaning</h3>
+            <h3 className="text-lg font-medium text-foreground mb-4">Cleaning</h3>
             <div className="space-y-3">
-              <div className="flex items-center space-x-3 text-gray-700">
+              <div className="flex items-center space-x-3 text-muted-foreground">
                 <Calendar className="w-5 h-5" />
-                <span>Apr 28, 12:00 PM</span>
+                <span className="text-foreground">Apr 28, 12:00 PM</span>
               </div>
-              <div className="flex items-center space-x-3 text-gray-700">
+              <div className="flex items-center space-x-3 text-muted-foreground">
                 <MapPin className="w-5 h-5" />
-                <span>123 Main Street, New York, NY 10001</span>
+                <span className="text-foreground">123 Main Street, New York, NY 10001</span>
               </div>
-              <div className="flex items-center space-x-3 text-gray-700">
+              <div className="flex items-center space-x-3 text-muted-foreground">
                 <Building className="w-5 h-5" />
-                <span>Apartment</span>
+                <span className="text-foreground">Apartment</span>
               </div>
             </div>
           </div>
@@ -103,35 +103,35 @@ export default function SendQuote() {
 
         {/* Price Details */}
         <div>
-          <h3 className="text-lg font-semibold text-gray-900 mb-4">
+          <h3 className="text-lg font-semibold text-foreground mb-4">
             Price Details
           </h3>
           <div className="space-y-3">
             <div className="flex justify-between items-center">
-              <span className="text-gray-700">Price Client offered</span>
-              <span className="font-medium">$65/hr</span>
+              <span className="text-muted-foreground">Price Client offered</span>
+              <span className="font-medium text-foreground">$65/hr</span>
             </div>
             <div className="flex justify-between items-center">
-              <span className="text-gray-700">Trust & Support fee</span>
-              <span className="font-medium">$5/hr</span>
+              <span className="text-muted-foreground">Trust & Support fee</span>
+              <span className="font-medium text-foreground">$5/hr</span>
             </div>
             <div className="flex justify-between items-center font-semibold">
-              <span className="text-gray-900">Total Rate</span>
-              <span>$60/hr</span>
+              <span className="text-foreground">Total Rate</span>
+              <span className="text-foreground">$60/hr</span>
             </div>
           </div>
         </div>
       </div>
 
-      <hr className="border-gray-200 mb-8" />
+      <hr className="border-border mb-8" />
 
       {/* Update Date */}
       <div className="mb-8">
         <div className="flex items-center justify-between mb-4">
-          <h3 className="text-lg font-medium text-gray-900">Update Date</h3>
+          <h3 className="text-lg font-medium text-foreground">Update Date</h3>
           <button
             onClick={() => setShowCalendar(!showCalendar)}
-            className="flex items-center space-x-2 text-gray-600 hover:text-gray-800"
+            className="flex items-center space-x-2 text-muted-foreground hover:text-foreground"
           >
             <CalendarDays className="w-4 h-4" />
             <span>Choose a date</span>
@@ -142,7 +142,7 @@ export default function SendQuote() {
             selected={date}
             onChange={handleDateChange}
             inline
-            className="p-4 border-2 border-gray-200 rounded-lg"
+            className="p-4 border-2 border-border rounded-lg bg-background"
           />
         )}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
@@ -152,8 +152,8 @@ export default function SendQuote() {
               onClick={() => setSelectedDate(option.value)}
               className={`px-6 py-2 rounded-full border transition-colors ${
                 selectedDate === option.value
-                  ? 'border-blue-500 bg-blue-50 text-blue-700'
-                  : 'border-gray-300 text-gray-700 hover:border-gray-400'
+                  ? 'border-primary bg-primary/10 text-primary'
+                  : 'border-border text-foreground hover:border-border'
               }`}
             >
               {option.value}
@@ -165,10 +165,10 @@ export default function SendQuote() {
       {/* Update Time */}
       <div className="mb-8">
         <div className="flex items-center justify-between mb-4">
-          <h3 className="text-lg font-medium text-gray-900">Update Time</h3>
+          <h3 className="text-lg font-medium text-foreground">Update Time</h3>
           <button
             onClick={openTimePicker} // Open the time picker modal
-            className="flex items-center space-x-2 text-gray-600 hover:text-gray-800"
+            className="flex items-center space-x-2 text-muted-foreground hover:text-foreground"
           >
             <Clock className="w-4 h-4" />
             <span>Pick a time</span>
@@ -181,8 +181,8 @@ export default function SendQuote() {
               onClick={() => setSelectedTime(option)}
               className={`px-6 py-2 rounded-full border transition-colors ${
                 selectedTime === option
-                  ? 'border-blue-500 bg-blue-50 text-blue-700'
-                  : 'border-gray-300 text-gray-700 hover:border-gray-400'
+                  ? 'border-primary bg-primary/10 text-primary'
+                  : 'border-border text-foreground hover:border-border'
               }`}
             >
               {option}
@@ -193,12 +193,12 @@ export default function SendQuote() {
 
       {/* Update Pricing */}
       <div className="mb-8">
-        <h3 className="text-lg font-medium text-gray-900 mb-4">
+        <h3 className="text-lg font-medium text-foreground mb-4">
           Update Pricing
         </h3>
         <div className="mb-4">
           <div className="flex justify-end mb-2">
-            <span className="text-lg font-semibold">${priceValue}</span>
+            <span className="text-lg font-semibold text-foreground">${priceValue}</span>
           </div>
           <div className="relative">
             <input
@@ -207,34 +207,34 @@ export default function SendQuote() {
               max={maxPrice}
               value={priceValue}
               onChange={e => setPriceValue(Number.parseInt(e.target.value))}
-              className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
+              className="w-full h-2 bg-muted rounded-lg appearance-none cursor-pointer accent-primary"
               style={{
-                background: `linear-gradient(to right, #3b82f6 0%, #3b82f6 ${
+                background: `linear-gradient(to right, hsl(var(--primary)) 0%, hsl(var(--primary)) ${
                   ((priceValue - minPrice) / (maxPrice - minPrice)) * 100
-                }%, #e5e7eb ${
+                }%, hsl(var(--muted)) ${
                   ((priceValue - minPrice) / (maxPrice - minPrice)) * 100
-                }%, #e5e7eb 100%)`,
+                }%, hsl(var(--muted)) 100%)`,
               }}
             />
           </div>
         </div>
         <div className="flex justify-between items-center">
           <div>
-            <label className="block text-sm text-gray-600 mb-1">Minimum</label>
+            <label className="block text-sm text-muted-foreground mb-1">Minimum</label>
             <input
               type="number"
               value={minPrice}
               onChange={e => setMinPrice(Number.parseInt(e.target.value))}
-              className="w-20 px-3 py-2 border border-gray-300 rounded-md text-sm"
+              className="w-20 px-3 py-2 border border-border rounded-md text-sm bg-background text-foreground"
             />
           </div>
           <div>
-            <label className="block text-sm text-gray-600 mb-1">Maximum</label>
+            <label className="block text-sm text-muted-foreground mb-1">Maximum</label>
             <input
               type="number"
               value={maxPrice}
               onChange={e => setMaxPrice(Number.parseInt(e.target.value))}
-              className="w-20 px-3 py-2 border border-gray-300 rounded-md text-sm"
+              className="w-20 px-3 py-2 border border-border rounded-md text-sm bg-background text-foreground"
             />
           </div>
         </div>
@@ -242,30 +242,30 @@ export default function SendQuote() {
 
       {/* Upload Quote */}
       <div className="mb-8">
-        <h3 className="text-lg font-medium text-gray-900 mb-4">
+        <h3 className="text-lg font-medium text-foreground mb-4">
           Upload a detailed Quote
         </h3>
         <div
           onDragOver={handleDragOver}
           onDrop={handleDrop}
           onClick={handleFileUpload}
-          className="border-2 border-dashed border-gray-300 rounded-lg p-12 text-center cursor-pointer hover:border-gray-400 transition-colors bg-gray-50"
+          className="border-2 border-dashed border-border rounded-lg p-12 text-center cursor-pointer hover:border-border transition-colors bg-muted/30"
         >
           <div className="flex flex-col items-center">
-            <div className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center mb-4">
-              <Plus className="w-6 h-6 text-white" />
+            <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center mb-4">
+              <Plus className="w-6 h-6 text-primary-foreground" />
             </div>
-            <p className="text-gray-600">Drop photos here or click to upload</p>
+            <p className="text-muted-foreground">Drop photos here or click to upload</p>
           </div>
         </div>
       </div>
 
       {/* Action Buttons */}
       <div className="flex space-x-4">
-        <button className="flex-1 border border-gray-300 text-gray-700 py-3 px-6 rounded-md font-medium hover:bg-gray-50 transition-colors">
+        <button className="flex-1 border border-border text-foreground py-3 px-6 rounded-md font-medium hover:bg-muted transition-colors">
           Send an updated Offer
         </button>
-        <button className="flex-1 bg-blue-600 hover:bg-blue-700 text-white py-3 px-6 rounded-md font-medium transition-colors">
+        <button className="flex-1 bg-primary hover:bg-primary/90 text-primary-foreground py-3 px-6 rounded-md font-medium transition-colors">
           Approve
         </button>
       </div>
@@ -280,7 +280,7 @@ export default function SendQuote() {
         <TimePicker
           onChange={handleTimeChange}
           value={time}
-          className="border-2 border-gray-200 rounded-lg p-3"
+          className="border-2 border-border rounded-lg p-3 bg-background"
         />
       </Modal>
     </div>

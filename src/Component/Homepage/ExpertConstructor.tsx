@@ -1,7 +1,6 @@
 "use client";
 
 import ConstractorCard from "../Card/ConstractorCard";
-import styles from "@/app/styles.module.css";
 import { useState } from "react";
 import { useGetAllUserQuery } from "@/redux/features/user/userApi";
 import { Pagination } from "antd";
@@ -39,24 +38,24 @@ const ExpertConstructor = ({
   if (cmsData?.isVisible === false) return null;
 
   return (
-    <div>
-      <div className={`container mx-auto ${styles.fontDmSans}`}>
-        <h1 className={`text-4xl font-bold my-10   ${styles.fontDmSans}`}>
-          {cmsData?.title || "Expert Contractor"}
+    <div className="py-8 md:py-12">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-8 md:mb-10 text-foreground">
+          {cmsData?.title || "Please set title in CMS"}
         </h1>
 
-        <div className="px-3 mb-6">
+        <div className="mb-6">
           {currentItems && currentItems.length > 0 ? (
-            <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6">
               {currentItems?.map((contractor, idx) => {
                 return <ConstractorCard key={idx} contractor={contractor} />;
               })}
             </div>
           ) : (
-            <div className="flex flex-col items-center justify-center py-12 text-center bg-gray-50 rounded-lg shadow-inner">
-              <div className="flex items-center justify-center w-12 h-12 rounded-full border border-gray-300 mb-4">
+            <div className="flex flex-col items-center justify-center py-12 text-center bg-muted rounded-lg shadow-inner">
+              <div className="flex items-center justify-center w-12 h-12 rounded-full border border-border mb-4">
                 <svg
-                  className="w-6 h-6 text-gray-400"
+                  className="w-6 h-6 text-muted-foreground"
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
                   viewBox="0 0 24 24"
@@ -70,10 +69,10 @@ const ExpertConstructor = ({
                   />
                 </svg>
               </div>
-              <h2 className="text-lg font-semibold text-gray-700">
+              <h2 className="text-lg font-semibold text-foreground">
                 No items found
               </h2>
-              <p className="text-sm text-gray-500 mt-1">
+              <p className="text-sm text-muted-foreground mt-1">
                 Try adjusting your search or check back later.
               </p>
             </div>
@@ -81,17 +80,17 @@ const ExpertConstructor = ({
         </div>
 
         {/* Pagination */}
-        <Pagination
-          current={page}
-          pageSize={limit} // Use dynamic page size based on 'limit'
-          total={totalItems} // Total number of items
-          onChange={onPageChange}
-          showSizeChanger={false}
-          className="flex justify-center"
-          // Show the total number of pages (meta.totalPage)
-          pageSizeOptions={[limit?.toString()]}
-          // showTotal={(total) => `Total ${total} items`}
-        />
+        <div className="mt-6 md:mt-8">
+          <Pagination
+            current={page}
+            pageSize={limit}
+            total={totalItems}
+            onChange={onPageChange}
+            showSizeChanger={false}
+            className="flex justify-center"
+            pageSizeOptions={[limit?.toString()]}
+          />
+        </div>
       </div>
     </div>
   );

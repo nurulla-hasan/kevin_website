@@ -184,14 +184,14 @@ if(res?.success){
   };
 
   return (
-    <div className="max-w-4xl mx-auto p-6 bg-white min-h-screen">
+    <div className="max-w-4xl mx-auto p-6 bg-card border border-border min-h-screen">
       {/* Header */}
-      <h1 className="text-2xl font-semibold text-gray-900 mb-8 border-b pb-3">
+      <h1 className="text-2xl font-semibold text-foreground mb-8 border-b border-border pb-3">
         Project Details
       </h1>
 
       {/* Profile Section */}
-      <div className="flex items-start justify-between mb-8 pb-6 border-b border-gray-200">
+      <div className="flex items-start justify-between mb-8 pb-6 border-b border-border">
         <div className="flex items-start space-x-4">
           <Image
             src={user?.image}
@@ -201,21 +201,21 @@ if(res?.success){
             height={500}
           />
           <div>
-            <h2 className="text-xl font-semibold text-gray-900 mb-2">
+            <h2 className="text-xl font-semibold text-foreground mb-2">
               {user?.firstName}
             </h2>
-            <p className="text-gray-600 max-w-md">
+            <p className="text-muted-foreground max-w-md">
             <span className='font-semibold mr-1'>Project Details: </span>{project?.projectDescription}
             </p>
           </div>
         </div>
     
-          <button  onClick={openReviewModal} className="bg-blue-600 hover:bg-blue-700 text-white px-1 py-2 rounded-md font-medium transition-colors">
+          <button  onClick={openReviewModal} className="bg-primary hover:bg-primary/90 text-primary-foreground px-1 py-2 rounded-md font-medium transition-colors">
             Review
           </button>
    
         <Link href={'/inbox'}>
-          <button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-md font-medium transition-colors">
+          <button className="bg-primary hover:bg-primary/90 text-primary-foreground px-6 py-2 rounded-md font-medium transition-colors">
             Message
           </button>
         </Link>
@@ -225,49 +225,49 @@ if(res?.success){
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
         {/* Cleaning Details */}
         <div>
-          <h3 className="text-lg font-semibold text-gray-900 mb-4">{project?.serviceType}</h3>
+          <h3 className="text-lg font-semibold text-foreground mb-4">{project?.serviceType}</h3>
           <div className="space-y-3">
-            <div className="flex items-center space-x-3 text-gray-700">
+            <div className="flex items-center space-x-3 text-foreground">
               <Calendar className="w-5 h-5" />
               <span>{project?.date}</span>
             </div>
-            <div className="flex items-center space-x-3 text-gray-700">
+            <div className="flex items-center space-x-3 text-foreground">
               <Clock className="w-5 h-5" />
               <span>{project?.time}</span>
             </div>
-            <div className="flex items-center space-x-3 text-gray-700">
+            <div className="flex items-center space-x-3 text-foreground">
               <MapPin className="w-5 h-5" />
               <span>{project?.location}</span>
             </div>
-            <div className="flex items-center space-x-3 text-gray-700">
+            <div className="flex items-center space-x-3 text-foreground">
           
               <span>Payment Status:{project?.status}</span>
             </div>
-            <div className="flex items-center space-x-3 text-gray-700">
+            <div className="flex items-center space-x-3 text-foreground">
           
               <span>Project Status:{project?.projectStatus}</span>
             </div>
           </div>
-          <div className="border-b border-black mt-3"></div>
+          <div className="border-b border-border mt-3"></div>
         </div>
 
         {/* Price Details */}
         <div>
           <div className="flex items-center justify-between mb-4">
-            <h3 className="text-lg font-semibold text-gray-900">
+            <h3 className="text-lg font-semibold text-foreground">
               Price Details
             </h3>
             <div className="flex items-center space-x-2">
               <button
                 onClick={handleDownloadQuote}
-                className="flex items-center space-x-2 text-blue-600 hover:text-blue-700 font-medium"
+                className="flex items-center space-x-2 text-primary hover:text-primary/80 font-medium"
               >
                 <FileText className="w-4 h-4" />
                 <span>Detailed quote</span>
               </button>
               <button
                 onClick={() => setShowDropdown(!showDropdown)}
-                className="text-gray-400 hover:text-gray-600"
+                className="text-muted-foreground hover:text-foreground"
               >
                 <MoreHorizontal className="w-5 h-5" />
               </button>
@@ -276,16 +276,16 @@ if(res?.success){
 
           <div className="space-y-3 mb-4">
             <div className="flex justify-between items-center">
-              <span className="text-gray-700">Price Client offered</span>
-              <span className="font-medium">{project?.serviceId?.price}/hr</span>
+              <span className="text-foreground">Price Client offered</span>
+              <span className="font-medium text-foreground">{project?.serviceId?.price}/hr</span>
             </div>
             <div className="flex justify-between items-center ">
-              <span className="text-gray-700">Trust & Support fee</span>
-              <span className="font-medium ">$5/hr</span>
+              <span className="text-foreground">Trust & Support fee</span>
+              <span className="font-medium text-foreground">$5/hr</span>
             </div>
             <div className="flex justify-between items-center font-semibold">
-              <span className="text-gray-900">Total Rate</span>
-           <span>${(Number(project?.serviceId?.price) || 0) + 5}</span>
+              <span className="text-foreground">Total Rate</span>
+           <span className="text-foreground">${(Number(project?.serviceId?.price) || 0) + 5}</span>
             </div>
             {/* <div className="border-b  border-black mt-[70px]"></div> */}
           </div>
@@ -363,42 +363,42 @@ if(res?.success){
       </Modal>
       {/* Action Buttons */}
       <div className="flex space-x-4">
-        <button className="flex-1 bg-red-500 hover:bg-red-600 text-white py-3 px-6 rounded-md font-medium transition-colors">
+        <button className="flex-1 bg-destructive hover:bg-destructive/90 text-destructive-foreground py-3 px-6 rounded-md font-medium transition-colors">
           Cancel
         </button>
      <div className="relative flex-1">
     <div>
             <button
             onClick={() => setShowDropdown(!showDropdown)}
-            className="bg-blue-600 hover:bg-blue-700 text-white py-3 px-6 rounded-md font-medium transition-colors w-full"
+            className="bg-primary hover:bg-primary/90 text-primary-foreground py-3 px-6 rounded-md font-medium transition-colors w-full"
           >
             Update Offer
           </button>
     </div>
 
           {showDropdown && (
-            <div className="absolute top-full left-0 bg-white border border-gray-200 mt-2 shadow-lg rounded-md w-full">
+            <div className="absolute top-full left-0 bg-card border border-border mt-2 shadow-lg rounded-md w-full">
               <button
                 onClick={() => handleStatusChange('booked')}
-                className="block w-full text-left py-2 px-4 hover:bg-gray-100"
+                className="block w-full text-left py-2 px-4 hover:bg-muted text-foreground"
               >
                 Booked
               </button>
               <button
                 onClick={() => handleStatusChange('onTheWay')}
-                className="block w-full text-left py-2 px-4 hover:bg-gray-100"
+                className="block w-full text-left py-2 px-4 hover:bg-muted text-foreground"
               >
                 On the Way
               </button>
               <button
                 onClick={() => handleStatusChange('started')}
-                className="block w-full text-left py-2 px-4 hover:bg-gray-100"
+                className="block w-full text-left py-2 px-4 hover:bg-muted text-foreground"
               >
                 Started
               </button>
               <button
                 onClick={() => handleStatusChange('done')}
-                className="block w-full text-left py-2 px-4 hover:bg-gray-100"
+                className="block w-full text-left py-2 px-4 hover:bg-muted text-foreground"
               >
                 Done
               </button>

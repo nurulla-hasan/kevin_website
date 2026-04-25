@@ -18,7 +18,7 @@ const steps = [
     label: 'Choose your service',
     path: '/chooseService',
   },
-  {
+  { 
     icon: <Calendar className="w-5 h-5 text-white" />,
     label: 'Pick a time',
     path: '/time',
@@ -31,14 +31,14 @@ const steps = [
   {
     icon: <Handshake className="w-5 h-5 text-white" />,
     label: 'Confirm',
-    paths: ['/confirm', '/done'], // ✅ handle both routes
+    paths: ['/confirm', '/done'], // handle both routes
   },
 ];
 
 const ServiceNav = () => {
   const pathname = usePathname();
 
-  // ✅ Find the current step index
+  // Find the current step index
   const currentStepIndex = steps.findIndex(step => {
     if (step.paths) {
       return step.paths.includes(pathname);
@@ -46,14 +46,14 @@ const ServiceNav = () => {
     return step.path === pathname;
   });
 
-  // ✅ Add active status for all steps up to current
+  // Add active status for all steps up to current
   const stepsWithActiveStatus = steps.map((step, index) => ({
     ...step,
     active: index <= currentStepIndex,
   }));
 
   return (
-    <nav className="bg-white py-4 px-4 sm:px-6 lg:px-8 shadow-sm">
+    <nav className="bg-card border-b border-border py-4 px-4 sm:px-6 lg:px-8 shadow-sm">
       <div className="container mx-auto flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
         {/* Logo */}
         <div className="flex justify-center lg:justify-start">
@@ -76,14 +76,14 @@ const ServiceNav = () => {
               <div className="flex flex-col items-center relative">
                 <div
                   className={`w-10 h-10 rounded-full flex items-center justify-center ${
-                    step.active ? 'bg-blue-600' : 'bg-gray-700'
+                    step.active ? 'bg-primary' : 'bg-muted'
                   }`}
                 >
                   {step.icon}
                 </div>
                 <span
                   className={`mt-1 text-sm text-center whitespace-nowrap ${
-                    step.active ? 'text-blue-500' : 'text-gray-400'
+                    step.active ? 'text-primary' : 'text-muted-foreground'
                   }`}
                 >
                   {step.label}
@@ -94,8 +94,8 @@ const ServiceNav = () => {
                   className={`w-10 lg:w-16 h-px p-[2px] rounded-xl mx-2 ${
                     stepsWithActiveStatus[index].active &&
                     stepsWithActiveStatus[index + 1].active
-                      ? 'bg-blue-600'
-                      : 'bg-gray-400'
+                      ? 'bg-primary'
+                      : 'bg-muted'
                   }`}
                 ></div>
               )}
@@ -109,7 +109,7 @@ const ServiceNav = () => {
             <div
               key={index}
               className={`w-3 h-3 rounded-full ${
-                step.active ? 'bg-blue-600' : 'bg-gray-400'
+                step.active ? 'bg-primary' : 'bg-muted'
               }`}
             />
           ))}

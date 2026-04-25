@@ -23,16 +23,16 @@ const ArticleDetailsPage = ({ params }: { params: { id: string } }) => {
   if (isSingleLoading) return <LoadingSpinner />;
 
   return (
-    <div className="w-full bg-white">
+    <div className="w-full bg-background">
       <div className="container mx-auto px-4 py-8 sm:px-6 lg:px-8">
         {/* Article Header */}
         <div className="mb-8">
-          <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 leading-tight mb-4">
+          <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-foreground leading-tight mb-4">
             {article?.data?.title}
           </h1>
 
           {/* Author Info */}
-          <div className="flex items-center space-x-4 text-sm text-gray-600 mb-">
+          <div className="flex items-center space-x-4 text-sm text-muted-foreground mb-">
             <div className="flex items-center space-x-2">
               <div className="">
                 <Image
@@ -43,11 +43,11 @@ const ArticleDetailsPage = ({ params }: { params: { id: string } }) => {
                   className="h-8 w-8 rounded-full"
                 />
               </div>
-              <span>
+              <span className="text-foreground">
                 {article?.data?.user.firstName} {article?.data?.user.lastName}
               </span>
             </div>
-            <span>
+            <span className="text-foreground">
               {dayjs(article?.data?.updatedAt).format('DD MMMM YYYY')}
             </span>
           </div>
@@ -55,7 +55,7 @@ const ArticleDetailsPage = ({ params }: { params: { id: string } }) => {
 
         {/* Hero Image */}
         <div className="mb-8">
-          <div className="w-full aspect-[16/9] sm:aspect-[2/1] overflow-hidden rounded-lg ">
+          <div className="w-full aspect-[16/9] sm:aspect-[2/1] overflow-hidden rounded-xl border border-border">
             <Image
               src={article?.data?.image || hero}
               alt="Contractor working with wood"
@@ -67,12 +67,12 @@ const ArticleDetailsPage = ({ params }: { params: { id: string } }) => {
         </div>
 
         {/* Article Content */}
-        <div className="prose prose-gray whitespace-pre-line">
+        <div className="prose prose-gray whitespace-pre-line prose-headings:text-foreground prose-p:text-foreground prose-strong:text-foreground">
           {article?.data?.content}
 
           {/* Social Media Share */}
           {/* Social Media Share */}
-          <div className="border-t border-gray-200 pt-8 mt-12">
+          <div className="border-t border-border pt-8 mt-12">
             <div className="flex justify-center space-x-4">
               {/* Facebook */}
               <a
@@ -81,7 +81,7 @@ const ArticleDetailsPage = ({ params }: { params: { id: string } }) => {
                 )}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 bg-blue-600 text-white rounded-lg flex items-center justify-center hover:bg-blue-700 transition-colors"
+                className="w-10 h-10 bg-primary text-primary-foreground rounded-lg flex items-center justify-center hover:bg-primary/90 transition-colors"
                 aria-label="Share on Facebook"
               >
                 <FaFacebookF className="w-4 h-4" />
@@ -94,7 +94,7 @@ const ArticleDetailsPage = ({ params }: { params: { id: string } }) => {
                 )}&text=${encodeURIComponent(article?.data?.title)}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 bg-black text-white rounded-lg flex items-center justify-center hover:bg-blue-500 transition-colors"
+                className="w-10 h-10 bg-foreground text-background rounded-lg flex items-center justify-center hover:bg-foreground/90 transition-colors"
                 aria-label="Share on Twitter"
               >
                 <FaTwitter className="w-4 h-4" />
@@ -121,7 +121,7 @@ const ArticleDetailsPage = ({ params }: { params: { id: string } }) => {
                 )}&description=${encodeURIComponent(article?.data?.title)}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 bg-red-600 text-white rounded-lg flex items-center justify-center hover:bg-red-700 transition-colors"
+                className="w-10 h-10 bg-foreground text-background rounded-lg flex items-center justify-center hover:bg-foreground/90 transition-colors"
                 aria-label="Share on Pinterest"
               >
                 <FaPinterestP className="w-4 h-4" />

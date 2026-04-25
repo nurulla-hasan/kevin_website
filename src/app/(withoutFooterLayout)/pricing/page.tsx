@@ -77,11 +77,11 @@ export default function PricingSection() {
       id: "free",
       title: removeEmoji(cardFree?.title) || "20% Off Pre-Priced Projects",
       icon: freeEmoji,
-      iconBg: "bg-green-100",
+      iconBg: "bg-primary/10",
       features: cardFree?.features || [],
       buttonText: "Start Free",
       buttonPath: "/",
-      buttonStyle: "bg-blue-600 hover:bg-blue-700 text-white",
+      buttonStyle: "bg-primary hover:bg-primary/90 text-primary-foreground",
       isVisible: cardFree?.isVisible !== false,
     },
     {
@@ -91,11 +91,11 @@ export default function PricingSection() {
         cardPremium?.content ||
         `$${allFees?.data[0]?.monthlyValue}/month or $${allFees?.data[0]?.yearlyValue}/year`,
       icon: premiumEmoji,
-      iconBg: "bg-green-100",
+      iconBg: "bg-primary/10",
       features: cardPremium?.features || [],
       buttonText: "Get Premium",
       buttonPath: "/paymentMethod",
-      buttonStyle: "bg-blue-600 hover:bg-blue-700 text-white",
+      buttonStyle: "bg-primary hover:bg-primary/90 text-primary-foreground",
       isVisible: cardPremium?.isVisible !== false,
     },
     {
@@ -105,11 +105,11 @@ export default function PricingSection() {
         cardVip?.content ||
         `$${allFees?.data[2]?.monthlyValue}/month or $${allFees?.data[2]?.yearlyValue}/year`,
       icon: vipEmoji,
-      iconBg: "bg-green-100",
+      iconBg: "bg-primary/10",
       features: cardVip?.features || [],
       buttonText: "Become a VIP Member",
       buttonPath: "/paymentMethod",
-      buttonStyle: "bg-blue-600 hover:bg-blue-700 text-white",
+      buttonStyle: "bg-primary hover:bg-primary/90 text-primary-foreground",
       isVisible: cardVip?.isVisible !== false,
     },
   ];
@@ -117,12 +117,12 @@ export default function PricingSection() {
   return (
     <>
       <nav
-        className="flex items-center font-normal text-base leading-6  bg-white pl-3 md:pl-5 lg:pl-10 xl:pl-44 border-t border-gray-500 py-3"
+        className="flex items-center font-normal text-base leading-6  bg-background pl-3 md:pl-5 lg:pl-10 xl:pl-44 border-t border-border py-3"
         aria-label="breadcrumb"
       >
-        <p className="text-black text-xl">Home</p>
+        <p className="text-foreground text-xl">Home</p>
         <svg
-          className="mx-2 w-6 h-6 text-black"
+          className="mx-2 w-6 h-6 text-foreground"
           fill="none"
           stroke="currentColor"
           strokeWidth={2}
@@ -133,9 +133,9 @@ export default function PricingSection() {
         >
           <path d="M9 18l6-6-6-6" />
         </svg>
-        <span className="text-black cursor-default text-xl">VIP Member</span>
+        <span className="text-foreground cursor-default text-xl">VIP Member</span>
       </nav>
-      <div className="min-h-screen bg-gray-50 py-12 px-4">
+      <div className="min-h-screen bg-muted py-12 px-4">
         <div className="container mx-auto">
           {/* Hero Title from CMS */}
           {heroSection?.isVisible !== false && (
@@ -145,17 +145,17 @@ export default function PricingSection() {
           )}
 
           {/* Header Section */}
-          <div className="bg-white px-3 py-8 mb-12">
+          <div className="bg-card border border-border px-3 py-8 mb-12 rounded-xl">
             {/* Hero Content from CMS */}
             {heroSection?.isVisible !== false && heroSection?.content && (
-              <h1 className="text-xl md:text-2xl text-gray-900 mb-6 leading-tight max-w-6xl mx-auto">
+              <h1 className="text-xl md:text-2xl text-foreground mb-6 leading-tight max-w-6xl mx-auto">
                 {heroSection.content}
               </h1>
             )}
 
             {/* Upgrade Text from CMS */}
             {upgradeText?.isVisible !== false && (
-              <div className="flex items-center max-w-6xl mx-auto mb-5 gap-2 text-xl md:text-2xl font-semibold text-gray-900">
+              <div className="flex items-center max-w-6xl mx-auto mb-5 gap-2 text-xl md:text-2xl font-semibold text-foreground">
                 <span>{upgradeText?.title || ""}</span>
               </div>
             )}
@@ -167,7 +167,7 @@ export default function PricingSection() {
                 .map((tier) => (
                   <div
                     key={tier.id}
-                    className="bg-gray-100 rounded-2xl p-8 shadow-sm border border-gray-100 flex flex-col h-full relative"
+                    className="bg-card rounded-2xl p-8 shadow-sm border border-border flex flex-col h-full relative"
                   >
                     <div className="flex flex-col md:flex-row gap-3">
                       {/* Icon */}
@@ -180,11 +180,11 @@ export default function PricingSection() {
                       <div>
                         {/* Title and Price */}
                         <div className="mb-8">
-                          <h3 className="text-2xl font-bold text-gray-900 mb-2">
+                          <h3 className="text-2xl font-bold text-foreground mb-2">
                             {tier.title}
                           </h3>
                           {tier.price && (
-                            <p className="text-lg text-gray-600">
+                            <p className="text-lg text-muted-foreground">
                               {tier.price}
                             </p>
                           )}
@@ -198,8 +198,8 @@ export default function PricingSection() {
                                 key={index}
                                 className="flex items-start gap-3"
                               >
-                                <FiCheck className="text-gray-600 w-5 h-5 mt-0.5 flex-shrink-0" />
-                                <span className="text-gray-700 text-base leading-relaxed">
+                                <FiCheck className="text-primary w-5 h-5 mt-0.5 flex-shrink-0" />
+                                <span className="text-foreground text-base leading-relaxed">
                                   {feature}
                                 </span>
                               </li>

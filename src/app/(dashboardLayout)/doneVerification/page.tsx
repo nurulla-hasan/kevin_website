@@ -32,9 +32,9 @@ const DoneVerification = () => {
 
 
   return (
-    <div className="bg-white min-h-screen">
-      <div className="mb-8 border-b border-black p-5">
-        <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
+    <div className="bg-background min-h-screen">
+      <div className="mb-8 border-b border-border p-5">
+        <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-foreground mb-4">
           Verify Your License
         </h1>
       </div>
@@ -46,8 +46,8 @@ const DoneVerification = () => {
           width={500}
           height={500}
         />
-        <h1 className="text-xl font-bold">{statusMessage}</h1>
-        <p className="text-sm my-3">
+        <h1 className="text-xl font-bold text-foreground">{statusMessage}</h1>
+        <p className="text-sm my-3 text-muted-foreground">
           {statusDescription}
        
         </p>

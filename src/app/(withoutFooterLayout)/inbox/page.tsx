@@ -219,18 +219,18 @@ export default function MessagingApp() {
 
   // --- JSX ---
   return (
-    <div className="flex container mx-auto my-12 bg-gray-50 rounded-xl">
+    <div className="flex container mx-auto my-12 bg-muted rounded-xl">
       {/* Sidebar */}
-      <div className="w-80 bg-white border-r border-gray-200 flex flex-col h-[80vh]">
+      <div className="w-80 bg-card border-r border-border flex flex-col h-[80vh]">
         {/* Tabs */}
-        <div className="border-b flex justify-around items-center py-3 text-sm font-medium">
+        <div className="border-b border-border flex justify-around items-center py-3 text-sm font-medium">
           <button
             onClick={() => {
               setActiveTab("messages");
               setSelectedUserId("");
             }}
             className={`px-3 py-1 rounded-md ${
-              activeTab === "messages" ? "bg-blue-100 text-blue-700" : ""
+              activeTab === "messages" ? "bg-primary/10 text-primary" : ""
             }`}
           >
             Messages
@@ -248,20 +248,20 @@ export default function MessagingApp() {
             }}
             className={`px-3 py-1 rounded-md flex items-center gap-1 relative transition-colors ${
               activeTab === "askAPro"
-                ? "bg-blue-100 text-blue-700"
+                ? "bg-primary/10 text-primary"
                 : !canAccessAskAPro
                 ? "opacity-60 cursor-pointer"
-                : "hover:bg-gray-100"
+                : "hover:bg-muted"
             }`}
           >
             Ask a Pro
             {experts.length > 0 && (
-              <span className="bg-blue-600 text-white text-xs rounded-full px-2 py-0.5 ml-1">
+              <span className="bg-primary text-primary-foreground text-xs rounded-full px-2 py-0.5 ml-1">
                 {experts.length}
               </span>
             )}
             {!canAccessAskAPro && (
-              <span className="absolute -right-1 -top-1 text-gray-400 text-xs">
+              <span className="absolute -right-1 -top-1 text-muted-foreground text-xs">
                 🔒
               </span>
             )}
@@ -269,23 +269,23 @@ export default function MessagingApp() {
         </div>
 
         {/* Search */}
-        <div className="p-3 border-b border-gray-100 relative">
-          <FiSearch className="absolute left-6 top-1/2 transform -translate-y-1/2 text-gray-400" />
+        <div className="p-3 border-b border-border relative">
+          <FiSearch className="absolute left-6 top-1/2 transform -translate-y-1/2 text-muted-foreground" />
           <input
             type="text"
             placeholder="Search"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full pl-10 pr-3 py-2.5 bg-gray-50 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            className="w-full pl-10 pr-3 py-2.5 bg-background border border-border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent text-foreground placeholder:text-muted-foreground"
           />
         </div>
 
         {/* User List */}
         <div className="flex-1 overflow-y-auto">
           {usersLoading ? (
-            <div className="p-4 text-sm text-gray-500">Loading...</div>
+            <div className="p-4 text-sm text-muted-foreground">Loading...</div>
           ) : filteredUsers.length === 0 ? (
-            <p className="p-4 text-gray-500 text-sm">No users found</p>
+            <p className="p-4 text-muted-foreground text-sm">No users found</p>
           ) : (
             filteredUsers.map((contact: any) => {
               const isOnline = onlineUsers.includes(contact._id);
@@ -294,8 +294,8 @@ export default function MessagingApp() {
                 <div
                   key={contact._id}
                   onClick={() => setSelectedUserId(contact._id)}
-                  className={`flex items-center p-4 cursor-pointer hover:bg-gray-100 ${
-                    selectedUserId === contact._id ? "bg-blue-50" : ""
+                  className={`flex items-center p-4 cursor-pointer hover:bg-muted ${
+                    selectedUserId === contact._id ? "bg-primary/10" : ""
                   }`}
                 >
                   <div className="relative">
@@ -311,28 +311,28 @@ export default function MessagingApp() {
                       className="rounded-full object-cover w-12 h-12"
                     />
                     {isOnline && (
-                      <span className="absolute -top-0.5 -right-0.5 w-3 h-3 bg-green-500 border-2 border-white rounded-full" />
+                      <span className="absolute -top-0.5 -right-0.5 w-3 h-3 bg-green-500 border-2 border-background rounded-full" />
                     )}
                   </div>
                   <div className="ml-3 flex flex-col flex-1 min-w-0">
                     <div className="flex items-center justify-between">
-                      <span className={`font-medium text-sm truncate ${hasUnread ? "text-gray-900 font-semibold" : "text-gray-700"}`}>
+                      <span className={`font-medium text-sm truncate ${hasUnread ? "text-foreground font-semibold" : "text-muted-foreground"}`}>
                         {contact.firstName} {contact.lastName}
                       </span>
                       {contact.lastMessage?.createdAt && (
-                        <span className="text-xs text-gray-400 ml-1 shrink-0">
+                        <span className="text-xs text-muted-foreground ml-1 shrink-0">
                           {dayjs(contact.lastMessage.createdAt).format("h:mm A")}
                         </span>
                       )}
                     </div>
                     <div className="flex items-center justify-between mt-0.5">
                       {contact.role === "vipContractor" && (
-                        <span className="text-xs text-blue-600 font-semibold bg-blue-50 px-2 py-0.5 rounded-md w-fit">
+                        <span className="text-xs text-primary font-semibold bg-primary/10 px-2 py-0.5 rounded-md w-fit">
                           Expert
                         </span>
                       )}
                       {contact.lastMessage?.text && (
-                        <span className="text-xs text-gray-400 truncate max-w-[120px]">
+                        <span className="text-xs text-muted-foreground truncate max-w-[120px]">
                           {contact.lastMessage.text}
                         </span>
                       )}
@@ -349,7 +349,7 @@ export default function MessagingApp() {
       <div className="flex-1 flex flex-col h-[80vh]">
         {/* Chat Header */}
         {selectedUserId && selectedContactData && (
-          <div className="bg-white border-b border-gray-200 px-4 py-3 flex items-center gap-3">
+          <div className="bg-card border-b border-border px-4 py-3 flex items-center gap-3">
             <div className="relative">
               <Image
                 src={
@@ -364,14 +364,14 @@ export default function MessagingApp() {
                 className="rounded-full object-cover w-10 h-10"
               />
               {onlineUsers.includes(selectedContactData._id) && (
-                <span className="absolute -top-0.5 -right-0.5 w-3 h-3 bg-green-500 border-2 border-white rounded-full" />
+                <span className="absolute -top-0.5 -right-0.5 w-3 h-3 bg-green-500 border-2 border-background rounded-full" />
               )}
             </div>
             <div>
-              <p className="font-semibold text-sm text-gray-900">
+              <p className="font-semibold text-sm text-foreground">
                 {selectedContactData.firstName} {selectedContactData.lastName}
               </p>
-              <p className="text-xs text-gray-500">
+              <p className="text-xs text-muted-foreground">
                 {onlineUsers.includes(selectedContactData._id)
                   ? "Online"
                   : "Offline"}
@@ -383,7 +383,7 @@ export default function MessagingApp() {
         {/* Messages Area */}
         <div className="flex-1 overflow-y-auto p-4 space-y-4">
           {!selectedUserId ? (
-            <div className="flex flex-col items-center justify-center h-full text-gray-400">
+            <div className="flex flex-col items-center justify-center h-full text-muted-foreground">
               <div className="text-5xl mb-3">💬</div>
               <p className="text-sm">Select a conversation to start messaging</p>
             </div>
@@ -412,8 +412,8 @@ export default function MessagingApp() {
                   <div
                     className={`max-w-xs lg:max-w-md px-4 py-2 rounded-2xl text-sm ${
                       isMe
-                        ? "bg-blue-500 text-white rounded-br-sm"
-                        : "bg-gray-100 text-gray-800 rounded-bl-sm"
+                        ? "bg-primary text-primary-foreground rounded-br-sm"
+                        : "bg-muted text-foreground rounded-bl-sm"
                     }`}
                   >
                     {msg.text && <p>{msg.text}</p>}
@@ -428,7 +428,7 @@ export default function MessagingApp() {
                         />
                       </div>
                     )}
-                    <div className={`text-xs mt-1 ${isMe ? "text-blue-100" : "text-gray-400"}`}>
+                    <div className={`text-xs mt-1 ${isMe ? "text-primary-foreground/70" : "text-muted-foreground"}`}>
                       {dayjs(msg.createdAt).format("h:mm A")}
                     </div>
                   </div>
@@ -441,7 +441,7 @@ export default function MessagingApp() {
 
         {/* Message Input */}
         {selectedUserId && (
-          <div className="bg-white border-t border-gray-200 p-3">
+          <div className="bg-card border-t border-border p-3">
             {previews.length > 0 && (
               <div className="flex gap-2 overflow-x-auto pb-2">
                 {previews.map((src, idx) => (
@@ -455,7 +455,7 @@ export default function MessagingApp() {
                     />
                     <button
                       onClick={() => handleImageCancel(idx)}
-                      className="absolute top-0 right-0 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs"
+                      className="absolute top-0 right-0 bg-destructive text-destructive-foreground rounded-full w-5 h-5 flex items-center justify-center text-xs"
                     >
                       ✕
                     </button>
@@ -464,7 +464,7 @@ export default function MessagingApp() {
               </div>
             )}
             <div className="flex items-center gap-3">
-              <label className="cursor-pointer text-gray-500 hover:text-gray-700">
+              <label className="cursor-pointer text-muted-foreground hover:text-foreground">
                 <FiPaperclip className="w-5 h-5" />
                 <input
                   type="file"
@@ -480,12 +480,12 @@ export default function MessagingApp() {
                 onChange={(e) => setTextMessage(e.target.value)}
                 onKeyDown={(e) => e.key === "Enter" && handleSendMessage()}
                 placeholder="Type a message..."
-                className="flex-1 bg-gray-50 border border-gray-200 rounded-full px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="flex-1 bg-background border border-border rounded-full px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary text-foreground placeholder:text-muted-foreground"
               />
               <button
                 disabled={!textMessage && files.length === 0}
                 onClick={handleSendMessage}
-                className="p-2 bg-blue-500 text-white rounded-full hover:bg-blue-600 disabled:opacity-50 transition-colors"
+                className="p-2 bg-primary text-primary-foreground rounded-full hover:bg-primary/90 disabled:opacity-50 transition-colors"
               >
                 <FiSend className="w-4 h-4" />
               </button>

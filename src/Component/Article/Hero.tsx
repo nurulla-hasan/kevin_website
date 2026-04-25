@@ -55,7 +55,7 @@ export default function BlogHero({ allArticles, cmsData = undefined }) {
   const popularCms = cmsData?.popular
 
   return (
-    <div className="w-full bg-white px-4 py-8 sm:px-6 lg:px-8">
+    <div className="w-full bg-background px-4 py-8 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-7xl">
         {/* Grid layout corrected */}
         <div className="grid grid-cols-1 gap-10 lg:grid-cols-3">
@@ -63,22 +63,22 @@ export default function BlogHero({ allArticles, cmsData = undefined }) {
           {featuredCms?.isVisible !== false && (
             <div className="lg:col-span-2">
               <div className="mb-6 flex items-center">
-                <span className="inline-flex items-center rounded bg-blue-600 px-3 py-1 text-sm font-medium text-white">
-                  {featuredCms?.title || "Featured"}
+                <span className="inline-flex items-center rounded bg-primary px-3 py-1 text-sm font-medium text-primary-foreground">
+                  {featuredCms?.title || "Please set title in CMS"}
                 </span>
-                <span className="ml-2 text-sm text-gray-600">
-                  {featuredCms?.content || "This month"}
+                <span className="ml-2 text-sm text-muted-foreground">
+                  {featuredCms?.content || "Please set content in CMS"}
                 </span>
               </div>
 
               <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
                 {/* Text side */}
                 <div className="order-2 md:order-1">
-                  <h1 className="mb-4 text-2xl font-bold leading-tight text-gray-900 sm:text-3xl lg:text-4xl">
+                  <h1 className="mb-4 text-2xl font-bold leading-tight text-foreground sm:text-3xl lg:text-4xl">
                     {featuredArticle?.title}
                   </h1>
 
-                  <div className="mb-4 flex items-center space-x-3 text-sm text-gray-600">
+                  <div className="mb-4 flex items-center space-x-3 text-sm text-muted-foreground">
                     <Image
                       src={featuredArticle?.user?.image}
                       alt="Author"
@@ -96,11 +96,11 @@ export default function BlogHero({ allArticles, cmsData = undefined }) {
                     </span>
                   </div>
 
-                  <p className="text-gray-700 leading-relaxed">
+                  <p className="text-foreground leading-relaxed">
                     {featuredArticle?.content?.slice(0, 120)}{" "}
                     <Link
                       href={`/article/${featuredArticle?._id}`}
-                      className="text-blue-600 underline"
+                      className="text-primary underline hover:text-primary/80"
                     >
                       Read More...
                     </Link>
@@ -109,7 +109,7 @@ export default function BlogHero({ allArticles, cmsData = undefined }) {
 
                 {/* Image side */}
                 <div className="order-1 md:order-2">
-                  <div className="aspect-[4/3] w-full overflow-hidden rounded-lg">
+                  <div className="aspect-[4/3] w-full overflow-hidden rounded-xl border border-border">
                     <Image
                       src={featuredArticle?.image}
                       alt="Featured article image"
@@ -129,11 +129,11 @@ export default function BlogHero({ allArticles, cmsData = undefined }) {
               {popularArticles.length > 0 && (
                 <div>
                   <div className="mb-6 flex items-center">
-                    <span className="inline-flex items-center rounded bg-blue-600 px-3 py-1 text-sm font-medium text-white">
-                      {popularCms?.title || "Popular"}
+                    <span className="inline-flex items-center rounded bg-primary px-3 py-1 text-sm font-medium text-primary-foreground">
+                      {popularCms?.title || "Please set title in CMS"}
                     </span>
-                    <span className="ml-2 text-sm text-gray-600">
-                      {popularCms?.content || "This month"}
+                    <span className="ml-2 text-sm text-muted-foreground">
+                      {popularCms?.content || "Please set content in CMS"}
                     </span>
                   </div>
 
@@ -152,14 +152,14 @@ export default function BlogHero({ allArticles, cmsData = undefined }) {
                           key={article._id}
                           className={`${
                             index < popularArticles.length - 1
-                              ? 'border-b border-gray-200 pb-6'
+                              ? 'border-b border-border pb-6'
                               : 'pb-6'
-                          } cursor-pointer hover:bg-gray-50 rounded-lg p-2 -m-2 transition-colors`}
+                          } cursor-pointer hover:bg-muted rounded-lg p-2 -m-2 transition-colors`}
                         >
-                          <h3 className="mb-2 text-lg font-semibold text-gray-900 hover:text-blue-600 transition-colors">
+                          <h3 className="mb-2 text-lg font-semibold text-foreground hover:text-primary transition-colors">
                             {article.title}
                           </h3>
-                          <div className="mb-3 flex items-center space-x-2 text-sm text-gray-600">
+                          <div className="mb-3 flex items-center space-x-2 text-sm text-muted-foreground">
                             <Image
                               src={article?.user?.image}
                               alt="Author"
@@ -176,7 +176,7 @@ export default function BlogHero({ allArticles, cmsData = undefined }) {
                               {dayjs(article?.updatedAt).format('DD MMMM YYYY')}
                             </span>
                           </div>
-                          <p className="text-sm text-gray-700 leading-relaxed line-clamp-3">
+                          <p className="text-sm text-foreground leading-relaxed line-clamp-3">
                             {article?.content}
                           </p>
                         </article>
@@ -185,9 +185,9 @@ export default function BlogHero({ allArticles, cmsData = undefined }) {
                   </div>
 
                   {/* Scroll progress bar */}
-                  <div className="absolute left-0 top-0 h-full w-1 bg-gray-200 rounded-full">
+                  <div className="absolute left-0 top-0 h-full w-1 bg-muted rounded-full">
                     <div
-                      className="bg-blue-600 rounded-full transition-all duration-200 w-full"
+                      className="bg-primary rounded-full transition-all duration-200 w-full"
                       style={{
                         height: `${Math.max(
                           20,
@@ -225,8 +225,8 @@ export default function BlogHero({ allArticles, cmsData = undefined }) {
                       className={`h-2 w-2 rounded-full transition-colors duration-200 ${
                         scrollPosition >= position &&
                         scrollPosition < (index === 3 ? 100 : position + 25)
-                          ? "bg-blue-600"
-                          : "bg-gray-300 hover:bg-gray-400"
+                          ? "bg-primary"
+                          : "bg-muted hover:bg-muted-foreground"
                       }`}
                       aria-label={`Scroll to section ${index + 1}`}
                     ></button>

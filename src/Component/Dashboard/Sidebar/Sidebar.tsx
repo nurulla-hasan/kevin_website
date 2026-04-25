@@ -52,14 +52,15 @@ const Sidebar = () => {
   const cmsSidebar = globalData?.data?.sidebar || [];
 
   const sidebarMapping = {
-    "Profile": 0,
-    "Password": 1,
+    "Dashboard": 0,
+    "Profile": 1,
     "Referral": 2,
-    "Account Balance": 3,
-    "Ask a Pro": 4,
-    "VIP Member": 5,
-    "VIP Contractor": 5,
-    "Delete Account": 6,
+    "VIP Member": 3,
+    "VIP Contractor": 3,
+    "Password": 4,
+    "Account Balance": 5,
+    "Ask a Pro": 6,
+    "Delete Account": 7,
   };
 
   const mapItem = (item) => {
@@ -144,13 +145,13 @@ const Sidebar = () => {
               {/* Only show the lock icon for non-premium users */}
               {item.label === "Ask a Pro" && !isPremiumUser ? (
                 <div
-                  className="flex items-center cursor-pointer text-gray-400"
+                  className="flex items-center cursor-pointer text-muted-foreground"
                   onClick={(e) => handleLockClick(e)}
                 >
-                  <FaLock className="mr-2 ml-4 text-gray-600" />
+                  <FaLock className="mr-2 ml-4 text-muted-foreground" />
                   <span
                     className={clsx(
-                      isActive ? "text-blue-600" : "text-gray-800"
+                      isActive ? "text-primary" : "text-foreground"
                     )}
                   >
                     {item.label}
@@ -163,8 +164,8 @@ const Sidebar = () => {
                   className={clsx(
                     "text-sm font-bold px-4 py-3 w-full rounded-md transition-colors",
                     isActive
-                      ? "bg-blue-100 text-blue-600 border-l-2 border-blue-600"
-                      : "text-gray-800 hover:bg-gray-100"
+                      ? "bg-primary/10 text-primary border-l-2 border-primary"
+                      : "text-foreground hover:bg-muted"
                   )}
                 >
                   {item.label}
@@ -178,7 +179,7 @@ const Sidebar = () => {
         <div className="ml-3 mt-4">
           <button
             onClick={() => handleLogout()}
-            className="w-[50%] bg-red-500 text-white py-3 rounded hover:bg-red-600 transition"
+            className="w-[50%] bg-destructive text-destructive-foreground py-3 rounded hover:bg-destructive/90 transition"
           >
             Logout
           </button>

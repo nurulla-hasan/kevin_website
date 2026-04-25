@@ -26,16 +26,16 @@ const limit = meta?.limit;
   };
   return (
     <div className="md:w-[100%] p-7 mx-auto my-8">
-      <h1 className="text-xl font-bold">Select A Pro</h1>
-      <p className="text-lg my-3">
+      <h1 className="text-xl font-bold text-foreground">Select A Pro</h1>
+      <p className="text-lg my-3 text-muted-foreground">
         Choose the person you are looking for a guidance from!
       </p>
 
-      <div className=" bg-white rounded-xl p-7 space-y-6">
+      <div className=" bg-card border border-border rounded-xl p-7 space-y-6">
         {currentItems?.map(contractor => (
           <div
             key={contractor.id}
-            className="flex flex-col lg:flex-row bg-white rounded-lg overflow-hidden shadow-md"
+            className="flex flex-col lg:flex-row bg-card border border-border rounded-lg overflow-hidden shadow-md"
           >
             {/* Left - Image & Name */}
             <div className="relative w-full lg:w-1/2">
@@ -46,34 +46,34 @@ const limit = meta?.limit;
                 height={400}
                 className="object-cover h-full w-full"
               />
-              <div className="absolute bottom-4 left-4 text-white text-xl font-semibold">
+              <div className="absolute bottom-4 left-4 text-background text-xl font-semibold">
                 {contractor.name}
               </div>
               <Link href={`/profile/${contractor?._id}`}>
 
-              <button className="absolute bottom-4 right-4 bg-blue-600 hover:bg-blue-700 text-white text-sm px-4 py-1 rounded">
+              <button className="absolute bottom-4 right-4 bg-primary hover:bg-primary/90 text-primary-foreground text-sm px-4 py-1 rounded">
                 View Profile
               </button>
               </Link>
             </div>
 
             {/* Right - Info */}
-            <div className="w-full lg:w-1/2 bg-green-200 p-6 flex flex-col justify-between">
+            <div className="w-full lg:w-1/2 bg-muted p-6 flex flex-col justify-between">
               <div className="space-y-2">
-                <div className="flex items-center gap-2 text-sm font-medium text-gray-700">
-                  <FaCheckCircle className="text-blue-600" />
+                <div className="flex items-center gap-2 text-sm font-medium text-foreground">
+                  <FaCheckCircle className="text-primary" />
                   Verified Contractor
                 </div>
 
-                <div className="flex items-center gap-2 text-sm text-gray-800">
-                  <PiQuestionFill className="text-blue-600 text-lg" />
+                <div className="flex items-center gap-2 text-sm text-foreground">
+                  <PiQuestionFill className="text-primary text-lg" />
                   <span className="font-bold">
                     {contractor.completedTasks}
                   </span>{' '}
                   Completed Task
                 </div>
 
-                <div className="flex items-center gap-2 text-sm text-gray-800">
+                <div className="flex items-center gap-2 text-sm text-foreground">
                   <FaStar className="text-yellow-500" />
                   <span className="font-bold">{contractor.rating}</span> (
                   {contractor.reviews} reviews)
@@ -81,15 +81,15 @@ const limit = meta?.limit;
               </div>
 
               <div className="flex justify-between items-center mt-4">
-                <div className="text-gray-800 text-sm font-medium">
+                <div className="text-foreground text-sm font-medium">
                   Expertise
                 </div>
-                <div className="text-xl font-bold text-gray-900">
+                <div className="text-xl font-bold text-foreground">
                   {contractor.rate}
                 </div>
               </div>
               <Link href={'/inbox'}>
-                <button className="w-full mt-4 bg-blue-600 hover:bg-blue-700 text-white py-2 rounded font-semibold">
+                <button className="w-full mt-4 bg-primary hover:bg-primary/90 text-primary-foreground py-2 rounded font-semibold">
                   Select & Continue
                 </button>
               </Link>

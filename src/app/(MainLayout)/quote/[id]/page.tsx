@@ -67,13 +67,13 @@ export default function RequestQuoteForm() {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="max-w-2xl mx-auto p-6 bg-white rounded-md shadow-md space-y-6 my-5"
+      className="max-w-2xl mx-auto p-4 sm:p-6 bg-card border border-border rounded-xl shadow-lg space-y-6 my-4 sm:my-5"
     >
-      <div className="border-[#1D69E1] border-b-2">
-        <h2 className="text-2xl font-bold text-blue-700 mb-2">
+      <div className="border-primary border-b-2">
+        <h2 className="text-xl sm:text-2xl font-bold text-primary mb-2">
           Request A Quote
         </h2>
-        <p className="text-gray-600 mb-6">
+        <p className="text-muted-foreground mb-6">
           Provide information about your needs!
         </p>
       </div>
@@ -82,11 +82,11 @@ export default function RequestQuoteForm() {
         <label className="font-semibold mb-1 block">Project Location</label>
         <input
           {...register("projectLocation")}
-          className="w-full border border-gray-300 rounded-md p-3 pr-10 focus:outline-none focus:ring-2 focus:ring-blue-600"
+          className="w-full border border-border rounded-lg p-3 pr-10 focus:outline-none focus:ring-2 focus:ring-primary bg-background text-foreground placeholder:text-muted-foreground"
           placeholder="Enter project location"
         />
         <TbCurrentLocation
-          className="absolute right-3 top-[51px] transform -translate-y-1/2 text-black pointer-events-none"
+          className="absolute right-3 top-[51px] transform -translate-y-1/2 text-foreground pointer-events-none"
           size={20}
         />
       </div>
@@ -116,7 +116,7 @@ export default function RequestQuoteForm() {
           {...register("projectDescription")}
           rows={4}
           placeholder="Tell us more about your projects"
-          className="w-full border border-gray-300 rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-blue-600"
+          className="w-full border border-border rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-primary bg-background text-foreground placeholder:text-muted-foreground"
         />
       </div>
 
@@ -124,7 +124,7 @@ export default function RequestQuoteForm() {
         <div className="flex-1">
           <label className="font-semibold mb-1 flex items-center space-x-2">
             <span>Date</span>
-            <span className="underline cursor-pointer text-blue-600 text-sm font-normal">
+            <span className="underline cursor-pointer text-primary text-sm font-normal hover:text-primary/80">
               Choose a date
             </span>
           </label>
@@ -145,7 +145,7 @@ export default function RequestQuoteForm() {
         <div className="flex-1 mt-4 sm:mt-0">
           <label className="font-semibold mb-1 flex items-center space-x-2">
             <span>Time</span>
-            <span className="underline cursor-pointer text-blue-600 text-sm font-normal">
+            <span className="underline cursor-pointer text-primary text-sm font-normal hover:text-primary/80">
               Pick a time
             </span>
           </label>
@@ -244,14 +244,14 @@ export default function RequestQuoteForm() {
                   onChange={handleChange}
                   tooltipVisible
                 />
-                <div className="flex justify-between text-xs mt-1 px-1 text-gray-500">
+                <div className="flex justify-between text-xs mt-1 px-1 text-muted-foreground">
                   <div>
                     <label className="block">Minimum</label>
                     <input
                       type="number"
                       min={10}
                       max={currentRange[1]}
-                      className="w-16 border border-gray-300 rounded p-1"
+                      className="w-16 border border-border rounded p-1 bg-background text-foreground"
                       value={currentRange[0]}
                       onChange={(e) => {
                         const val = Number(e.target.value);
@@ -267,7 +267,7 @@ export default function RequestQuoteForm() {
                       type="number"
                       min={currentRange[0]}
                       max={1000}
-                      className="w-20 border border-gray-300 rounded p-1"
+                      className="w-20 border border-border rounded p-1 bg-background text-foreground"
                       value={currentRange[1]}
                       onChange={(e) => {
                         const val = Number(e.target.value);
@@ -286,7 +286,7 @@ export default function RequestQuoteForm() {
 
       <button
         type="submit"
-        className="w-full bg-[#1D69E1] text-white font-semibold py-3 rounded hover:bg-blue-800 transition"
+        className="w-full bg-primary text-primary-foreground font-semibold py-3 rounded-lg hover:bg-primary/90 transition-colors"
       >
         Request Quote
       </button>
