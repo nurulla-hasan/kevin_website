@@ -230,7 +230,7 @@ export default function MessagingApp() {
               setSelectedUserId("");
             }}
             className={`px-3 py-1 rounded-md ${
-              activeTab === "messages" ? "bg-primary/10 text-primary" : ""
+              activeTab === "messages" ? "bg-secondary/10 text-secondary" : ""
             }`}
           >
             Messages
@@ -248,7 +248,7 @@ export default function MessagingApp() {
             }}
             className={`px-3 py-1 rounded-md flex items-center gap-1 relative transition-colors ${
               activeTab === "askAPro"
-                ? "bg-primary/10 text-primary"
+                ? "bg-secondary/10 text-secondary"
                 : !canAccessAskAPro
                 ? "opacity-60 cursor-pointer"
                 : "hover:bg-muted"
@@ -256,7 +256,7 @@ export default function MessagingApp() {
           >
             Ask a Pro
             {experts.length > 0 && (
-              <span className="bg-primary text-primary-foreground text-xs rounded-full px-2 py-0.5 ml-1">
+              <span className="bg-secondary text-secondary-foreground text-xs rounded-full px-2 py-0.5 ml-1">
                 {experts.length}
               </span>
             )}
@@ -327,7 +327,7 @@ export default function MessagingApp() {
                     </div>
                     <div className="flex items-center justify-between mt-0.5">
                       {contact.role === "vipContractor" && (
-                        <span className="text-xs text-primary font-semibold bg-primary/10 px-2 py-0.5 rounded-md w-fit">
+                        <span className="text-xs text-secondary font-semibold bg-secondary/10 px-2 py-0.5 rounded-md w-fit">
                           Expert
                         </span>
                       )}

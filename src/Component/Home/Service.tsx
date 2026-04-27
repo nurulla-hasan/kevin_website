@@ -1,20 +1,15 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 'use client'
-import Image from 'next/image'
 import Link from 'next/link'
-import handyman from '@/assests/handyman.png'
-import landscaping from '@/assests/landscaping.png'
-import plumbing from '@/assests/plumbing.png'
-import electrical from '@/assests/electrical.png'
-import remodeling from '@/assests/remodeling.png'
+import { Wrench, TreePine, Droplets, Zap, Home } from 'lucide-react'
 
 export default function Service({ setFilter }:{ setFilter: any; }) {
   const services = [
-    { name: 'Handyman', img: handyman, value: 'handyman' },
-    { name: 'Landscaping', img: landscaping, value: 'garden' },
-    { name: 'Plumbing', img: plumbing, value: 'plumbing' },
-    { name: 'Electrical', img: electrical, value: 'electrical' },
-    { name: 'Remodeling', img: remodeling, value: 'remodeling' },
+    { name: 'Handyman', icon: Wrench, value: 'handyman' },
+    { name: 'Landscaping', icon: TreePine, value: 'garden' },
+    { name: 'Plumbing', icon: Droplets, value: 'plumbing' },
+    { name: 'Electrical', icon: Zap, value: 'electrical' },
+    { name: 'Remodeling', icon: Home, value: 'remodeling' },
   ]
 
   return (
@@ -27,12 +22,9 @@ export default function Service({ setFilter }:{ setFilter: any; }) {
               onClick={() => setFilter(service.value)}
               className="flex flex-col items-center text-primary hover:text-primary/80 transition-colors min-w-[80px] focus:outline-none"
             >
-              <Image
-                alt={service.name}
-                src={service.img}
-                width={64}
-                height={64}
-                className="w-16 h-16 transition-transform duration-150 hover:scale-105"
+              <service.icon
+                className="w-12 h-12 sm:w-14 sm:h-14 transition-transform duration-150 hover:scale-105"
+                strokeWidth={1.5}
               />
               <span className="text-xs sm:text-sm font-semibold mt-2 text-center">
                 {service.name}

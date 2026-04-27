@@ -226,7 +226,7 @@ const VipMemberRegister = () => {
                 <Link href={'/'}>
                   <button
                     type="submit"
-                    className="w-full mt-4  text-primary border border-primary py-3 rounded  transition"
+                    className="w-full mt-4 text-secondary-foreground bg-secondary border border-secondary hover:bg-secondary/90 py-3 rounded transition"
                   >
                     Back
                   </button>

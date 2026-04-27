@@ -164,8 +164,8 @@ const Sidebar = () => {
                   className={clsx(
                     "text-sm font-bold px-4 py-3 w-full rounded-md transition-colors",
                     isActive
-                      ? "bg-primary/10 text-primary border-l-2 border-primary"
-                      : "text-foreground hover:bg-muted"
+                      ? "bg-primary/10 text-primary border-l-2 border-secondary"
+                      : "text-foreground hover:bg-muted hover:text-secondary"
                   )}
                 >
                   {item.label}

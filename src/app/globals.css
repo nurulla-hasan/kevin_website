@@ -34,6 +34,12 @@
   --input: 210 10% 90%;
   --ring: var(--primary);
   
+  /* Dynamic Gradient for Membership Banner - 3 colors for vibrant effect */
+  --gradient-primary: hsl(var(--primary));
+  --gradient-secondary: hsl(var(--secondary));
+  --gradient-accent: hsl(var(--primary) / 0.7);
+  --gradient-membership: linear-gradient(135deg, var(--gradient-primary) 0%, var(--gradient-accent) 50%, var(--gradient-secondary) 100%);
+  
   --radius: 0.75rem;
   --font-sans: var(--font-lato), 'Lato', sans-serif;
   --font-serif: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
