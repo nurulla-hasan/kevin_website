@@ -2,6 +2,7 @@ import { Lato } from "next/font/google";
 import "@/app/globals.css";
 import { AntdRegistry } from "@ant-design/nextjs-registry";
 import Providers from "@/Providers/Providers";
+import { AntThemeProvider } from "@/Providers/AntThemeProvider";
 import NextTopLoader from 'nextjs-toploader';
 
 // Import Lato font
@@ -28,7 +29,9 @@ export default function RootLayout({ children }) {
           height={3}
         />
         <Providers>
-          <AntdRegistry>{children}</AntdRegistry>
+          <AntThemeProvider>
+            <AntdRegistry>{children}</AntdRegistry>
+          </AntThemeProvider>
         </Providers>
       </body>
     </html>
