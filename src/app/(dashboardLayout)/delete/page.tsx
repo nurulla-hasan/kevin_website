@@ -1,9 +1,10 @@
 'use client';
 
-import { selectCurrentUser } from '@/redux/features/auth/authSlice';
+import { logout, selectCurrentUser } from '@/redux/features/auth/authSlice';
 import { useDeletProfileMutation } from '@/redux/features/user/userApi';
-import { useAppSelector } from '@/redux/hooks';
+import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { message, Modal } from 'antd';
+import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
 const DeletePage = () => {
@@ -12,23 +13,25 @@ const DeletePage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const showModal = () => setIsModalOpen(true);
   const handleCancel = () => setIsModalOpen(false);
-const [deleteProfile]=useDeletProfileMutation()
+  const [deleteProfile]=useDeletProfileMutation()
+  const dispatch = useAppDispatch()
+  const router = useRouter()
   const handleConfirmDelete = async(userId) => {
-  try {
+    try {
       const res = await deleteProfile(userId).unwrap();
-      if (res.data) {
-        message.success(res?.data?.message);
-         setIsModalOpen(false);
+      if (res.success) {
+        message.success(res?.message || 'Account deleted successfully');
+        // Logout user after successful account deletion
+        dispatch(logout());
+        router.push('/');
       } else {
-   
-        message.error(res.message);
-            setIsModalOpen(false);
+        message.error(res.message || 'Failed to delete account');
+        setIsModalOpen(false);
       }
-    } catch (error) {
-      message.error(error);
-          setIsModalOpen(false);
+    } catch (error: any) {
+      message.error(error?.data?.message || error?.message || 'Something went wrong');
+      setIsModalOpen(false);
     }
-
   };
   return (
     <div>
